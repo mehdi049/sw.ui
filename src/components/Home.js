@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import HomeItems from "./HomeItems";
+import Sponsors from "./Sponsors";
+import LastArticlesCarousel from "./LastArticlesCarousel";
 
 function Home() {
-  return null;
+  return (
+    <>
+      <HomeItems />
+      <br />
+      <LastArticlesCarousel />
+      <br />
+      <Sponsors />
+    </>
+  );
 }
 
 export default Home;
