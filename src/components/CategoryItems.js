@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faClock } from "@fortawesome/free-solid-svg-icons";
+import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./LeftSideFilter";
 import LastArticlesCarousel from "./LastArticlesCarousel";
 
 function CategoryItems() {
   return (
     <>
+      <HeaderCategories />
+      <br />
       <Container>
         <Row>
           <Col lg={3}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import CityDropDown from "./_sharedComponents/CityDropDown";
 
 function LeftSideFilter() {
   return (
@@ -18,15 +19,7 @@ function LeftSideFilter() {
       <br />
       <br />
       <h5>Localisation</h5>
-      <Form.Control as="select" className="select">
-        <option>Toute la Tunisie</option>
-        <option>Ariana</option>
-        <option>Ben arous</option>
-        <option>Bizerte</option>
-        <option>Beja</option>
-        <option>Gabes</option>
-        <option>Gafsa</option>
-      </Form.Control>
+      <CityDropDown all={true} />
       <br />
       <h5>Condition</h5>
       <Form.Check type="checkbox" label="Neuf" className="dark-gray" />

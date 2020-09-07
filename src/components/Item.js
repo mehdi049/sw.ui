@@ -12,11 +12,14 @@ import {
   faHeartBroken,
   faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import SimilarArticlesCarousel from "./SimilarArticlesCarousel";
 
 function Item() {
   return (
     <>
+      <HeaderCategories />
+      <br />
       <Container>
         <Row>
           <Col lg="10">
@@ -176,13 +179,16 @@ function Item() {
             <br />
             <br />
             <FontAwesomeIcon icon={faEye} className="blue" />
-            &nbsp;&nbsp; 118 fois
+            &nbsp;&nbsp; <span className="bold big dark-blue">118</span> fois
+            <br />
             <br />
             <FontAwesomeIcon icon={faHeart} className="blue" />
-            &nbsp;&nbsp; 12 personnes
+            &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
+            personnes
+            <br />
             <br />
             <FontAwesomeIcon icon={faSyncAlt} className="blue" />
-            &nbsp;&nbsp; 3 en cours
+            &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
           </Col>
         </Row>
       </Container>

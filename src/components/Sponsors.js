@@ -42,37 +42,6 @@ function Sponsors() {
             />
           </Col>
         </Row>
-        <br />
-        <Row>
-          <Col lg="3">
-            <img
-              src={require("../images/sponsors/oddo.png")}
-              className="sponsor-img"
-              alt=""
-            />
-          </Col>
-          <Col lg="3">
-            <img
-              src={require("../images/sponsors/amaris.png")}
-              className="sponsor-img"
-              alt=""
-            />
-          </Col>
-          <Col lg="3">
-            <img
-              src={require("../images/sponsors/esprit.png")}
-              className="sponsor-img"
-              alt=""
-            />
-          </Col>
-          <Col lg="3">
-            <img
-              src={require("../images/sponsors/amazon.png")}
-              className="sponsor-img"
-              alt=""
-            />
-          </Col>
-        </Row>
       </Container>
     </Container>
   );

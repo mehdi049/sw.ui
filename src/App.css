@@ -17,6 +17,15 @@
   color: #959595;
 }
 
+.bold {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.big {
+  font-size: 25px;
+}
+
 a {
   color: #959595;
 }
@@ -87,13 +96,20 @@ h5 {
   cursor: pointer;
 }
 
+.badge {
+  color: #fff;
+  border-radius: 0px;
+  padding: 5px;
+}
+
 /** colors **/
 .dark-gray,
 .dark-gray * {
   color: #343434;
 }
 
-.white {
+.white,
+.white * {
   color: #fff;
 }
 
@@ -106,6 +122,10 @@ h5 {
   background: #253746;
 }
 
+.dark-blue {
+  color: #253746;
+}
+
 .dark-blue-bg a,
 .dark-blue-bg span {
   color: #fff !important;
@@ -114,6 +134,16 @@ h5 {
 /** end colors **/
 
 /** bootstrap override **/
+.form-control {
+  border-radius: 0px;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.input-group .form-control {
+  border: 1px solid #ced4da;
+}
+
 .form-control:focus {
   color: #495057;
   background-color: #fff;
@@ -173,6 +203,17 @@ textarea.form-control {
   resize: none;
 }
 
+.table-bordered thead th {
+  background: #009abf;
+  color: #fff;
+  font-weight: 300;
+  border-color: #fff;
+}
+
+.table-bordered td {
+  border: 1px solid #fff;
+}
+
 /** end bootstrap override **/
 
 /** header **/
@@ -181,9 +222,31 @@ textarea.form-control {
   color: #7f7f7f;
 }
 
+.no-carret a {
+  padding-right: 20px;
+}
+
+.no-carret a:after {
+  display: none;
+}
+
 #top-search-section {
-  width: 750px;
   margin-left: 30px;
+}
+
+.dark-blue-bg .notif-badge {
+  position: absolute;
+  color: #253746 !important;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2px;
+  width: 15px;
+  height: 15px;
+  right: 0px;
+  padding-top: 3px;
+  top: 5px;
+  padding-left: 1px;
+  font-size: 10px;
 }
 
 /** end header **/
@@ -220,16 +283,14 @@ textarea.form-control {
   border-bottom-color: #ffcd00;
 }
 
-.badge {
-  color: #fff;
-  border-radius: 0px;
-  padding: 5px;
-}
-
 .yellow-border:hover,
 .yellow-border[active="true"],
 .yellow-bg {
   background-color: #ffcd00;
+}
+
+.blue {
+  color: #009dff;
 }
 
 .blue-border {
@@ -370,3 +431,15 @@ textarea.form-control {
   margin-top: 10px;
 }
 /** end item details **/
+
+/** profile **/
+.upload-file-area {
+  width: 55px;
+  cursor: pointer;
+}
+
+.upload-file-area .form-control-file {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+}
