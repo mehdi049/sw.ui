@@ -80,27 +80,10 @@ function Header() {
                     </button>
                   </Link>
                 </NavDropdown>
-                <NavDropdown
-                  className="profile-links no-carret"
-                  title={
-                    <>
-                      <FontAwesomeIcon icon={faEnvelope} className="white" />
-                      <Badge className="notif-badge">13</Badge>
-                    </>
-                  }
-                  id="basic-nav-dropdown"
-                >
-                  <Link to="/">
-                    <button className="dropdown-item" href="#">
-                      Ahmed vous a envoyé un message
-                    </button>
-                  </Link>
-                  <Link to="/">
-                    <button className="dropdown-item" href="#">
-                      Sofien vous a envoyé un message
-                    </button>
-                  </Link>
-                </NavDropdown>
+                <Link className="nav-link" to="/myMessages">
+                  <FontAwesomeIcon icon={faEnvelope} className="white" />
+                  <Badge className="notif-badge">13</Badge>
+                </Link>
                 <NavDropdown
                   className="profile-links no-carret"
                   title={
@@ -122,27 +105,10 @@ function Header() {
                     </button>
                   </Link>
                 </NavDropdown>
-                <NavDropdown
-                  className="profile-links no-carret"
-                  title={
-                    <>
-                      <FontAwesomeIcon icon={faExchangeAlt} className="white" />
-                      <Badge className="notif-badge">3</Badge>
-                    </>
-                  }
-                  id="basic-nav-dropdown"
-                >
-                  <Link to="/">
-                    <button className="dropdown-item" href="#">
-                      Ahmed veut echanger un article avec vous
-                    </button>
-                  </Link>
-                  <Link to="/">
-                    <button className="dropdown-item" href="#">
-                      Sofien veut echanger un article avec vous
-                    </button>
-                  </Link>
-                </NavDropdown>
+                <Link className="nav-link" to="/myExchanges">
+                  <FontAwesomeIcon icon={faExchangeAlt} className="white" />
+                  <Badge className="notif-badge">13</Badge>
+                </Link>
               </Navbar.Collapse>
             </Navbar>
           </Row>

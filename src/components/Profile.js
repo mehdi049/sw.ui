@@ -8,6 +8,7 @@ import { faEye, faHeart, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 function Profile() {
   return (
     <>
+      <br />
       <Container>
         <Row>
           <Col lg="3">

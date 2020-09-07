@@ -235,16 +235,15 @@ textarea.form-control {
 }
 
 .dark-blue-bg .notif-badge {
-  position: absolute;
+  float: right;
+  margin-left: 5px;
   color: #253746 !important;
   background: #fff;
   border-radius: 20px;
   padding: 2px;
   width: 15px;
   height: 15px;
-  right: 0px;
   padding-top: 3px;
-  top: 5px;
   padding-left: 1px;
   font-size: 10px;
 }
@@ -442,4 +441,51 @@ textarea.form-control {
   position: absolute;
   opacity: 0;
   width: 100%;
+}
+
+/** my messages **/
+.discussion-item {
+  margin-top: 10px;
+  padding: 10px;
+  max-height: 80px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.discussion-item.not-read {
+  background: #efefef;
+}
+
+#conversation-area {
+  max-height: 680px;
+  overflow-x: hidden;
+}
+
+.discussion-left {
+  background: #efefef;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 30px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.discussion-avatar-left {
+  width: 20px;
+  float: left;
+}
+
+.discussion-right {
+  background: #009abf;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 30px;
+  margin-right: 10px;
+  display: inline-block;
+  color: white;
+}
+
+.discussion-avatar-right {
+  width: 20px;
+  float: right;
 }
