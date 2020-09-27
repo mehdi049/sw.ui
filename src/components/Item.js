@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Badge, Container, Row, Col } from "react-bootstrap";
+import { Form, Badge, Container, Row, Col, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,
@@ -9,11 +9,14 @@ import {
   faEye,
   faExchangeAlt,
   faHeart,
-  faHeartBroken,
   faSyncAlt,
+  faCheckCircle,
+  faTimesCircle,
+  faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import SimilarArticlesCarousel from "./SimilarArticlesCarousel";
+import { Link } from "react-router-dom";
 
 function Item() {
   return (
@@ -35,7 +38,7 @@ function Item() {
               <Col>
                 <br />
                 <FontAwesomeIcon
-                  icon={faHeartBroken}
+                  icon={faHeart}
                   className="pointer icon-large"
                 />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -117,8 +120,65 @@ function Item() {
                   expandable memory means you never have to delete what’s
                   important to you; Memory card sold separately
                 </p>
-                <hr />
-                <br />
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col>
+                <h3>Demande d'échange</h3>
+                <Table striped bordered responsive>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Titre</th>
+                      <th>Catégorie</th>
+                      <th>Propriétaire</th>
+                      <th>Emplacement</th>
+                      <th style={{ width: 100 }}></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[...Array(5)].map((x, i) => (
+                      <tr key={i}>
+                        <td>
+                          <img
+                            src={require("../images/uploads/item1.png")}
+                            height={60}
+                            alt=""
+                          />
+                        </td>
+                        <td>Samsung galaxi s20</td>
+                        <td>Electronique</td>
+                        <td>Ahmed chetouane</td>
+                        <td>Bizerte, Bizerte Nord</td>
+                        <td>
+                          <FontAwesomeIcon
+                            icon={faCheckCircle}
+                            className="blue pointer"
+                          />
+                          &nbsp;|&nbsp;
+                          <FontAwesomeIcon
+                            icon={faTimesCircle}
+                            className="blue pointer"
+                          />
+                          &nbsp;|&nbsp;
+                          <Link to="/item">
+                            <FontAwesomeIcon
+                              icon={faInfoCircle}
+                              className="blue pointer"
+                            />
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Col>
+            </Row>
+            <hr />
+            <br />
+            <Row>
+              <Col>
                 <h3>3 commentaires</h3>
               </Col>
             </Row>

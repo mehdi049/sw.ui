@@ -12,10 +12,10 @@ function Footer() {
               <span>Switch 2020 tous droits réservés</span>
             </Col>
             <Col>
-              <Link to="/">Contacter nous</Link> &nbsp;&nbsp;
-              <Link to="/">Conditions d’utilisation</Link> &nbsp;&nbsp;
-              <Link to="/">Aide</Link> &nbsp;&nbsp;
-              <Link to="/">Publicité</Link>
+              <Link to="/contact">Contacter nous</Link> &nbsp;&nbsp;
+              <Link to="/terms">Conditions d’utilisation</Link> &nbsp;&nbsp;
+              <Link to="/help">Aide</Link> &nbsp;&nbsp;
+              <Link to="/ads">Publicité</Link>
             </Col>
           </Row>
         </Container>

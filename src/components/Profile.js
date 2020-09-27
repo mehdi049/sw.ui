@@ -3,7 +3,12 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import CityDropDown from "./_sharedComponents/CityDropDown";
 import FileUpload from "./_sharedComponents/FileUpload";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faHeart, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faHeart,
+  faSyncAlt,
+  faExchangeAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
   return (
@@ -24,6 +29,11 @@ function Profile() {
             <br />
             <FontAwesomeIcon icon={faSyncAlt} className="blue" />
             &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
+            <br />
+            <br />
+            <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
+            &nbsp;&nbsp; <span className="bold big dark-blue">2</span> echange
+            aboutie
           </Col>
           <Col lg="6">
             <h3>Mon compte</h3>
@@ -42,7 +52,7 @@ function Profile() {
 
               <Form.Group>
                 <Form.Label className="dark-blue">Nom</Form.Label>
-                <Form.Control type="email" />
+                <Form.Control type="text" />
               </Form.Group>
 
               <Form.Group>

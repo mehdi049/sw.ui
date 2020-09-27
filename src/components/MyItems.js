@@ -15,7 +15,7 @@ function MyItems() {
       <Container>
         <Row>
           <Col>
-            <h3>Mes article</h3>
+            <h3>Mes articles</h3>
             <Table striped bordered responsive>
               <thead>
                 <tr>
@@ -50,7 +50,18 @@ function MyItems() {
                     <td>22 Aout 2020 </td>
                     <td>410 </td>
                     <td>60 </td>
-                    <td>5 </td>
+                    <td>
+                      5
+                      {[...Array(2)].map((x, j) => (
+                        <Link
+                          key={j}
+                          to="/item"
+                          className="blue exchange-item-list"
+                        >
+                          Iphone 10
+                        </Link>
+                      ))}
+                    </td>
                     <td>
                       <FontAwesomeIcon
                         icon={faTrashAlt}

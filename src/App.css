@@ -17,13 +17,12 @@
   color: #959595;
 }
 
-.bold {
-  font-weight: 700;
+.big {
   font-size: 25px;
 }
 
-.big {
-  font-size: 25px;
+.large {
+  font-size: 20px;
 }
 
 a {
@@ -74,10 +73,6 @@ h5 {
 
 .text-center {
   display: block;
-}
-
-.large {
-  font-size: 20px;
 }
 
 .icon-large {
@@ -181,6 +176,10 @@ h5 {
   background-color: #ececec;
 }
 
+.dropdown-item span {
+  color: #253746 !important;
+}
+
 .input-group-text {
   background-color: #253746;
   border-radius: 0;
@@ -214,6 +213,30 @@ textarea.form-control {
   border: 1px solid #fff;
 }
 
+.card {
+  border-radius: 0px;
+}
+.card-header {
+  background: dde4ec;
+}
+
+.card-header button {
+  color: #535f6b;
+  font-weight: 500;
+}
+
+.btn-link:hover {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+  color: #535f6b;
+}
+
+.btn:focus {
+  box-shadow: none;
+  color: #535f6b;
+  text-decoration: none;
+}
 /** end bootstrap override **/
 
 /** header **/
@@ -222,8 +245,8 @@ textarea.form-control {
   color: #7f7f7f;
 }
 
-.no-carret a {
-  padding-right: 20px;
+.img-rounded {
+  border-radius: 20px;
 }
 
 .no-carret a:after {
@@ -253,6 +276,7 @@ textarea.form-control {
 /** footer **/
 #footer {
   padding: 15px 0px;
+  margin-top: 25px;
 }
 /** end footer **/
 
@@ -381,7 +405,12 @@ textarea.form-control {
 
 /** items **/
 .item-img {
-  max-height: 230px;
+  height: 230px;
+  max-width: 100%;
+}
+
+.item-img-small {
+  height: 230px;
   max-width: 100%;
 }
 
@@ -489,3 +518,15 @@ textarea.form-control {
   width: 20px;
   float: right;
 }
+
+/** end my messages **/
+
+/** my items **/
+.exchange-item-list {
+  display: block;
+}
+
+.exchange-item-list:hover {
+  text-decoration: underline;
+}
+/** end my items **/
