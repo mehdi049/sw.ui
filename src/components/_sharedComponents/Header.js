@@ -23,13 +23,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "../../images/logo.png";
 
 function Header() {
-  const {
-    user,
-    isAuthenticated,
-    isLoading,
-    loginWithRedirect,
-    logout,
-  } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
     <>
@@ -175,11 +169,20 @@ function Header() {
                   Se connecter
                 </Button>
                 &nbsp;
+                <Button
+                  variant="primary"
+                  onClick={() => loginWithRedirect()}
+                  className="btn btn-primary"
+                >
+                  Créer une annonce
+                </Button>
               </>
             )}
-            <Link to="/add-item" className="btn btn-primary">
-              Créer une annonce
-            </Link>
+            {isAuthenticated && (
+              <Link to="/add-item" className="btn btn-primary">
+                Créer une annonce
+              </Link>
+            )}
           </Col>
         </Row>
       </Container>

@@ -18,6 +18,12 @@ export default class MultipleImageUploadComponent extends Component {
     this.fileObj = [];
     this.fileArray = [];
     this.fileObj.push(e.target.files);
+    if (this.fileObj[0].length > 5) {
+      alert("Maximum 5 photos");
+      this.fileObj = [];
+      this.fileArray = [];
+      return;
+    }
     for (let i = 0; i < this.fileObj[0].length; i++) {
       this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]));
     }
@@ -31,33 +37,23 @@ export default class MultipleImageUploadComponent extends Component {
 
   render() {
     return (
-      <form>
-        <div className="form-group multi-preview">
+      <>
+        <div className="multi-preview">
           {(this.fileArray || []).map((url) => (
             <>
-              <img src={url} height={80} alt="..." /> &nbsp;
+              <img key={url} src={url} height={80} alt="..." /> &nbsp;
             </>
           ))}
           <br />
         </div>
-
-        <div className="form-group">
-          <input
-            type="file"
-            className="form-control"
-            onChange={this.uploadMultipleFiles}
-            multiple
-            max={5}
-          />
-        </div>
-        <button
-          type="button"
-          className="btn btn-danger btn-block"
-          onClick={this.uploadFiles}
-        >
-          Upload
-        </button>
-      </form>
+        <input
+          type="file"
+          className="form-control"
+          onChange={this.uploadMultipleFiles}
+          multiple
+          max={5}
+        />
+      </>
     );
   }
 }

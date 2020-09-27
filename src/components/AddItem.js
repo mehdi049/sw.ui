@@ -26,10 +26,21 @@ function AddItem() {
                 <ItemCategories />
               </Form.Group>
               <Form.Group>
+                <Form.Label className="dark-blue">Condition</Form.Label>
+                <Form.Control as="select" className="select">
+                  <option>Usé</option>
+                  <option>Neuf</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group>
                 <Form.Label className="dark-blue">Image</Form.Label>&nbsp;
                 <span className="gray small">(Maximum 5 photos)</span>
                 <br />
                 <MultipleImageUploadComponent />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label className="dark-blue">Echange avec</Form.Label>
+                <ItemCategories all={true} />
               </Form.Group>
               <Button variant="primary" type="submit">
                 Ajouter

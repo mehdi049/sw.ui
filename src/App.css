@@ -234,7 +234,7 @@ textarea.form-control {
 
 .btn:focus {
   box-shadow: none;
-  color: #535f6b;
+  color: #fff;
   text-decoration: none;
 }
 /** end bootstrap override **/
@@ -246,7 +246,7 @@ textarea.form-control {
 }
 
 .img-rounded {
-  border-radius: 20px;
+  border-radius: 50px;
 }
 
 .no-carret a:after {
@@ -530,3 +530,9 @@ textarea.form-control {
   text-decoration: underline;
 }
 /** end my items **/
+
+/** multi image upload **/
+.multi-preview img {
+  max-width: 20%;
+}
+/** end multi image upload **/

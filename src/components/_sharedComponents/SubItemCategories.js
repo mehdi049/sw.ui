@@ -5,6 +5,7 @@ function SubItemCategories(props) {
   if (props.category === "Véhicule")
     return (
       <Form.Control as="select" className="select">
+        {props.all && <option value="">Tout</option>}
         <option>Voiture</option>
         <option>Moto</option>
         <option>Bicyclette</option>
@@ -16,6 +17,7 @@ function SubItemCategories(props) {
   if (props.category === "Loisirs")
     return (
       <Form.Control as="select" className="select">
+        {props.all && <option value="">Tout</option>}
         <option>CD</option>
         <option>Guitar</option>
         <option>Piano</option>
@@ -25,6 +27,7 @@ function SubItemCategories(props) {
   if (props.category === "Electronique")
     return (
       <Form.Control as="select" className="select">
+        {props.all && <option value="">Tout</option>}
         <option>Ordinateur / PC</option>
         <option>Tablette</option>
         <option>Composant PC</option>
@@ -35,6 +38,7 @@ function SubItemCategories(props) {
   if (props.category === "Maison et jardin")
     return (
       <Form.Control as="select" className="select">
+        {props.all && <option value="">Tout</option>}
         <option>Electroménager et vaisselles</option>
         <option>Meubles et décoration</option>
         <option>Jardin et outils de bricolage</option>
@@ -44,6 +48,7 @@ function SubItemCategories(props) {
   if (props.category === "Habillement")
     return (
       <Form.Control as="select" className="select">
+        {props.all && <option value="">Tout</option>}
         <option>Homme</option>
         <option>Femme</option>
         <option>Fille</option>
@@ -55,6 +60,7 @@ function SubItemCategories(props) {
   if (props.category === "Jeux video")
     return (
       <Form.Control as="select" className="select">
+        {props.all && <option value="">Tout</option>}
         <option>Playstation</option>
         <option>Xbox</option>
         <option>Wii</option>

@@ -16,7 +16,8 @@ function ItemCategories(props) {
         className="select"
         onChange={handleCategoryChange}
       >
-        <option value="">Choisir</option>
+        {props.all && <option value="">Ouvert à tout</option>}
+        {!props.all && <option value="">Choisir</option>}
         <option>Véhicule</option>
         <option>Loisirs</option>
         <option>Electronique</option>
@@ -26,7 +27,7 @@ function ItemCategories(props) {
         <option>Livres</option>
       </Form.Control>
       <br />
-      <SubItemCategories category={category} />
+      <SubItemCategories all category={category} />
     </>
   );
 }

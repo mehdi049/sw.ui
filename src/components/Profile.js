@@ -9,8 +9,10 @@ import {
   faSyncAlt,
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Profile() {
+  const { user } = useAuth0();
   return (
     <>
       <br />
@@ -41,8 +43,9 @@ function Profile() {
               <Form.Group>
                 <Form.Label>
                   <img
-                    src={require("../images/avatars/128_1.png")}
-                    alt=""
+                    src={user.picture}
+                    alt={user.name}
+                    className="img-rounded"
                     width="50"
                   />
                 </Form.Label>
@@ -52,16 +55,16 @@ function Profile() {
 
               <Form.Group>
                 <Form.Label className="dark-blue">Nom</Form.Label>
-                <Form.Control type="text" />
+                <Form.Control type="text" value={user.family_name} />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label className="dark-blue">Prénom</Form.Label>
-                <Form.Control type="text" />
+                <Form.Control type="text" value={user.given_name} />
               </Form.Group>
               <Form.Group>
                 <Form.Label className="dark-blue">Email</Form.Label>
-                <Form.Control type="text" />
+                <Form.Control type="text" value={user.email} />
               </Form.Group>
               <Form.Group>
                 <Form.Label className="dark-blue">Num. Téléphone</Form.Label>
