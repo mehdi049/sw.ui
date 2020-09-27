@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 
 export default class MultipleImageUploadComponent extends Component {
   fileObj = [];
@@ -14,11 +15,13 @@ export default class MultipleImageUploadComponent extends Component {
   }
 
   uploadMultipleFiles(e) {
+    this.fileObj = [];
+    this.fileArray = [];
     this.fileObj.push(e.target.files);
     for (let i = 0; i < this.fileObj[0].length; i++) {
       this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]));
     }
-    this.setState({ file: this.fileArray });
+    if (this.fileArray.length < 6) this.setState({ file: this.fileArray });
   }
 
   uploadFiles(e) {
@@ -31,8 +34,11 @@ export default class MultipleImageUploadComponent extends Component {
       <form>
         <div className="form-group multi-preview">
           {(this.fileArray || []).map((url) => (
-            <img src={url} alt="..." />
+            <>
+              <img src={url} height={80} alt="..." /> &nbsp;
+            </>
           ))}
+          <br />
         </div>
 
         <div className="form-group">
