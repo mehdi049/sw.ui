@@ -237,7 +237,54 @@ textarea.form-control {
   color: #fff;
   text-decoration: none;
 }
+
 /** end bootstrap override **/
+
+/** toast **/
+.toast {
+  position: fixed;
+  right: 10px;
+  top: 30px;
+  width: 400px;
+  z-index: 9999;
+}
+
+.toast-header {
+  padding: 0rem 0.75rem;
+  border-bottom: none;
+}
+
+.toast-danger,
+.toast-danger .toast-header {
+  background: #ec5858;
+}
+
+.toast-danger *,
+.toast-danger .toast-header *,
+.toast-success *,
+.toast-success .toast-header * {
+  color: white;
+}
+
+.toast-success,
+.toast-success .toast-header {
+  background: #2ea036;
+}
+
+.toast-warning,
+.toast-warning .toast-header {
+  background: #ffff66;
+}
+
+.toast-body {
+  padding-top: 0px;
+}
+
+.toast-body p {
+  line-height: 25px;
+  margin: 0px;
+}
+/** end toast **/
 
 /** header **/
 
