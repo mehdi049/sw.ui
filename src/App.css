@@ -17,6 +17,10 @@
   color: #959595;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .big {
   font-size: 25px;
 }
@@ -114,11 +118,11 @@ h5 {
 }
 
 .dark-blue-bg {
-  background: #253746;
+  background: #1c1f23;
 }
 
 .dark-blue {
-  color: #253746;
+  color: #1c1f23;
 }
 
 .dark-blue-bg a,
@@ -177,11 +181,11 @@ h5 {
 }
 
 .dropdown-item span {
-  color: #253746 !important;
+  color: #1c1f23 !important;
 }
 
 .input-group-text {
-  background-color: #253746;
+  background-color: #1c1f23;
   border-radius: 0;
 }
 
@@ -304,10 +308,18 @@ textarea.form-control {
   margin-left: 30px;
 }
 
+#top-search-section .form-control {
+  border: none;
+}
+
+#top-search-section .input-group-prepend {
+  height: 37px;
+}
+
 .dark-blue-bg .notif-badge {
   float: right;
   margin-left: 5px;
-  color: #253746 !important;
+  color: #1c1f23 !important;
   background: #fff;
   border-radius: 20px;
   padding: 2px;

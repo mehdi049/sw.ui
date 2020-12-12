@@ -9,8 +9,6 @@ import {
   Form,
   InputGroup,
   Badge,
-  Button,
-  Col,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,9 +16,11 @@ import {
   faBell,
   faEnvelope,
   faExchangeAlt,
+  faSignInAlt,
+  faArrowCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from "../../images/logo.png";
+import Logo from "../../images/logo-white.png";
 
 function Header() {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -31,27 +31,28 @@ function Header() {
         <Container>
           <Row>
             <Navbar style={{ width: "100%" }}>
+              <Link to="/">
+                <Navbar.Brand>
+                  <img src={Logo} alt="" height={35} />
+                </Navbar.Brand>
+              </Link>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/about">
-                      A props de nous
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/contact">
-                      Contacter nous
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/help">
-                      Aide
-                    </Link>
-                  </li>
-                </Nav>
+                <InputGroup id={"top-search-section"}>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>
+                      <FontAwesomeIcon icon={faSearch} className="white" />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control type="text" />
+                </InputGroup>
               </Navbar.Collapse>
               {isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
+                  <Link className="nav-link" to="/add-item">
+                    <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
+                    &nbsp; Créer une annonce
+                  </Link>
                   <NavDropdown
                     className="profile-links"
                     title={
@@ -136,55 +137,29 @@ function Header() {
                   </Link>
                 </Navbar.Collapse>
               )}
+              {!isAuthenticated && (
+                <Navbar.Collapse className="justify-content-end">
+                  <Nav.Link
+                    className="nav-link"
+                    href="#"
+                    onClick={() => loginWithRedirect()}
+                  >
+                    <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
+                    &nbsp; Créer une annonce
+                  </Nav.Link>
+                  <Nav.Link
+                    className="nav-link"
+                    href="#"
+                    onClick={() => loginWithRedirect()}
+                  >
+                    <FontAwesomeIcon icon={faSignInAlt} className="white" />
+                    &nbsp; Se connecter
+                  </Nav.Link>
+                </Navbar.Collapse>
+              )}
             </Navbar>
           </Row>
         </Container>
-      </Container>
-      <br />
-      <Container>
-        <Row>
-          <Col lg={1}>
-            <Link to="/">
-              <img src={Logo} alt="" height={35} />
-            </Link>
-          </Col>
-          <Col id={"top-search-section"}>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>
-                  <FontAwesomeIcon icon={faSearch} className="white" />
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <Form.Control type="text" />
-            </InputGroup>
-          </Col>
-          <Col lg={3}>
-            {!isAuthenticated && (
-              <>
-                <Button
-                  variant="primary"
-                  onClick={() => loginWithRedirect()}
-                  className="btn btn-primary"
-                >
-                  Se connecter
-                </Button>
-                &nbsp;
-                <Button
-                  variant="primary"
-                  onClick={() => loginWithRedirect()}
-                  className="btn btn-primary"
-                >
-                  Créer une annonce
-                </Button>
-              </>
-            )}
-            {isAuthenticated && (
-              <Link to="/add-item" className="btn btn-primary">
-                Créer une annonce
-              </Link>
-            )}
-          </Col>
-        </Row>
       </Container>
     </>
   );
