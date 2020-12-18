@@ -22,11 +22,11 @@ body {
 }
 
 .big {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .large {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 a {
@@ -114,7 +114,7 @@ h5 {
 
 .blue,
 .blue * {
-  color: #009abf !important;
+  color: #1c1f23 !important;
 }
 
 .dark-blue-bg {
@@ -160,16 +160,16 @@ h5 {
 }
 
 .btn-primary {
-  background-color: #009abf;
-  border-color: #009abf;
+  background-color: #1c1f23;
+  border-color: #1c1f23;
 }
 
 .btn-primary:hover,
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:focus {
-  background-color: #3f8ea0;
-  border-color: #3f8ea0;
+  background-color: #1c1f23;
+  border-color: #1c1f23;
   box-shadow: none;
 }
 
@@ -207,7 +207,7 @@ textarea.form-control {
 }
 
 .table-bordered thead th {
-  background: #009abf;
+  background: #203040;
   color: #fff;
   font-weight: 300;
   border-color: #fff;
@@ -341,6 +341,7 @@ textarea.form-control {
 
 /** footer **/
 #footer {
+  margin-top: 20px;
   padding: 15px 0px;
 }
 /** end footer **/
@@ -367,12 +368,6 @@ textarea.form-control {
   color: white;
 }
 
-.yellow-border {
-  border-bottom-color: #ffcd00;
-}
-
-.yellow-border:hover,
-.yellow-border[active="true"],
 .yellow-bg {
   background-color: #ffcd00;
 }
@@ -381,62 +376,26 @@ textarea.form-control {
   color: #009dff;
 }
 
-.blue-border {
-  border-bottom-color: #009dff;
-}
-
-.blue-border:hover,
-.blue-border[active="true"],
 .blue-bg {
   background-color: #009dff;
 }
 
-.blue2-border {
-  border-bottom-color: #2bc9ce;
-}
-
-.blue2-border:hover,
-.blue2-border[active="true"],
 .blue2-bg {
   background-color: #2bc9ce;
 }
 
-.green-border {
-  border-bottom-color: #3ad531;
-}
-
-.green-border:hover,
-.green-border[active="true"],
 .green-bg {
   background-color: #3ad531;
 }
 
-.green2-border {
-  border-bottom-color: #54803c;
-}
-
-.green2-border:hover,
-.green2-border[active="true"],
 .green2-bg {
   background-color: #54803c;
 }
 
-.red-border {
-  border-bottom-color: #ab192d;
-}
-
-.red-border:hover,
-.red-border[active="true"],
 .red-bg {
   background-color: #ab192d;
 }
 
-.violet-border {
-  border-bottom-color: #8c19ab;
-}
-
-.violet-border:hover,
-.violet-border[active="true"],
 .violet-bg {
   background-color: #8c19ab;
 }

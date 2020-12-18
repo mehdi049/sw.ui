@@ -16,17 +16,14 @@ function MyItems() {
         <Row>
           <Col>
             <h3>Mes articles</h3>
-            <Table striped bordered responsive>
+            <Table bordered responsive>
               <thead>
                 <tr>
                   <th></th>
-                  <th>Titre</th>
                   <th>Description</th>
                   <th>Catégorie</th>
                   <th style={{ width: 140 }}>Publié le</th>
-                  <th>Vue</th>
-                  <th>Aime</th>
-                  <th>Demande d'échange</th>
+                  <th>Demandes d'échange</th>
                   <th style={{ width: 100 }}></th>
                 </tr>
               </thead>
@@ -39,8 +36,8 @@ function MyItems() {
                         height={80}
                         alt=""
                       />
+                      <p>Samsung galaxi s20</p>
                     </td>
-                    <td>Samsung galaxi s20</td>
                     <td>
                       With our Guaranteed buy-back offer, we'll cover up to 50%
                       of the retail price when you return your phone in good
@@ -49,7 +46,6 @@ function MyItems() {
                     <td>Electronique</td>
                     <td>22 Aout 2020 </td>
                     <td>410 </td>
-                    <td>60 </td>
                     <td>
                       5
                       {[...Array(2)].map((x, j) => (

@@ -18,10 +18,10 @@ function LeftSideFilter() {
       </Link>
       <br />
       <br />
-      <h5>Localisation</h5>
+      <h3>Localisation</h3>
       <CityDropDown all={true} />
       <br />
-      <h5>Condition</h5>
+      <h3>Condition</h3>
       <Form.Check type="checkbox" label="Neuf" className="dark-gray" />
       <Form.Check type="checkbox" label="Usé" className="dark-gray" />
     </>

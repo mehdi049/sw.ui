@@ -1,8 +1,14 @@
 import React from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import FileUpload from "./_sharedComponents/FileUpload";
 import ItemCategories from "./_sharedComponents/ItemCategories";
 import MultipleImageUploadComponent from "./_sharedComponents/MultipleImageUpload";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faHeart,
+  faSyncAlt,
+  faExchangeAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 function AddItem() {
   return (
@@ -10,8 +16,27 @@ function AddItem() {
       <br />
       <Container>
         <Row>
+          <Col lg="3">
+            <h3>Mon profile</h3>
+            <FontAwesomeIcon icon={faEye} className="blue" />
+            &nbsp;&nbsp; <span className="bold big dark-blue">118</span> fois
+            <br />
+            <br />
+            <FontAwesomeIcon icon={faHeart} className="blue" />
+            &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
+            personnes
+            <br />
+            <br />
+            <FontAwesomeIcon icon={faSyncAlt} className="blue" />
+            &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
+            <br />
+            <br />
+            <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
+            &nbsp;&nbsp; <span className="bold big dark-blue">2</span> echange
+            aboutie
+          </Col>
           <Col lg="6">
-            <h3>Ajouter une annonce</h3>
+            <h3>Créer une annonce</h3>
             <Form>
               <Form.Group>
                 <Form.Label className="dark-blue">Titre</Form.Label>
@@ -47,6 +72,9 @@ function AddItem() {
               </Button>
             </Form>
             <br />
+          </Col>
+          <Col lg="3">
+            <h3>Articles ajoutés</h3>
           </Col>
         </Row>
       </Container>

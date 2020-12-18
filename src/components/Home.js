@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import HomeItems from "./HomeItems";
-import LastArticlesCarousel from "./LastArticlesCarousel";
 import { Carousel } from "react-bootstrap";
 
 function Home() {
@@ -46,8 +45,6 @@ function Home() {
       </Carousel>
 
       <HomeItems />
-      <br />
-      <LastArticlesCarousel />
     </>
   );
 }

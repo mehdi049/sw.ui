@@ -17,7 +17,7 @@ function MyExchanges() {
       <Container>
         <Row>
           <Col>
-            <h3>Demande d'échange</h3>
+            <h3>Demandes d'échange</h3>
           </Col>
         </Row>
         {[...Array(8)].map((x, i) => (
@@ -31,11 +31,6 @@ function MyExchanges() {
                     alt=""
                   />
                   <h4>Samsung galaxi s20</h4>
-                  <Badge className="green2-bg">Electronique</Badge>{" "}
-                  <span className="small gray">
-                    Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020
-                    | <FontAwesomeIcon icon={faComment} /> 15
-                  </span>
                 </Link>
               </Col>
               <Col lg={1}>
@@ -55,11 +50,6 @@ function MyExchanges() {
                     alt=""
                   />
                   <h4>Samsung galaxi s20</h4>
-                  <Badge className="green2-bg">Electronique</Badge>{" "}
-                  <span className="small gray">
-                    Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020
-                    | <FontAwesomeIcon icon={faComment} /> 15
-                  </span>
                 </Link>
               </Col>
               <Col lg={1}></Col>

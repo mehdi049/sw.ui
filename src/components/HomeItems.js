@@ -29,7 +29,7 @@ function HomeItems() {
         <Row>
           <Col>
             <Row>
-              {[...Array(8)].map((x, i) => (
+              {[...Array(16)].map((x, i) => (
                 <Col lg={3} key={i}>
                   <Link to="/item">
                     <img

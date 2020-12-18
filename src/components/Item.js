@@ -122,10 +122,9 @@ function Item() {
                 </p>
               </Col>
             </Row>
-            <br />
             <Row>
               <Col>
-                <h3>Demande d'échange</h3>
+                <h3>Demandes d'échange</h3>
                 <Table striped bordered responsive>
                   <thead>
                     <tr>

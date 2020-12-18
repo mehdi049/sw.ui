@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faClock } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./LeftSideFilter";
-import LastArticlesCarousel from "./LastArticlesCarousel";
 
 function CategoryItems() {
   return (
@@ -19,6 +18,12 @@ function CategoryItems() {
           </Col>
           <Col>
             <Row>
+              <Col xs={12}>
+                Véhicules > Tous
+                <br />
+                <br />
+              </Col>
+
               {[...Array(8)].map((x, i) => (
                 <Col lg={4} key={i}>
                   <Link to="/item">
@@ -44,9 +49,6 @@ function CategoryItems() {
           </Col>
         </Row>
       </Container>
-
-      <br />
-      <LastArticlesCarousel />
     </>
   );
 }
