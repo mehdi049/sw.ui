@@ -39,12 +39,12 @@ function Header() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <InputGroup id={"top-search-section"}>
-                  <InputGroup.Prepend>
+                  <Form.Control type="text" />
+                  <InputGroup.Append>
                     <InputGroup.Text>
                       <FontAwesomeIcon icon={faSearch} className="white" />
                     </InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control type="text" />
+                  </InputGroup.Append>
                 </InputGroup>
               </Navbar.Collapse>
               {isAuthenticated && (

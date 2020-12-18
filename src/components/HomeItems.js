@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faClock } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "react-js-pagination";
 
 function HomeItems() {
+  const [activePage, setActivePage] = useState(1);
+
+  function handlePageChange(pageNumber) {
+    console.log(`active page is ${pageNumber}`);
+    setActivePage(pageNumber);
+  }
+
   return (
     <>
+      <Container>
+        <Row>
+          <Col>
+            <br />
+            <br />
+            <h3>Annonces à la une</h3>
+            <br />
+          </Col>
+        </Row>
+      </Container>
       <Container>
         <Row>
           <Col>
@@ -27,13 +45,25 @@ function HomeItems() {
                     </span>
                     <p className="gray item-description">
                       With our Guaranteed buy-back offer, we'll cover up to 50%
-                      of the retail price when you return your phone in good
-                      [...]
+                      of the retail price [...]
                     </p>
                   </Link>
                 </Col>
               ))}
             </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={10}
+              totalItemsCount={100}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange.bind(this)}
+              itemClass="page-item"
+              linkClass="page-link"
+            />
           </Col>
         </Row>
       </Container>

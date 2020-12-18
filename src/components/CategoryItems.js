@@ -35,8 +35,7 @@ function CategoryItems() {
                     </span>
                     <p className="gray item-description">
                       With our Guaranteed buy-back offer, we'll cover up to 50%
-                      of the retail price when you return your phone in good
-                      [...]
+                      of the retail price [...]
                     </p>
                   </Link>
                 </Col>

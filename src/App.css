@@ -51,7 +51,7 @@ h1 {
 
 h4 {
   margin-top: 15px;
-  font-weight: 500;
+  font-weight: 400;
   color: #343434;
 }
 
@@ -310,10 +310,17 @@ textarea.form-control {
 
 #top-search-section .form-control {
   border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-#top-search-section .input-group-prepend {
-  height: 37px;
+#top-search-section .input-group-append {
+  cursor: pointer;
+}
+
+#top-search-section .input-group-text {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .dark-blue-bg .notif-badge {
@@ -335,25 +342,24 @@ textarea.form-control {
 /** footer **/
 #footer {
   padding: 15px 0px;
-  margin-top: 25px;
 }
 /** end footer **/
 
 /** header categories **/
 .top-main-catagtory-item {
-  border-bottom: solid 3px black;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: #343434;
 }
 
 .top-main-catagtory-item a {
-  color: #343434;
+  color: #fff;
 }
 
 .top-main-catagtory-item:hover,
 .top-main-catagtory-item[active="true"] {
   cursor: pointer;
+  background: #1c1f23;
 }
 
 .top-main-catagtory-item:hover a,
@@ -437,6 +443,14 @@ textarea.form-control {
 
 /** end header categories **/
 
+/** home **/
+
+.carousel-control-next,
+.carousel-control-prev {
+  opacity: 1;
+}
+/** end home **/
+
 /** last articles section **/
 #last-articles-section {
   background: #efefef;
@@ -448,19 +462,36 @@ textarea.form-control {
 }
 /** end last articles section **/
 
-/** sponsors section **/
+/** pagination  **/
 
-#sponsors-section {
-  padding: 30px 0px;
-}
-
-.sponsor-img {
-  width: 70%;
-  max-height: 150px;
+.pagination {
+  width: 300px;
   margin: auto;
-  margin-bottom: 15px;
 }
-/** end sponsors **/
+
+.page-link {
+  color: #203040;
+  background-color: #fff;
+  border: 1px solid #203040;
+}
+
+.page-link:focus {
+  box-shadow: none;
+  color: #fff;
+}
+
+.page-link:hover {
+  border-color: #203040;
+  background-color: #203040;
+  color: #fff;
+}
+
+.page-item.active .page-link {
+  background-color: #203040;
+  border-color: #203040;
+}
+
+/** end pagination **/
 
 /** items **/
 .item-img {
@@ -475,7 +506,7 @@ textarea.form-control {
 
 .item-description {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 /** end items **/

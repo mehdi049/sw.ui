@@ -24,7 +24,6 @@ function App() {
     <div className="App">
       <Router history={history}>
         <Header />
-        <br />
         <Switch>
           <PrivateRoute path="/add-item" exact component={AddItem} />
           <PrivateRoute path="/profile" exact component={Profile} />
