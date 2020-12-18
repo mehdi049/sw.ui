@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faClock } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./LeftSideFilter";
+import Pagination from "react-js-pagination";
 
 function CategoryItems() {
+  const [activePage, setActivePage] = useState(1);
+
+  function handlePageChange(pageNumber) {
+    setActivePage(pageNumber);
+  }
+
   return (
     <>
       <HeaderCategories />
@@ -27,11 +34,13 @@ function CategoryItems() {
               {[...Array(8)].map((x, i) => (
                 <Col lg={4} key={i}>
                   <Link to="/item">
-                    <img
-                      src={require("../images/uploads/item1.png")}
-                      className="item-img"
-                      alt=""
-                    />
+                    <div class="item-img-container">
+                      <img
+                        src={require("../images/uploads/item1.png")}
+                        className="item-img"
+                        alt=""
+                      />
+                    </div>
                     <h4>Samsung galaxi s20</h4>
                     <Badge className="green2-bg">Electronique</Badge>{" "}
                     <span className="small gray">
@@ -45,6 +54,20 @@ function CategoryItems() {
                   </Link>
                 </Col>
               ))}
+            </Row>
+
+            <Row>
+              <Col>
+                <Pagination
+                  activePage={activePage}
+                  itemsCountPerPage={10}
+                  totalItemsCount={100}
+                  pageRangeDisplayed={5}
+                  onChange={handlePageChange.bind(this)}
+                  itemClass="page-item"
+                  linkClass="page-link"
+                />
+              </Col>
             </Row>
           </Col>
         </Row>

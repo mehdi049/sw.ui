@@ -8,7 +8,10 @@ import {
   faHeart,
   faSyncAlt,
   faExchangeAlt,
+  faClock,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function AddItem() {
   return (
@@ -24,7 +27,7 @@ function AddItem() {
             <br />
             <FontAwesomeIcon icon={faHeart} className="blue" />
             &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-            personnes
+            personne(s)
             <br />
             <br />
             <FontAwesomeIcon icon={faSyncAlt} className="blue" />
@@ -32,7 +35,7 @@ function AddItem() {
             <br />
             <br />
             <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">2</span> echange
+            &nbsp;&nbsp; <span className="bold big dark-blue">2</span> échang(e)
             aboutie
           </Col>
           <Col lg="6">
@@ -75,6 +78,32 @@ function AddItem() {
           </Col>
           <Col lg="3">
             <h3>Articles ajoutés</h3>
+            {[...Array(4)].map((x, i) => (
+              <Link key={i} to="/" className="added-item-link">
+                <Row>
+                  <Col lg={3}>
+                    <div className="item-img-container">
+                      <img
+                        src={require("../images/uploads/item1-1.png")}
+                        alt=""
+                      />
+                    </div>
+                  </Col>
+                  <Col>
+                    <p className="bold">Samsung galaxi s20</p>
+                    <span className="small gray">
+                      <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 |
+                      &nbsp;&nbsp;
+                      <FontAwesomeIcon icon={faComment} /> 15
+                    </span>
+                  </Col>
+                </Row>
+              </Link>
+            ))}
+            <br />
+            <Link to="/myItems" className="blue">
+              Afficher tous
+            </Link>
           </Col>
         </Row>
       </Container>

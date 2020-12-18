@@ -25,7 +25,7 @@ function App() {
       <Router history={history}>
         <Header />
         <Switch>
-          <PrivateRoute path="/add-item" exact component={AddItem} />
+          {/* <PrivateRoute path="/add-item" exact component={AddItem} />
           <PrivateRoute path="/profile" exact component={Profile} />
           <PrivateRoute path="/myItems" exact component={MyItems} />
           <PrivateRoute path="/messages" exact component={MyMessages} />
@@ -35,6 +35,14 @@ function App() {
             component={MyNotifications}
           />
           <PrivateRoute path="/exchanges" exact component={MyExchanges} />
+  */}
+
+          <Route path="/add-item" exact component={AddItem} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/myItems" exact component={MyItems} />
+          <Route path="/messages" exact component={MyMessages} />
+          <Route path="/notifications" exact component={MyNotifications} />
+          <Route path="/exchanges" exact component={MyExchanges} />
 
           <Route path="/" exact component={Home} />
           <Route path="/about" exact component={About} />

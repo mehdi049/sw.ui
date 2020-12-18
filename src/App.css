@@ -38,6 +38,10 @@ a:hover {
   text-decoration: none;
 }
 
+a.blue {
+  text-decoration: underline;
+}
+
 hr {
   width: 100%;
 }
@@ -453,9 +457,15 @@ textarea.form-control {
 /** end pagination **/
 
 /** items **/
+.item-img-container {
+  background: #203040;
+}
+
 .item-img {
-  height: 230px;
+  max-height: 230px;
   max-width: 100%;
+  display: block;
+  margin: auto;
 }
 
 .item-img-small {
@@ -475,6 +485,25 @@ textarea.form-control {
   display: block;
   padding: 15px 0px;
   border-bottom: dashed 1px #959595;
+}
+/** end left side filter **/
+
+/** added items **/
+.added-item-link {
+  display: block;
+  padding: 15px 0px;
+  border-bottom: dashed 1px #959595;
+}
+
+.added-item-link p {
+  margin-bottom: 5px;
+}
+
+.added-item-link img {
+  max-height: 50px;
+  max-width: 100%;
+  display: block;
+  margin: auto;
 }
 /** end left side filter **/
 

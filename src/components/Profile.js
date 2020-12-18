@@ -26,7 +26,7 @@ function Profile() {
             <br />
             <FontAwesomeIcon icon={faHeart} className="blue" />
             &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-            personnes
+            personne(s)
             <br />
             <br />
             <FontAwesomeIcon icon={faSyncAlt} className="blue" />
@@ -34,8 +34,8 @@ function Profile() {
             <br />
             <br />
             <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">2</span> echange
-            aboutie
+            &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
+            échange(s) aboutie
           </Col>
           <Col lg="6">
             <h3>Mon compte</h3>

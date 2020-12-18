@@ -47,7 +47,7 @@ function Header() {
                   </InputGroup.Append>
                 </InputGroup>
               </Navbar.Collapse>
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
                   <Link className="nav-link" to="/add-item">
                     <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
@@ -55,17 +55,7 @@ function Header() {
                   </Link>
                   <NavDropdown
                     className="profile-links"
-                    title={
-                      <>
-                        <img
-                          src={user.picture}
-                          height={35}
-                          alt={user.name}
-                          className="img-rounded"
-                        />
-                        &nbsp;&nbsp; {user.given_name}
-                      </>
-                    }
+                    title="profile"
                     id="basic-nav-dropdown"
                   >
                     <Link to="/profile">
@@ -137,7 +127,7 @@ function Header() {
                   </Link>
                 </Navbar.Collapse>
               )}
-              {!isAuthenticated && (
+              {isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
                   <Nav.Link
                     className="nav-link"

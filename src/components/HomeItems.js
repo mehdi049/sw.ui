@@ -9,7 +9,6 @@ function HomeItems() {
   const [activePage, setActivePage] = useState(1);
 
   function handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
     setActivePage(pageNumber);
   }
 
@@ -32,11 +31,13 @@ function HomeItems() {
               {[...Array(16)].map((x, i) => (
                 <Col lg={3} key={i}>
                   <Link to="/item">
-                    <img
-                      src={require("../images/uploads/item1.png")}
-                      className="item-img"
-                      alt=""
-                    />
+                    <div class="item-img-container">
+                      <img
+                        src={require("../images/uploads/item1-5.png")}
+                        className="item-img"
+                        alt=""
+                      />
+                    </div>
                     <h4>Samsung galaxi s20</h4>
                     <Badge className="green2-bg">Electronique</Badge>{" "}
                     <span className="small gray">
