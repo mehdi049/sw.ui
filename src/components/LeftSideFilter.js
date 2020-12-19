@@ -1,19 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CityDropDown from "./_sharedComponents/CityDropDown";
 
 function LeftSideFilter() {
+  const [activeCat, setActiveCat] = useState("");
+
+  function setActive(name) {
+    setActiveCat(name);
+  }
   return (
     <>
       <h3>Categories</h3>
-      <Link to="/" className="side-category-link">
+      <Link
+        to="/category"
+        active={activeCat === 1 ? "true" : "false"}
+        onClick={() => setActive(1)}
+        className="dash-separation side-category-link"
+      >
         Electroménager et vaisselles
       </Link>
-      <Link to="/" className="side-category-link">
+      <Link
+        to="/category"
+        active={activeCat === 2 ? "true" : "false"}
+        onClick={() => setActive(2)}
+        className="dash-separation side-category-link"
+      >
         Meubles et décoration
       </Link>
-      <Link to="/" className="side-category-link">
+      <Link
+        to="/category"
+        active={activeCat === 3 ? "true" : "false"}
+        onClick={() => setActive(3)}
+        className="dash-separation side-category-link"
+      >
         Jardin et outils de bricolage
       </Link>
       <br />

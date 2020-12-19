@@ -26,7 +26,7 @@ function CategoryItems() {
           <Col>
             <Row>
               <Col xs={12}>
-                Véhicules > Tous
+                <span className="blue">Eléctronique</span> > Tous
                 <br />
                 <br />
               </Col>
@@ -34,7 +34,8 @@ function CategoryItems() {
               {[...Array(8)].map((x, i) => (
                 <Col lg={4} key={i}>
                   <Link to="/item">
-                    <div class="item-img-container">
+                    <div class="item-img-container-lg">
+                      <span class="helper"></span>
                       <img
                         src={require("../images/uploads/item1.png")}
                         className="item-img"

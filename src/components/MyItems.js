@@ -1,10 +1,12 @@
 import React from "react";
-import { Table, Container, Row, Col, Button } from "react-bootstrap";
+import { Table, Container, Row, Col, Button, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashAlt,
   faEdit,
   faInfoCircle,
+  faClock,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -16,13 +18,11 @@ function MyItems() {
         <Row>
           <Col>
             <h3>Mes articles</h3>
-            <Table bordered responsive>
+            <Table striped bordered responsive>
               <thead>
                 <tr>
                   <th></th>
                   <th>Description</th>
-                  <th>Catégorie</th>
-                  <th style={{ width: 140 }}>Publié le</th>
                   <th>Demandes d'échange</th>
                   <th style={{ width: 100 }}></th>
                 </tr>
@@ -31,31 +31,43 @@ function MyItems() {
                 {[...Array(8)].map((x, i) => (
                   <tr key={i}>
                     <td>
-                      <img
-                        src={require("../images/uploads/item1.png")}
-                        height={80}
-                        alt=""
-                      />
-                      <p>Samsung galaxi s20</p>
+                      <div className="item-img-container-md">
+                        <span class="helper"></span>
+                        <img
+                          src={require("../images/uploads/item1.png")}
+                          className="item-img-md"
+                          alt=""
+                        />
+                      </div>
                     </td>
                     <td>
-                      With our Guaranteed buy-back offer, we'll cover up to 50%
-                      of the retail price when you return your phone in good
-                      [...]
+                      <Badge className="green2-bg">Eléctronique</Badge>
+                      <span className="small gray">
+                        &nbsp;&nbsp; <FontAwesomeIcon icon={faClock} /> 22 Aout
+                        2020 | &nbsp;
+                        <FontAwesomeIcon icon={faComment} /> 15
+                      </span>
+                      <p>
+                        <span className="bold blue">Samsung galaxi s20</span>
+                        <br />
+                        With our Guaranteed buy-back offer, we'll cover up to
+                        50% [...]
+                      </p>
                     </td>
-                    <td>Electronique</td>
-                    <td>22 Aout 2020 </td>
-                    <td>410 </td>
                     <td>
-                      5
                       {[...Array(2)].map((x, j) => (
-                        <Link
-                          key={j}
-                          to="/item"
-                          className="blue exchange-item-list"
-                        >
-                          Iphone 10
-                        </Link>
+                        <div key={j} className="dash-separation">
+                          <Badge className="green2-bg">Eléctronique</Badge>
+                          &nbsp;
+                          <span className="small gray">
+                            Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22
+                            Aout 2020 | &nbsp;
+                            <FontAwesomeIcon icon={faComment} /> 15
+                          </span>
+                          <Link to="/item" className="blue exchange-item-list">
+                            Iphone 10
+                          </Link>
+                        </div>
                       ))}
                     </td>
                     <td>

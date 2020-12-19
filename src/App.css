@@ -105,6 +105,12 @@ h5 {
   padding: 5px;
 }
 
+.dash-separation {
+  display: block;
+  padding: 15px 0px;
+  border-bottom: dashed 1px #959595;
+}
+
 /** colors **/
 .dark-gray,
 .dark-gray * {
@@ -249,55 +255,17 @@ textarea.form-control {
 /** end bootstrap override **/
 
 /** toast **/
-.toast {
-  position: fixed;
-  right: 10px;
-  top: 30px;
-  width: 400px;
-  z-index: 9999;
-}
 
-.toast-header {
-  padding: 0rem 0.75rem;
-  border-bottom: none;
-}
-
-.toast-danger,
-.toast-danger .toast-header {
-  background: #ec5858;
-}
-
-.toast-danger *,
-.toast-danger .toast-header *,
-.toast-success *,
-.toast-success .toast-header * {
-  color: white;
-}
-
-.toast-success,
-.toast-success .toast-header {
-  background: #2ea036;
-}
-
-.toast-warning,
-.toast-warning .toast-header {
-  background: #ffff66;
-}
-
-.toast-body {
-  padding-top: 0px;
-}
-
-.toast-body p {
-  line-height: 25px;
-  margin: 0px;
-}
 /** end toast **/
 
 /** header **/
 
 .profile-links a {
   color: #7f7f7f;
+}
+
+#notif-dropdown .dropdown-menu {
+  left: -200px;
 }
 
 .img-rounded {
@@ -456,20 +424,62 @@ textarea.form-control {
 
 /** end pagination **/
 
+/** left sidebar **/
+.side-category-link:hover,
+.side-category-link[active="true"] {
+  cursor: pointer;
+  background: #cccccc;
+  color: #203040;
+  padding-left: 20px;
+}
+
+/** end left sidebar **/
+
 /** items **/
-.item-img-container {
+
+/*
+.item-img-container-lg {
+  border: solid 1px #b7b9bc;
+  height: 230px;
+}
+*/
+
+.item-img-container-lg {
   background: #203040;
+  height: 230px;
+  text-align: center;
+}
+
+.item-img-container-sm {
+  background: #203040;
+  height: 50px;
+  text-align: center;
+}
+
+.item-img-container-md {
+  background: #203040;
+  height: 80px;
+  text-align: center;
+}
+
+span.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .item-img {
   max-height: 230px;
   max-width: 100%;
-  display: block;
-  margin: auto;
 }
 
 .item-img-small {
-  height: 230px;
+  max-height: 50px;
+  max-width: 100%;
+}
+
+.item-img-md {
+  max-height: 80px;
   max-width: 100%;
 }
 
@@ -479,14 +489,6 @@ textarea.form-control {
 }
 
 /** end items **/
-
-/** left side filter **/
-.side-category-link {
-  display: block;
-  padding: 15px 0px;
-  border-bottom: dashed 1px #959595;
-}
-/** end left side filter **/
 
 /** added items **/
 .added-item-link {
@@ -499,13 +501,7 @@ textarea.form-control {
   margin-bottom: 5px;
 }
 
-.added-item-link img {
-  max-height: 50px;
-  max-width: 100%;
-  display: block;
-  margin: auto;
-}
-/** end left side filter **/
+/** end added items **/
 
 /** item details **/
 .main-detail-img {
@@ -607,7 +603,21 @@ textarea.form-control {
 .exchange-item-list:hover {
   text-decoration: underline;
 }
+
+table .dash-separation {
+  display: block;
+  padding: 5px 0px;
+  border-bottom: dashed 1px #959595;
+}
 /** end my items **/
+.exchange-list {
+  border-bottom: dashed 1px #959595;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+/** my exchange **/
+
+/** end my exchange **/
 
 /** multi image upload **/
 .multi-preview img {

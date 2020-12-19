@@ -25,6 +25,13 @@ function Item() {
       <br />
       <Container>
         <Row>
+          <Col>
+            <span className="blue">Eléctronique</span> >{" "}
+            <span className="blue">Portable</span> > Samsung galaxi s20
+            <br />
+          </Col>
+        </Row>
+        <Row>
           <Col lg="10">
             <Row>
               <Col lg="10">

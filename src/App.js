@@ -39,7 +39,7 @@ function App() {
 
           <Route path="/add-item" exact component={AddItem} />
           <Route path="/profile" exact component={Profile} />
-          <Route path="/myItems" exact component={MyItems} />
+          <Route path="/my-items" exact component={MyItems} />
           <Route path="/messages" exact component={MyMessages} />
           <Route path="/notifications" exact component={MyNotifications} />
           <Route path="/exchanges" exact component={MyExchanges} />

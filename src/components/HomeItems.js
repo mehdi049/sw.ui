@@ -28,29 +28,50 @@ function HomeItems() {
         <Row>
           <Col>
             <Row>
-              {[...Array(16)].map((x, i) => (
-                <Col lg={3} key={i}>
-                  <Link to="/item">
-                    <div class="item-img-container">
-                      <img
-                        src={require("../images/uploads/item1-5.png")}
-                        className="item-img"
-                        alt=""
-                      />
-                    </div>
-                    <h4>Samsung galaxi s20</h4>
-                    <Badge className="green2-bg">Electronique</Badge>{" "}
-                    <span className="small gray">
-                      Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
-                      2020 | <FontAwesomeIcon icon={faComment} /> 15
-                    </span>
-                    <p className="gray item-description">
-                      With our Guaranteed buy-back offer, we'll cover up to 50%
-                      of the retail price [...]
-                    </p>
-                  </Link>
-                </Col>
-              ))}
+              <Col lg={3}>
+                <Link to="/item">
+                  <div class="item-img-container-lg">
+                    <span class="helper"></span>
+                    <img
+                      src={require("../images/uploads/item1-3.png")}
+                      className="item-img"
+                      alt=""
+                    />
+                  </div>
+                  <h4>Samsung galaxi s20</h4>
+                  <Badge className="green2-bg">Electronique</Badge>{" "}
+                  <span className="small gray">
+                    Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020
+                    | <FontAwesomeIcon icon={faComment} /> 15
+                  </span>
+                  <p className="gray item-description">
+                    With our Guaranteed buy-back offer, we'll cover up to 50% of
+                    the retail price [...]
+                  </p>
+                </Link>
+              </Col>
+              <Col lg={3}>
+                <Link to="/item">
+                  <div class="item-img-container-lg">
+                    <span class="helper"></span>
+                    <img
+                      src={require("../images/uploads/item1-2.png")}
+                      className="item-img"
+                      alt=""
+                    />
+                  </div>
+                  <h4>Samsung galaxi s20</h4>
+                  <Badge className="green2-bg">Electronique</Badge>{" "}
+                  <span className="small gray">
+                    Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020
+                    | <FontAwesomeIcon icon={faComment} /> 15
+                  </span>
+                  <p className="gray item-description">
+                    With our Guaranteed buy-back offer, we'll cover up to 50% of
+                    the retail price [...]
+                  </p>
+                </Link>
+              </Col>
             </Row>
           </Col>
         </Row>

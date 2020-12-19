@@ -53,15 +53,11 @@ function Header() {
                     <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
                     &nbsp; Créer une annonce
                   </Link>
-                  <NavDropdown
-                    className="profile-links"
-                    title="profile"
-                    id="basic-nav-dropdown"
-                  >
+                  <NavDropdown className="profile-links" title="profile">
                     <Link to="/profile">
                       <button className="dropdown-item">Profile</button>
                     </Link>
-                    <Link to="/myItems">
+                    <Link to="/my-items">
                       <button className="dropdown-item">Mes articles</button>
                     </Link>
                     <NavDropdown.Divider />
@@ -80,47 +76,48 @@ function Header() {
                     <FontAwesomeIcon icon={faEnvelope} className="white" />
                     <Badge className="notif-badge">13</Badge>
                   </Link>
-                  <NavDropdown
-                    className="profile-links no-carret"
-                    title={
-                      <>
-                        <FontAwesomeIcon icon={faBell} className="white" />
-                        <Badge className="notif-badge">3</Badge>
-                      </>
-                    }
-                    id="basic-nav-dropdown"
-                  >
-                    <Link to="/notifications">
-                      <button className="dropdown-item" href="#">
-                        <img
-                          src={require("../../images/avatars/128_1.png")}
-                          height={30}
-                          alt=""
-                        />
-                        &nbsp;&nbsp;{" "}
-                        <span className="bold dark-blue">Ahmed</span> a aimé
-                        votre article
-                      </button>
-                    </Link>
-                    <Link to="/notifications">
-                      <button className="dropdown-item" href="#">
-                        <img
-                          src={require("../../images/avatars/128_2.png")}
-                          height={30}
-                          alt=""
-                        />
-                        &nbsp;&nbsp;{" "}
-                        <span className="bold dark-blue">Sofien</span> a
-                        commenté votre article
-                      </button>
-                    </Link>
-                    <NavDropdown.Divider />
-                    <Link to="/notifications">
-                      <button className="dropdown-item" href="#">
-                        Voir tout
-                      </button>
-                    </Link>
-                  </NavDropdown>
+                  <div id="notif-dropdown">
+                    <NavDropdown
+                      className="profile-links no-carret"
+                      title={
+                        <>
+                          <FontAwesomeIcon icon={faBell} className="white" />
+                          <Badge className="notif-badge">3</Badge>
+                        </>
+                      }
+                    >
+                      <Link to="/notifications">
+                        <button className="dropdown-item" href="#">
+                          <img
+                            src={require("../../images/avatars/128_1.png")}
+                            height={30}
+                            alt=""
+                          />
+                          &nbsp;&nbsp;{" "}
+                          <span className="bold dark-blue">Ahmed</span> a aimé
+                          votre article
+                        </button>
+                      </Link>
+                      <Link to="/notifications">
+                        <button className="dropdown-item" href="#">
+                          <img
+                            src={require("../../images/avatars/128_2.png")}
+                            height={30}
+                            alt=""
+                          />
+                          &nbsp;&nbsp;{" "}
+                          <span className="bold dark-blue">Sofien</span> a
+                          commenté votre article
+                        </button>
+                      </Link>
+                      <NavDropdown.Divider />
+                      <Link to="/notifications">
+                        <button className="dropdown-item" href="#">
+                          Voir tout
+                        </button>
+                      </Link>
+                    </NavDropdown>
+                  </div>
                   <Link className="nav-link" to="/exchanges">
                     <FontAwesomeIcon icon={faExchangeAlt} className="white" />
                     <Badge className="notif-badge">13</Badge>
