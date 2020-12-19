@@ -38,7 +38,7 @@ function LeftSideFilter() {
       </Link>
       <br />
       <br />
-      <h3>Localisation</h3>
+      <h3>Emplacement</h3>
       <CityDropDown all={true} />
       <br />
       <h3>Condition</h3>

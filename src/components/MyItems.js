@@ -35,7 +35,7 @@ function MyItems() {
                         <span class="helper"></span>
                         <img
                           src={require("../images/uploads/item1.png")}
-                          className="item-img-md"
+                          className="item-img"
                           alt=""
                         />
                       </div>

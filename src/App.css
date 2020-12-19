@@ -437,28 +437,18 @@ textarea.form-control {
 
 /** items **/
 
-/*
 .item-img-container-lg {
-  border: solid 1px #b7b9bc;
   height: 230px;
-}
-*/
-
-.item-img-container-lg {
-  background: #203040;
-  height: 230px;
-  text-align: center;
-}
-
-.item-img-container-sm {
-  background: #203040;
-  height: 50px;
   text-align: center;
 }
 
 .item-img-container-md {
-  background: #203040;
   height: 80px;
+  text-align: center;
+}
+
+.item-img-container-sm {
+  height: 50px;
   text-align: center;
 }
 
@@ -469,23 +459,17 @@ span.helper {
 }
 
 .item-img {
-  max-height: 230px;
-  max-width: 100%;
-}
-
-.item-img-small {
-  max-height: 50px;
-  max-width: 100%;
-}
-
-.item-img-md {
-  max-height: 80px;
+  max-height: 100%;
   max-width: 100%;
 }
 
 .item-description {
   margin-top: 10px;
   margin-bottom: 50px;
+}
+
+.exchange-items {
+  margin-bottom: 20px;
 }
 
 /** end items **/
@@ -525,7 +509,6 @@ span.helper {
 .comment-profile-img {
   max-height: 80px;
   max-width: 100%;
-  margin: auto;
   display: block;
 }
 

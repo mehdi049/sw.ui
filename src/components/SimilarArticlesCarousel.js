@@ -9,11 +9,14 @@ function SimilarArticlesCarousel() {
   let state = {
     galleryItems: [
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -22,11 +25,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small">
@@ -35,11 +41,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small">
@@ -48,11 +57,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -61,11 +73,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -74,11 +89,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -87,11 +105,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -100,11 +121,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -113,11 +137,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">
@@ -126,11 +153,14 @@ function SimilarArticlesCarousel() {
         </span>
       </div>,
       <div className="last-item">
-        <img
-          src={require("../images/uploads/item1.png")}
-          className="item-img"
-          alt=""
-        />
+        <div class="item-img-container-lg">
+          <span class="helper"></span>
+          <img
+            src={require("../images/uploads/item1.png")}
+            className="item-img"
+            alt=""
+          />
+        </div>
         <h4>Samsung galaxi s20</h4>
         <Badge className="green2-bg">Electronique</Badge>{" "}
         <span className="small ">

@@ -32,7 +32,7 @@ function Item() {
           </Col>
         </Row>
         <Row>
-          <Col lg="10">
+          <Col lg={9}>
             <Row>
               <Col lg="10">
                 <h4>Samsung galaxi s20</h4>
@@ -132,53 +132,35 @@ function Item() {
             <Row>
               <Col>
                 <h3>Demandes d'échange</h3>
-                <Table striped bordered responsive>
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Titre</th>
-                      <th>Catégorie</th>
-                      <th>Propriétaire</th>
-                      <th>Emplacement</th>
-                      <th style={{ width: 100 }}></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[...Array(5)].map((x, i) => (
-                      <tr key={i}>
-                        <td>
-                          <img
-                            src={require("../images/uploads/item1.png")}
-                            height={60}
-                            alt=""
-                          />
-                        </td>
-                        <td>Samsung galaxi s20</td>
-                        <td>Electronique</td>
-                        <td>Ahmed chetouane</td>
-                        <td>Bizerte, Bizerte Nord</td>
-                        <td>
-                          <FontAwesomeIcon
-                            icon={faCheckCircle}
-                            className="blue pointer"
-                          />
-                          &nbsp;|&nbsp;
-                          <FontAwesomeIcon
-                            icon={faTimesCircle}
-                            className="blue pointer"
-                          />
-                          &nbsp;|&nbsp;
-                          <Link to="/item">
-                            <FontAwesomeIcon
-                              icon={faInfoCircle}
-                              className="blue pointer"
+                <Row>
+                  {[...Array(4)].map((x, i) => (
+                    <React.Fragment key={i}>
+                      <Col lg={2} className="exchange-items">
+                        <Link to="/item">
+                          <div className="item-img-container-md">
+                            <span class="helper"></span>
+                            <img
+                              src={require("../images/uploads/item1.png")}
+                              className="item-img"
+                              alt=""
                             />
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
+                          </div>
+                        </Link>
+                      </Col>
+                      <Col lg={4} className="exchange-items">
+                        <Badge className="green2-bg">Eléctronique</Badge>&nbsp;
+                        <span className="small gray">
+                          Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22 Aout
+                          2020 | &nbsp;
+                          <FontAwesomeIcon icon={faComment} /> 15
+                        </span>
+                        <p>
+                          <span className="bold blue">Samsung galaxi s20</span>
+                        </p>
+                      </Col>
+                    </React.Fragment>
+                  ))}
+                </Row>
               </Col>
             </Row>
             <hr />
@@ -199,7 +181,9 @@ function Item() {
                 </Col>
                 <Col lg="11">
                   <span className="dark-gray">Mehdi Marouani </span> |{" "}
-                  <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
+                  <span class="small">
+                    <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
+                  </span>
                   <p className="comment-text">
                     Super Fast Charging: Charge up quicker with Super Fast
                     Charge so you can keep moving with more juice
@@ -255,11 +239,42 @@ function Item() {
             <br />
             <FontAwesomeIcon icon={faSyncAlt} className="blue" />
             &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
+            <br />
+            <br />
+            <br />
+            <br />
+            <h3>Articles similaire</h3>
+            {[...Array(4)].map((x, i) => (
+              <Link key={i} to="/" className="dash-separation added-item-link">
+                <Row>
+                  <Col lg={3}>
+                    <div className="item-img-container-sm">
+                      <span class="helper"></span>
+                      <img
+                        src={require("../images/uploads/item1-1.png")}
+                        className="item-img"
+                        alt=""
+                      />
+                    </div>
+                  </Col>
+                  <Col>
+                    <p className="bold blue">Samsung galaxi s20</p>
+                    <span className="small gray">
+                      <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 |
+                      &nbsp;&nbsp;
+                      <FontAwesomeIcon icon={faComment} /> 15
+                    </span>
+                  </Col>
+                </Row>
+              </Link>
+            ))}
+            <br />
+            <Link to="/my-items" className="blue">
+              Afficher tous
+            </Link>
           </Col>
         </Row>
       </Container>
-      <br />
-      <SimilarArticlesCarousel />
     </>
   );
 }

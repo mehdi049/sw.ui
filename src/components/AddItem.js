@@ -86,13 +86,13 @@ function AddItem() {
                       <span class="helper"></span>
                       <img
                         src={require("../images/uploads/item1-1.png")}
-                        className="item-img-small"
+                        className="item-img"
                         alt=""
                       />
                     </div>
                   </Col>
                   <Col>
-                    <p className="bold">Samsung galaxi s20</p>
+                    <p className="bold blue">Samsung galaxi s20</p>
                     <span className="small gray">
                       <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 |
                       &nbsp;&nbsp;

@@ -31,7 +31,7 @@ function MyExchanges() {
                         <span class="helper"></span>
                         <img
                           src={require("../images/uploads/item1.png")}
-                          className="item-img-small"
+                          className="item-img"
                           alt=""
                         />
                       </div>
@@ -64,7 +64,7 @@ function MyExchanges() {
                         <span class="helper"></span>
                         <img
                           src={require("../images/uploads/item1.png")}
-                          className="item-img-small"
+                          className="item-img"
                           alt=""
                         />
                       </div>
