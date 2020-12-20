@@ -47,19 +47,42 @@ function Header() {
                   </InputGroup.Append>
                 </InputGroup>
               </Navbar.Collapse>
-              {!isAuthenticated && (
+              {isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
-                  <Link className="nav-link" to="/add-item">
+                  <Link className="nav-link d-none d-md-block" to="/add-item">
                     <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
                     &nbsp; Créer une annonce
                   </Link>
                   <NavDropdown className="profile-links" title="profile">
+                    <div className="d-block d-md-none">
+                      <Link to="/add-item">
+                        <button className="dropdown-item">
+                          Créer une annonce
+                        </button>
+                      </Link>
+                      <NavDropdown.Divider />
+                    </div>
                     <Link to="/profile">
                       <button className="dropdown-item">Profile</button>
                     </Link>
                     <Link to="/my-items">
                       <button className="dropdown-item">Mes articles</button>
                     </Link>
+                    <div className="d-md-block d-lg-none">
+                      <Link to="/messages">
+                        <button className="dropdown-item">Messages (13)</button>
+                      </Link>
+                      <Link to="/notifications">
+                        <button className="dropdown-item">
+                          Notifications (3)
+                        </button>
+                      </Link>
+                      <Link to="/exchanges">
+                        <button className="dropdown-item">
+                          Demande d'échange (13)
+                        </button>
+                      </Link>
+                    </div>
                     <NavDropdown.Divider />
                     <Link to="/">
                       <button
@@ -72,11 +95,11 @@ function Header() {
                       </button>
                     </Link>
                   </NavDropdown>
-                  <Link className="nav-link" to="/messages">
+                  <Link className="nav-link d-none d-lg-block" to="/messages">
                     <FontAwesomeIcon icon={faEnvelope} className="white" />
                     <Badge className="notif-badge">13</Badge>
                   </Link>
-                  <div id="notif-dropdown">
+                  <div id="notif-dropdown" className="d-none d-lg-block">
                     <NavDropdown
                       className="profile-links no-carret"
                       title={
@@ -118,16 +141,16 @@ function Header() {
                       </Link>
                     </NavDropdown>
                   </div>
-                  <Link className="nav-link" to="/exchanges">
+                  <Link className="nav-link d-none d-lg-block" to="/exchanges">
                     <FontAwesomeIcon icon={faExchangeAlt} className="white" />
                     <Badge className="notif-badge">13</Badge>
                   </Link>
                 </Navbar.Collapse>
               )}
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
                   <Nav.Link
-                    className="nav-link"
+                    className="nav-link d-none d-lg-block"
                     href="#"
                     onClick={() => loginWithRedirect()}
                   >

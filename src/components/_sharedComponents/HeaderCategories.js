@@ -10,9 +10,9 @@ function HeaderCategories() {
   }
 
   return (
-    <Container fluid={true} style={{ background: "#203040" }}>
-      <Container>
-        <Row style={{ width: "1100px" }}>
+    <Container fluid={true} style={{ background: "#203040" }} className="">
+      <Container className="d-none d-lg-block">
+        <Row>
           <Col
             className="top-main-catagtory-item"
             active={activeCat === "vehicule" ? "true" : "false"}

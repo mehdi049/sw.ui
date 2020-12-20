@@ -18,7 +18,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
 
 .big {
@@ -607,3 +607,20 @@ table .dash-separation {
   max-width: 20%;
 }
 /** end multi image upload **/
+
+/** media query **/
+
+/** medium - xl screen **/
+@media (min-width: 768px) and (max-width: 1200px) {
+}
+
+/** small screen **/
+@media (max-width: 768px) {
+  .profile-links .dropdown-menu {
+    left: -120px;
+  }
+}
+
+/** x-small screen **/
+@media (max-width: 576px) {
+}
