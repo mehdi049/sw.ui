@@ -32,7 +32,7 @@ function CategoryItems() {
               </Col>
 
               {[...Array(8)].map((x, i) => (
-                <Col lg={4} key={i}>
+                <Col xs={6} sm={4} key={i}>
                   <Link to="/item">
                     <div class="item-img-container-lg">
                       <span class="helper"></span>

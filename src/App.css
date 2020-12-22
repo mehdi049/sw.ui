@@ -635,6 +635,11 @@ table .dash-separation {
 
 /** small screen **/
 @media (max-width: 768px) {
+  h4 {
+    margin-top: 10px;
+    font-size: 1.3rem;
+  }
+
   .profile-links .dropdown-menu {
     left: -120px;
   }
@@ -686,6 +691,14 @@ table .dash-separation {
 
   #close-menu * {
     color: #fff;
+  }
+
+  .item-img-container-lg {
+    height: 130px;
+  }
+
+  .item-description {
+    margin-bottom: 30px;
   }
 }
 

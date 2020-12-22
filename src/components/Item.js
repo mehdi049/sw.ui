@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Badge, Container, Row, Col, Table } from "react-bootstrap";
+import { Form, Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,
@@ -10,12 +10,8 @@ import {
   faExchangeAlt,
   faHeart,
   faSyncAlt,
-  faCheckCircle,
-  faTimesCircle,
-  faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "./_sharedComponents/HeaderCategories";
-import SimilarArticlesCarousel from "./SimilarArticlesCarousel";
 import { Link } from "react-router-dom";
 
 function Item() {
