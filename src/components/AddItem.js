@@ -19,26 +19,41 @@ function AddItem() {
       <br />
       <Container>
         <Row>
-          <Col lg="3">
+          <Col xs={12} sm={4} md={3}>
             <h3>Mon profile</h3>
-            <FontAwesomeIcon icon={faEye} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">118</span> fois
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faHeart} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-            personne(s)
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faSyncAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
-            échange(s) aboutie
+            <Row>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faEye} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">
+                  118
+                </span>{" "}
+                <span className="d-none d-sm-block inline-block-md">fois</span>
+              </Col>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faHeart} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
+                <span className="d-none d-sm-block inline-block-md">
+                  personne(s)
+                </span>
+              </Col>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faSyncAlt} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">3</span>{" "}
+                <span className="d-none d-sm-block inline-block-md">
+                  en cours
+                </span>
+              </Col>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
+                <span className="d-none d-sm-block inline-block-md">
+                  échange(s) aboutie
+                </span>
+              </Col>
+            </Row>
           </Col>
-          <Col lg="6">
+          <Col xs={12} sm={8} lg={6}>
+            <br className="d-block d-sm-none" />
             <h3>Créer une annonce</h3>
             <Form>
               <Form.Group>
@@ -70,13 +85,15 @@ function AddItem() {
                 <Form.Label className="dark-blue">Echange avec</Form.Label>
                 <ItemCategories all={true} />
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Ajouter
-              </Button>
+              <div className="text-right">
+                <Button variant="primary" type="submit">
+                  Ajouter
+                </Button>
+              </div>
             </Form>
             <br />
           </Col>
-          <Col lg="3">
+          <Col lg={3} className="d-none d-lg-block">
             <h3>Articles ajoutés</h3>
             {[...Array(4)].map((x, i) => (
               <Link key={i} to="/" className="dash-separation added-item-link">

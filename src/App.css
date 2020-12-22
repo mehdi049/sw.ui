@@ -75,8 +75,8 @@ h5 {
   padding-right: 5px;
 }
 
-.text-center {
-  display: block;
+.text-right {
+  text-align: right;
 }
 
 .icon-large {
@@ -105,6 +105,10 @@ h5 {
   display: block;
   padding: 15px 0px;
   border-bottom: dashed 1px #959595;
+}
+
+.inline-block-md {
+  display: inline !important;
 }
 
 /** colors **/
@@ -521,6 +525,12 @@ span.helper {
 }
 /** end item details **/
 
+/** add item **/
+.profile-info {
+  margin-bottom: 20px;
+}
+/** end add item **/
+
 /** profile **/
 .upload-file-area {
   width: 55px;
@@ -640,6 +650,10 @@ table .dash-separation {
     font-size: 1.3rem;
   }
 
+  .big {
+    font-size: 15px;
+  }
+
   .profile-links .dropdown-menu {
     left: -120px;
   }
@@ -704,6 +718,10 @@ table .dash-separation {
 
 /** x-small screen **/
 @media (max-width: 576px) {
+  .inline-block-md {
+    display: none !important;
+  }
+
   #header-section .container {
     padding-left: 5px;
     padding-right: 5px;

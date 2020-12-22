@@ -84,19 +84,17 @@ function MyExchanges() {
                 </Row>
               </Col>
               <Col lg={2}>
-                <div className="text-center">
-                  <FontAwesomeIcon
-                    icon={faCheckCircle}
-                    className="blue pointer"
-                    size="2x"
-                  />
-                  &nbsp; &nbsp;
-                  <FontAwesomeIcon
-                    icon={faTimesCircle}
-                    className="blue pointer"
-                    size="2x"
-                  />
-                </div>
+                <FontAwesomeIcon
+                  icon={faCheckCircle}
+                  className="blue pointer"
+                  size="2x"
+                />
+                &nbsp; &nbsp;
+                <FontAwesomeIcon
+                  icon={faTimesCircle}
+                  className="blue pointer"
+                  size="2x"
+                />
               </Col>
             </Row>
           </div>
