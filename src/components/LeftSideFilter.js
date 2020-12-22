@@ -10,7 +10,7 @@ function LeftSideFilter() {
     setActiveCat(name);
   }
   return (
-    <>
+    <div id="sidebar-left">
       <h3>Categories</h3>
       <Link
         to="/category"
@@ -37,14 +37,14 @@ function LeftSideFilter() {
         Jardin et outils de bricolage
       </Link>
       <br />
-      <br />
+      <br className="d-none d-md-block" />
       <h3>Emplacement</h3>
       <CityDropDown all={true} />
       <br />
       <h3>Condition</h3>
       <Form.Check type="checkbox" label="Neuf" className="dark-gray" />
       <Form.Check type="checkbox" label="Usé" className="dark-gray" />
-    </>
+    </div>
   );
 }
 

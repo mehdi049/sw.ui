@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faComment,
+  faClock,
+  faFilter,
+} from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "./_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./LeftSideFilter";
 import Pagination from "react-js-pagination";
 
 function CategoryItems() {
   const [activePage, setActivePage] = useState(1);
+  const [activeMenu, setActiveMenu] = useState(false);
 
   function handlePageChange(pageNumber) {
     setActivePage(pageNumber);
@@ -20,19 +25,28 @@ function CategoryItems() {
       <br />
       <Container>
         <Row>
-          <Col lg={3}>
+          <Col className="d-none d-md-block" md={3}>
             <LeftSideFilter />
           </Col>
-          <Col>
+          <Col md={9}>
             <Row>
               <Col xs={12}>
                 <span className="blue">Eléctronique</span> > Tous
                 <br />
-                <br />
+                <div
+                  className="d-block d-md-none"
+                  onClick={() => setActiveMenu(!activeMenu)}
+                >
+                  <br />
+                  <p className="pointer category-filter-bar">
+                    <FontAwesomeIcon icon={faFilter} /> &nbsp; Filtrer
+                  </p>
+                  {activeMenu && <LeftSideFilter />}
+                </div>
               </Col>
 
               {[...Array(8)].map((x, i) => (
-                <Col xs={6} sm={4} key={i}>
+                <Col xs={6} sm={6} lg={4} key={i}>
                   <Link to="/item">
                     <div class="item-img-container-lg">
                       <span class="helper"></span>

@@ -23,7 +23,7 @@ function MyExchanges() {
         {[...Array(8)].map((x, i) => (
           <div className="exchange-list">
             <Row key={i}>
-              <Col lg={4}>
+              <Col xs={4}>
                 <Row>
                   <Col lg={3}>
                     <Link to="/item">
@@ -38,25 +38,21 @@ function MyExchanges() {
                     </Link>
                   </Col>
                   <Col>
-                    <Badge className="green2-bg">Eléctronique</Badge>&nbsp;
-                    <span className="small gray">
-                      <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 | &nbsp;
-                      <FontAwesomeIcon icon={faComment} /> 15
-                    </span>
+                    <Badge className="green2-bg">Eléctronique</Badge>
                     <p>
                       <span className="bold blue">Samsung galaxi s20</span>
                     </p>
                   </Col>
                 </Row>
               </Col>
-              <Col lg={1}>
+              <Col xs={2} sm={1}>
                 <FontAwesomeIcon
                   icon={faExchangeAlt}
-                  className="blue"
+                  className="blue exchange-icon"
                   size="2x"
                 />
               </Col>
-              <Col lg={4}>
+              <Col xs={4}>
                 <Row>
                   <Col lg={3}>
                     <Link to="/item">
@@ -72,24 +68,20 @@ function MyExchanges() {
                   </Col>
                   <Col>
                     <Badge className="green2-bg">Eléctronique</Badge>&nbsp;
-                    <span className="small gray">
-                      Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22 Aout
-                      2020 | &nbsp;
-                      <FontAwesomeIcon icon={faComment} /> 15
-                    </span>
+                    <span className="small gray">Par Ahmed Chetouane</span>
                     <p>
                       <span className="bold blue">Samsung galaxi s20</span>
                     </p>
                   </Col>
                 </Row>
               </Col>
-              <Col lg={2}>
+              <Col xs={1} sm={2}>
                 <FontAwesomeIcon
                   icon={faCheckCircle}
                   className="blue pointer"
                   size="2x"
                 />
-                &nbsp; &nbsp;
+                &nbsp; <span className="d-none d-md-inline">&nbsp;</span>
                 <FontAwesomeIcon
                   icon={faTimesCircle}
                   className="blue pointer"

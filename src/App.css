@@ -406,6 +406,7 @@ img#logo {
 .pagination {
   width: 300px;
   margin: auto;
+  margin-top: 30px;
 }
 
 .page-link {
@@ -661,12 +662,24 @@ table .dash-separation {
 
 /** medium - large screen **/
 @media (min-width: 768px) and (max-width: 960px) {
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .item-description {
+    margin-bottom: 20px;
+  }
+
   .top-main-catagtory-item {
     font-size: 15px;
   }
 
   .item-img-container-lg {
     height: 180px;
+  }
+
+  .item-img-container-sm {
+    text-align: left;
   }
 
   .discussion-item {
@@ -679,6 +692,14 @@ table .dash-separation {
   h4 {
     margin-top: 10px;
     font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .navbar-brand {
+    margin-right: 0px;
   }
 
   .big {
@@ -742,6 +763,10 @@ table .dash-separation {
     height: 130px;
   }
 
+  .item-img-container-sm {
+    text-align: left;
+  }
+
   .item-description {
     margin-bottom: 30px;
   }
@@ -753,6 +778,54 @@ table .dash-separation {
   .notif-time {
     display: block;
     text-align: right;
+  }
+
+  .exchange-list .small {
+    display: block;
+  }
+
+  .exchange-list svg {
+    width: 0.7em !important;
+  }
+
+  .exchange-list .exchange-icon {
+    margin-top: 40px;
+  }
+
+  .category-filter-bar {
+    background: rgb(28 31 35);
+    padding: 5px;
+  }
+
+  .category-filter-bar *,
+  .category-filter-bar {
+    color: #fff;
+  }
+
+  #sidebar-left {
+    background: #ebebec;
+    padding: 10px;
+    margin-bottom: 20px;
+    opacity: 1;
+    animation-name: openFilter;
+    animation-duration: 1s;
+  }
+
+  @keyframes openFilter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  #sidebar-left .dash-separation {
+    padding: 8px 0px;
+  }
+
+  #footer {
+    text-align: center;
   }
 }
 
