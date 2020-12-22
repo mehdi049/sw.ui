@@ -619,9 +619,18 @@ table .dash-separation {
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
-/** my exchange **/
 
-/** end my exchange **/
+/** my notifications **/
+.card-header .btn {
+  width: 100%;
+  text-align: left;
+}
+
+.card-header .btn:focus {
+  color: #535f6b;
+}
+
+/** end notifications **/
 
 /** multi image upload **/
 .multi-preview img {
@@ -739,6 +748,11 @@ table .dash-separation {
 
   .discussion-item {
     max-height: inherit;
+  }
+
+  .notif-time {
+    display: block;
+    text-align: right;
   }
 }
 

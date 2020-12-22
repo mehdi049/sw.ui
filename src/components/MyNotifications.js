@@ -39,11 +39,11 @@ function MyNotifications() {
                         />
                         &nbsp;&nbsp; <span className="dark-blue">Ahmed</span> a
                         aimé votre article &nbsp;&nbsp;{" "}
-                        <span className="small">
+                        <span className="small notif-time">
                           <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
                         </span>
                         <br />
-                        <br />
+                        <br className="d-none d-md-block" />
                       </React.Fragment>
                     ))}
                     {[...Array(3)].map((x, i) => (
@@ -55,11 +55,11 @@ function MyNotifications() {
                         />
                         &nbsp;&nbsp; <span className="dark-blue">Sofien</span> a
                         a commenté votre publication &nbsp;&nbsp;{" "}
-                        <span className="small">
+                        <span className="small notif-time">
                           <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
                         </span>
                         <br />
-                        <br />
+                        <br className="d-none d-md-block" />
                       </React.Fragment>
                     ))}
                   </Card.Body>
@@ -81,11 +81,11 @@ function MyNotifications() {
                     />
                     &nbsp;&nbsp; <span className="dark-blue">Sofien</span> a a
                     commenté votre publication &nbsp;&nbsp;{" "}
-                    <span className="small">
+                    <span className="small notif-time">
                       <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
                     </span>
                     <br />
-                    <br />
+                    <br className="d-none d-md-block" />
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
@@ -105,11 +105,11 @@ function MyNotifications() {
                     />
                     &nbsp;&nbsp; <span className="dark-blue">Sofien</span> a a
                     commenté votre publication &nbsp;&nbsp;{" "}
-                    <span className="small">
+                    <span className="small notif-time">
                       <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
                     </span>
                     <br />
-                    <br />
+                    <br className="d-none d-md-block" />
                     <img
                       src={require("../images/avatars/128_3.png")}
                       height={30}
@@ -117,11 +117,11 @@ function MyNotifications() {
                     />
                     &nbsp;&nbsp; <span className="dark-blue">Sofien</span> a a
                     commenté votre publication &nbsp;&nbsp;{" "}
-                    <span className="small">
+                    <span className="small notif-time">
                       <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
                     </span>
                     <br />
-                    <br />
+                    <br className="d-none d-md-block" />
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
