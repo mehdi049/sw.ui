@@ -1,12 +1,5 @@
 import React from "react";
-import { Table, Container, Row, Col, Button, Form } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrashAlt,
-  faEdit,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Form } from "react-bootstrap";
 
 function MyMessages() {
   return (
@@ -19,32 +12,37 @@ function MyMessages() {
           </Col>
         </Row>
         <Row>
-          <Col lg={4}>
+          <Col xs={3} sm={4}>
             <Row className="discussion-item">
-              <Col lg={2}>
+              <Col xs={12} sm={5} md={4} lg={3} xl={2}>
                 <img
                   src={require("../images/avatars/128_1.png")}
-                  height={50}
+                  className="msg-img"
                   alt=""
                 />
               </Col>
-              <Col>
+              <Col xs={12} sm={7} md={8} lg={9} xl={10}>
                 <h6 className="dark-blue">Mehdi Marouani</h6>
-                <p>Je ferai de mon mieux ama nabtach 3lik</p>
+                <p className="d-none d-md-block">
+                  Je ferai de mon mieux ama nabtach 3lik
+                </p>
               </Col>
             </Row>
             {[...Array(4)].map((x, i) => (
               <Row className="discussion-item not-read" key={i}>
-                <Col lg={2}>
+                <Col xs={12} sm={5} md={4} lg={3} xl={2}>
                   <img
                     src={require("../images/avatars/128_1.png")}
-                    height={50}
+                    className="msg-img"
                     alt=""
                   />
                 </Col>
-                <Col>
+                <Col xs={12} sm={7} md={8} lg={9} xl={10}>
                   <h6 className="dark-blue">Mehdi Marouani</h6>
-                  <p>Je ferai de mon mieux ama nabtach 3lik</p>
+                  <p className="d-none d-md-block">
+                    Je ferai de mon mieux ama nabtach 3lik Je ferai de mon mieux
+                    ama nabtach [...]
+                  </p>
                 </Col>
               </Row>
             ))}
@@ -58,38 +56,14 @@ function MyMessages() {
               </Col>
               <Col>
                 <h6 className="dark-blue">Mehdi Marouani</h6>
-                <p>Je ferai de mon mieux ama nabtach 3lik</p>
-              </Col>
-            </Row>
-            <Row className="discussion-item not-read">
-              <Col lg={2}>
-                <img
-                  src={require("../images/avatars/128_1.png")}
-                  height={50}
-                  alt=""
-                />
-              </Col>
-              <Col>
-                <h6 className="dark-blue">Mehdi Marouani</h6>
-                <p>Je ferai de mon mieux ama nabtach 3lik</p>
-              </Col>
-            </Row>
-            <Row className="discussion-item">
-              <Col lg={2}>
-                <img
-                  src={require("../images/avatars/128_1.png")}
-                  height={50}
-                  alt=""
-                />
-              </Col>
-              <Col>
-                <h6 className="dark-blue">Mehdi Marouani</h6>
-                <p>Je ferai de mon mieux ama nabtach 3lik</p>
+                <p className="d-none d-md-block">
+                  Je ferai de mon mieux ama nabtach 3lik
+                </p>
               </Col>
             </Row>
           </Col>
 
-          <Col lg={8}>
+          <Col xs={9} sm={8}>
             <div id="conversation-area">
               {[...Array(4)].map((x, i) => (
                 <Row key={i}>
