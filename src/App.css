@@ -17,10 +17,6 @@
   color: #959595;
 }
 
-body {
-  /*overflow-x: hidden;*/
-}
-
 .big {
   font-size: 20px;
 }
@@ -260,6 +256,10 @@ textarea.form-control {
 
 /** header **/
 
+img#logo {
+  height: 35px;
+}
+
 .profile-links a {
   color: #7f7f7f;
 }
@@ -323,9 +323,13 @@ textarea.form-control {
   padding-top: 5px;
   padding-bottom: 5px;
   color: #343434;
+  display: inline-block;
+  width: auto;
+  flex: inherit;
 }
 
-.top-main-catagtory-item a {
+.top-main-catagtory-item a,
+.top-main-catagtory-item a * {
   color: #fff;
 }
 
@@ -610,8 +614,23 @@ table .dash-separation {
 
 /** media query **/
 
-/** medium - xl screen **/
-@media (min-width: 768px) and (max-width: 1200px) {
+/** xl screen **/
+@media (min-width: 1200px) {
+  .top-main-catagtory-item {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+}
+
+/** large - xl screen **/
+@media (min-width: 960px) and (max-width: 1200px) {
+}
+
+/** medium - large screen **/
+@media (min-width: 768px) and (max-width: 960px) {
+  .top-main-catagtory-item {
+    font-size: 15px;
+  }
 }
 
 /** small screen **/
@@ -619,8 +638,69 @@ table .dash-separation {
   .profile-links .dropdown-menu {
     left: -120px;
   }
+
+  #left-category-menu {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 170px;
+    background: #091017;
+    height: 100%;
+    animation-name: openMenu;
+    animation-duration: 1s;
+  }
+
+  @keyframes openMenu {
+    0% {
+      margin-left: -170px;
+    }
+    100% {
+      margin-left: 0px;
+    }
+  }
+
+  #left-category-menu a {
+    display: block;
+    color: #fff;
+    padding: 10px 15px;
+  }
+
+  #left-category-menu .left-category-menu-first {
+    margin-top: 30px;
+  }
+
+  #left-category-menu a:hover,
+  #left-category-menu a[active="true"] {
+    cursor: pointer;
+    background: #1c1f23;
+  }
+
+  #close-menu {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  #close-menu * {
+    color: #fff;
+  }
 }
 
 /** x-small screen **/
 @media (max-width: 576px) {
+  #header-section .container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  img#logo {
+    height: 30px;
+  }
+
+  .profile-links .dropdown-menu {
+    left: -160px;
+  }
 }

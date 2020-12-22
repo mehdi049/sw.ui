@@ -27,13 +27,13 @@ function Header() {
 
   return (
     <>
-      <Container fluid={true} className="dark-blue-bg">
+      <Container fluid={true} id="header-section" className="dark-blue-bg">
         <Container>
           <Row>
             <Navbar style={{ width: "100%" }}>
               <Link to="/">
                 <Navbar.Brand>
-                  <img src={Logo} alt="" height={35} />
+                  <img src={Logo} alt="" id="logo" />
                 </Navbar.Brand>
               </Link>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -47,13 +47,23 @@ function Header() {
                   </InputGroup.Append>
                 </InputGroup>
               </Navbar.Collapse>
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
                   <Link className="nav-link d-none d-md-block" to="/add-item">
                     <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
                     &nbsp; Créer une annonce
                   </Link>
-                  <NavDropdown className="profile-links" title="profile">
+                  <NavDropdown
+                    className="profile-links"
+                    title={
+                      <img
+                        src={require("../../images/avatars/128_1.png")}
+                        alt="mehdi"
+                        className="img-rounded"
+                        id="logo"
+                      />
+                    }
+                  >
                     <div className="d-block d-md-none">
                       <Link to="/add-item">
                         <button className="dropdown-item">
@@ -147,7 +157,7 @@ function Header() {
                   </Link>
                 </Navbar.Collapse>
               )}
-              {!isAuthenticated && (
+              {isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
                   <Nav.Link
                     className="nav-link d-none d-lg-block"
