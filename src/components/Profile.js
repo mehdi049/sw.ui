@@ -18,26 +18,41 @@ function Profile() {
       <br />
       <Container>
         <Row>
-          <Col lg="3">
+          <Col xs={12} sm={4} md={3}>
             <h3>Mon profile</h3>
-            <FontAwesomeIcon icon={faEye} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">118</span> fois
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faHeart} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-            personne(s)
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faSyncAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
-            échange(s) aboutie
+            <Row>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faEye} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">
+                  118
+                </span>{" "}
+                <span className="d-none d-sm-block inline-block-md">fois</span>
+              </Col>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faHeart} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
+                <span className="d-none d-sm-block inline-block-md">
+                  personne(s)
+                </span>
+              </Col>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faSyncAlt} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">3</span>{" "}
+                <span className="d-none d-sm-block inline-block-md">
+                  en cours
+                </span>
+              </Col>
+              <Col xs={3} sm={12} className="profile-info">
+                <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
+                &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
+                <span className="d-none d-sm-block inline-block-md">
+                  échange(s) aboutie
+                </span>
+              </Col>
+            </Row>
           </Col>
-          <Col lg="6">
+          <Col xs={12} sm={8} lg={6}>
+            <br className="d-block d-sm-none" />
             <h3>Mon compte</h3>
             <Form>
               <Form.Group>
@@ -88,13 +103,15 @@ function Profile() {
                 <Form.Label className="dark-blue">Adresse</Form.Label>
                 <CityDropDown />
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Valider
-              </Button>
+              <div className="text-right">
+                <Button variant="primary" type="button">
+                  Valider
+                </Button>
+              </div>
             </Form>
             <br />
           </Col>
-          <Col lg="3">
+          <Col lg={3} className="d-none d-lg-block">
             <h3>Mes préferences</h3>
             <Form>
               <Form.Group>

@@ -86,7 +86,7 @@ function AddItem() {
                 <ItemCategories all={true} />
               </Form.Group>
               <div className="text-right">
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="button">
                   Ajouter
                 </Button>
               </div>
