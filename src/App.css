@@ -71,6 +71,10 @@ h5 {
   text-align: right;
 }
 
+.text-left {
+  text-align: left !important;
+}
+
 .icon-large {
   font-size: 25px;
 }
@@ -456,16 +460,19 @@ img#logo {
 .item-img-container-lg {
   height: 230px;
   text-align: center;
+  overflow: hidden;
 }
 
 .item-img-container-md {
   height: 80px;
   text-align: center;
+  overflow: hidden;
 }
 
 .item-img-container-sm {
   height: 50px;
   text-align: center;
+  overflow: hidden;
 }
 
 span.helper {
@@ -621,6 +628,14 @@ table .dash-separation {
   display: block;
   padding: 5px 0px;
   border-bottom: dashed 1px #959595;
+}
+
+#my-item-table .item-img {
+  margin-left: 5px;
+}
+
+#my-item-table .item-img-first {
+  margin-left: 0px;
 }
 /** end my items **/
 .exchange-list {

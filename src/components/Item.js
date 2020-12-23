@@ -244,6 +244,7 @@ function Item() {
               alt=""
             />
             <br />
+            <br />
             <p className="dark-gray">Mehdi Marouani </p>
             <p className="">
               <FontAwesomeIcon icon={faMapMarker} className="blue" /> &nbsp;

@@ -18,11 +18,10 @@ function MyItems() {
         <Row>
           <Col>
             <h3>Mes articles</h3>
-            <Table striped bordered responsive>
+            <Table striped bordered responsive id="my-item-table">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Description</th>
+                  <th>Article</th>
                   <th>Demandes d'échange</th>
                   <th style={{ width: 100 }}></th>
                 </tr>
@@ -31,16 +30,19 @@ function MyItems() {
                 {[...Array(8)].map((x, i) => (
                   <tr key={i}>
                     <td>
-                      <div className="item-img-container-md">
+                      <div className="item-img-container-md text-left">
                         <span class="helper"></span>
-                        <img
-                          src={require("../images/uploads/item1.png")}
-                          className="item-img"
-                          alt=""
-                        />
+                        {[...Array(5)].map((x, j) => (
+                          <img
+                            key={j}
+                            src={require("../images/uploads/item1-1.png")}
+                            className={
+                              j === 0 ? " item-img item-img-first " : "item-img"
+                            }
+                            alt=""
+                          />
+                        ))}
                       </div>
-                    </td>
-                    <td>
                       <Badge className="green2-bg">Eléctronique</Badge>
                       <span className="small gray">
                         &nbsp;&nbsp; <FontAwesomeIcon icon={faClock} /> 22 Aout
@@ -61,8 +63,7 @@ function MyItems() {
                           &nbsp;
                           <span className="small gray">
                             Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22
-                            Aout 2020 | &nbsp;
-                            <FontAwesomeIcon icon={faComment} /> 15
+                            Aout 2020
                           </span>
                           <Link to="/item" className="blue exchange-item-list">
                             Iphone 10
