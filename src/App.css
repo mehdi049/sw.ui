@@ -67,14 +67,6 @@ h5 {
   color: #343434;
 }
 
-.padding-left-5 {
-  padding-left: 5px;
-}
-
-.padding-right-5 {
-  padding-right: 5px;
-}
-
 .text-right {
   text-align: right;
 }
@@ -181,6 +173,21 @@ h5 {
   background-color: #1c1f23;
   border-color: #1c1f23;
   box-shadow: none;
+}
+
+.btn-outline-secondary {
+  color: #203040;
+  border-color: #203040;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:not(:disabled):not(.disabled):active,
+.btn-outline-secondary:not(:disabled):not(.disabled):active,
+.btn-outline-secondary:focus {
+  background-color: #203040;
+  border-color: #203040;
+  box-shadow: none;
+  color: #fff;
 }
 
 .dropdown-item[active="true"],
@@ -497,25 +504,26 @@ span.helper {
 /** end added items **/
 
 /** item details **/
-.main-detail-img {
-  display: block;
-  margin: auto;
+.item-detail-img-container-lg {
   height: 400px;
+  text-align: center;
+}
+
+.main-detail-img {
+  max-height: 100%;
   max-width: 100%;
 }
-.main-detail-img-small {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
+
+.item-detail-img-container-sm {
   height: 195px;
-  max-width: 100%;
+  text-align: center;
 }
 
 .comment-section {
   margin-top: 25px;
 }
 
-.comment-profile-img {
+.profile-img {
   max-height: 80px;
   max-width: 100%;
   display: block;
@@ -633,6 +641,16 @@ table .dash-separation {
 
 /** end notifications **/
 
+/** item **/
+#item-like-icon {
+  margin-left: 10px;
+}
+#ask-exchange-btn {
+  display: inline;
+}
+
+/** end item **/
+
 /** multi image upload **/
 .multi-preview img {
   max-width: 20%;
@@ -657,6 +675,13 @@ table .dash-separation {
 
   .discussion-item {
     max-height: 150px;
+  }
+
+  .item-detail-img-container-lg {
+    height: 300px;
+  }
+  .item-detail-img-container-sm {
+    height: 145px;
   }
 }
 
@@ -684,6 +709,13 @@ table .dash-separation {
 
   .discussion-item {
     max-height: 90px;
+  }
+
+  .item-detail-img-container-lg {
+    height: 200px;
+  }
+  .item-detail-img-container-sm {
+    height: 95px;
   }
 }
 
@@ -824,6 +856,22 @@ table .dash-separation {
     padding: 8px 0px;
   }
 
+  .item-detail-img-container-lg {
+    height: 300px;
+  }
+  .item-detail-img-container-sm {
+    height: 145px;
+  }
+
+  .profile-info-text {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  .profile-img {
+    max-height: 50px;
+  }
+
   #footer {
     text-align: center;
   }
@@ -846,5 +894,15 @@ table .dash-separation {
 
   .profile-links .dropdown-menu {
     left: -160px;
+  }
+
+  .item-detail-img-container-lg {
+    height: 200px;
+  }
+
+  .profile-info-text {
+    display: block;
+    margin-right: 0px;
+    margin-bottom: 10px;
   }
 }

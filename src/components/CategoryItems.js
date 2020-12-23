@@ -45,13 +45,38 @@ function CategoryItems() {
                 </div>
               </Col>
 
-              {[...Array(8)].map((x, i) => (
+              {[...Array(5)].map((x, i) => (
                 <Col xs={6} sm={6} lg={4} key={i}>
                   <Link to="/item">
                     <div class="item-img-container-lg">
                       <span class="helper"></span>
                       <img
-                        src={require("../images/uploads/item1.png")}
+                        src={require("../images/uploads/item1-3.png")}
+                        className="item-img"
+                        alt=""
+                      />
+                    </div>
+                    <h4>Samsung galaxi s20</h4>
+                    <Badge className="green2-bg">Electronique</Badge>{" "}
+                    <span className="small gray">
+                      Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
+                      2020 | <FontAwesomeIcon icon={faComment} /> 15
+                    </span>
+                    <p className="gray item-description">
+                      With our Guaranteed buy-back offer, we'll cover up to 50%
+                      of the retail price [...]
+                    </p>
+                  </Link>
+                </Col>
+              ))}
+
+              {[...Array(5)].map((x, i) => (
+                <Col xs={6} sm={6} lg={4} key={i}>
+                  <Link to="/item">
+                    <div class="item-img-container-lg">
+                      <span class="helper"></span>
+                      <img
+                        src={require("../images/uploads/item1-2.png")}
                         className="item-img"
                         alt=""
                       />
