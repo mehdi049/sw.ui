@@ -1,14 +1,12 @@
 import React from "react";
-import { Badge, Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
-  faClock,
-  faComment,
   faExchangeAlt,
   faCheckCircle,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 
 function MyExchanges() {
   return (
@@ -30,7 +28,7 @@ function MyExchanges() {
                       <div className="item-img-container-sm">
                         <span class="helper"></span>
                         <img
-                          src={require("../images/uploads/item1.png")}
+                          src={require("../../images/uploads/item1.png")}
                           className="item-img"
                           alt=""
                         />
@@ -59,7 +57,7 @@ function MyExchanges() {
                       <div className="item-img-container-sm">
                         <span class="helper"></span>
                         <img
-                          src={require("../images/uploads/item1.png")}
+                          src={require("../../images/uploads/item1.png")}
                           className="item-img"
                           alt=""
                         />

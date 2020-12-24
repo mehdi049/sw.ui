@@ -34,7 +34,7 @@ function HomeItems() {
                       <div class="item-img-container-lg">
                         <span class="helper"></span>
                         <img
-                          src={require("../images/uploads/item1-3.png")}
+                          src={require("../../images/uploads/item1-3.png")}
                           className="item-img"
                           alt=""
                         />
@@ -56,7 +56,7 @@ function HomeItems() {
                       <div class="item-img-container-lg">
                         <span class="helper"></span>
                         <img
-                          src={require("../images/uploads/item1-6.png")}
+                          src={require("../../images/uploads/item1-6.png")}
                           className="item-img"
                           alt=""
                         />
@@ -78,7 +78,7 @@ function HomeItems() {
                       <div class="item-img-container-lg">
                         <span class="helper"></span>
                         <img
-                          src={require("../images/uploads/item1-2.png")}
+                          src={require("../../images/uploads/item1-2.png")}
                           className="item-img"
                           alt=""
                         />

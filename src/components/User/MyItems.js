@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Container, Row, Col, Button, Badge } from "react-bootstrap";
+import { Table, Container, Row, Col, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashAlt,
@@ -35,7 +35,7 @@ function MyItems() {
                         {[...Array(5)].map((x, j) => (
                           <img
                             key={j}
-                            src={require("../images/uploads/item1-1.png")}
+                            src={require("../../images/uploads/item1-1.png")}
                             className={
                               j === 0 ? " item-img item-img-first " : "item-img"
                             }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CityDropDown from "./_sharedComponents/CityDropDown";
+import CityDropDown from "../../_sharedComponents/DropDowns/CityDropDown";
 
 function LeftSideFilter() {
   const [activeCat, setActiveCat] = useState("");

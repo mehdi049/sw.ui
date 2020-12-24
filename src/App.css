@@ -533,7 +533,7 @@ span.helper {
 .profile-img {
   max-height: 80px;
   max-width: 100%;
-  display: block;
+  display: inline-block;
 }
 
 .comment-text {

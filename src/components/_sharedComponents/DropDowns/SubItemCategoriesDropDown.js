@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-function SubItemCategories(props) {
+function SubItemCategoriesDropDown(props) {
   if (props.category === "Véhicule")
     return (
       <Form.Control as="select" className="select">
@@ -92,4 +92,4 @@ function SubItemCategories(props) {
   return null;
 }
 
-export default SubItemCategories;
+export default SubItemCategoriesDropDown;

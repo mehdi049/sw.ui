@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import SubItemCategories from "./SubItemCategories";
+import SubItemCategoriesDropDown from "./DropDowns/SubItemCategoriesDropDown";
 
 function ItemCategories(props) {
   const [category, setCategory] = useState("");
@@ -27,7 +27,7 @@ function ItemCategories(props) {
         <option>Livres</option>
       </Form.Control>
       <br />
-      <SubItemCategories all category={category} />
+      <SubItemCategoriesDropDown all category={category} />
     </>
   );
 }

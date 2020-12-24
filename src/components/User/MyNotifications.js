@@ -33,7 +33,7 @@ function MyNotifications() {
                     {[...Array(3)].map((x, i) => (
                       <React.Fragment key={i}>
                         <img
-                          src={require("../images/avatars/128_1.png")}
+                          src={require("../../images/avatars/128_1.png")}
                           height={30}
                           alt=""
                         />
@@ -49,7 +49,7 @@ function MyNotifications() {
                     {[...Array(3)].map((x, i) => (
                       <React.Fragment key={i}>
                         <img
-                          src={require("../images/avatars/128_3.png")}
+                          src={require("../../images/avatars/128_3.png")}
                           height={30}
                           alt=""
                         />
@@ -75,7 +75,7 @@ function MyNotifications() {
                 <Accordion.Collapse eventKey="1">
                   <Card.Body>
                     <img
-                      src={require("../images/avatars/128_3.png")}
+                      src={require("../../images/avatars/128_3.png")}
                       height={30}
                       alt=""
                     />
@@ -99,7 +99,7 @@ function MyNotifications() {
                 <Accordion.Collapse eventKey="2">
                   <Card.Body>
                     <img
-                      src={require("../images/avatars/128_3.png")}
+                      src={require("../../images/avatars/128_3.png")}
                       height={30}
                       alt=""
                     />
@@ -111,7 +111,7 @@ function MyNotifications() {
                     <br />
                     <br className="d-none d-md-block" />
                     <img
-                      src={require("../images/avatars/128_3.png")}
+                      src={require("../../images/avatars/128_3.png")}
                       height={30}
                       alt=""
                     />

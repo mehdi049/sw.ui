@@ -1,15 +1,9 @@
 import React from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import CityDropDown from "./_sharedComponents/CityDropDown";
-import FileUpload from "./_sharedComponents/FileUpload";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faHeart,
-  faSyncAlt,
-  faExchangeAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import CityDropDown from "../_sharedComponents/DropDowns/CityDropDown";
+import FileUpload from "../_sharedComponents/FileUpload";
 import { useAuth0 } from "@auth0/auth0-react";
+import ProfileInfo from "./_sharedComponents/ProfileInfo";
 
 function Profile() {
   const { user } = useAuth0();
@@ -19,37 +13,7 @@ function Profile() {
       <Container>
         <Row>
           <Col xs={12} sm={4} md={3}>
-            <h3>Mon profile</h3>
-            <Row>
-              <Col xs={3} sm={12} className="profile-info">
-                <FontAwesomeIcon icon={faEye} className="blue" />
-                &nbsp;&nbsp; <span className="bold big dark-blue">
-                  118
-                </span>{" "}
-                <span className="d-none d-sm-block inline-block-md">fois</span>
-              </Col>
-              <Col xs={3} sm={12} className="profile-info">
-                <FontAwesomeIcon icon={faHeart} className="blue" />
-                &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-                <span className="d-none d-sm-block inline-block-md">
-                  personne(s)
-                </span>
-              </Col>
-              <Col xs={3} sm={12} className="profile-info">
-                <FontAwesomeIcon icon={faSyncAlt} className="blue" />
-                &nbsp;&nbsp; <span className="bold big dark-blue">3</span>{" "}
-                <span className="d-none d-sm-block inline-block-md">
-                  en cours
-                </span>
-              </Col>
-              <Col xs={3} sm={12} className="profile-info">
-                <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
-                &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
-                <span className="d-none d-sm-block inline-block-md">
-                  échange(s) aboutie
-                </span>
-              </Col>
-            </Row>
+            <ProfileInfo />
           </Col>
           <Col xs={12} sm={8} lg={6}>
             <br className="d-block d-sm-none" />
