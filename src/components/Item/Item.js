@@ -1,24 +1,25 @@
-import React from "react";
-import { Badge, Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Badge, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,
   faClock,
-  faPhoneAlt,
-  faMapMarker,
-  faEye,
   faExchangeAlt,
   faHeart,
-  faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "../_sharedComponents/HeaderCategories";
-import { Link } from "react-router-dom";
 import AskedExchangesSection from "./_sharedComponents/AskedExchangesSection";
 import CommentSection from "./_sharedComponents/CommentSection";
 import SimilarItemsSection from "./_sharedComponents/SimilarItemsSection";
 import ItemProfileInfoSection from "./_sharedComponents/ItemProfileInfoSection";
+import MyItemsForExchange from "./_sharedComponents/MyItemsForExchange";
 
 function Item() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <HeaderCategories />
@@ -43,7 +44,7 @@ function Item() {
               <Col xs={9} md={8} lg={7}>
                 <h4>Samsung galaxi s20</h4>
                 <Badge className="green2-bg">Electronique</Badge>{" "}
-                <span className="small gray">
+                <span className="small">
                   Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 |{" "}
                   <FontAwesomeIcon icon={faComment} /> 15
                 </span>
@@ -55,12 +56,14 @@ function Item() {
                   type="button"
                   id="ask-exchange-btn"
                   className="d-none d-lg-inline"
+                  onClick={handleShow}
                 >
                   Demander un échange
                 </Button>
 
                 <FontAwesomeIcon
                   icon={faExchangeAlt}
+                  onClick={handleShow}
                   className="pointer icon-large d-inline d-lg-none blue"
                 />
 
@@ -70,12 +73,30 @@ function Item() {
                   id="item-like-icon"
                 />
               </Col>
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title className="dark-blue">Echanger avec</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <p>Veuillez selectionner un article.</p>
+                  <MyItemsForExchange />
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="light" onClick={handleClose}>
+                    Annuler
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Demander un échange
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </Row>
             <br />
             <Row>
               <Col sm={12} md={6}>
-                <div class="item-detail-img-container-lg">
-                  <span class="helper"></span>
+                <div className="item-detail-img-container-lg">
+                  <span className="helper"></span>
                   <img
                     src={require("../../images/uploads/item1-5.png")}
                     className="main-detail-img"
@@ -86,8 +107,8 @@ function Item() {
               <Col sm={12} md={6}>
                 <Row>
                   <Col xs={6}>
-                    <div class="item-detail-img-container-sm">
-                      <span class="helper"></span>
+                    <div className="item-detail-img-container-sm">
+                      <span className="helper"></span>
                       <img
                         src={require("../../images/uploads/item1-6.png")}
                         className="main-detail-img"
@@ -96,8 +117,8 @@ function Item() {
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div class="item-detail-img-container-sm">
-                      <span class="helper"></span>
+                    <div className="item-detail-img-container-sm">
+                      <span className="helper"></span>
                       <img
                         src={require("../../images/uploads/item1-5.png")}
                         className="main-detail-img"
@@ -108,8 +129,8 @@ function Item() {
                 </Row>
                 <Row>
                   <Col xs={6}>
-                    <div class="item-detail-img-container-sm">
-                      <span class="helper"></span>
+                    <div className="item-detail-img-container-sm">
+                      <span className="helper"></span>
                       <img
                         src={require("../../images/uploads/item1-3.png")}
                         className="main-detail-img"
@@ -118,8 +139,8 @@ function Item() {
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div class="item-detail-img-container-sm">
-                      <span class="helper"></span>
+                    <div className="item-detail-img-container-sm">
+                      <span className="helper"></span>
                       <img
                         src={require("../../images/uploads/item1-4.png")}
                         className="main-detail-img"

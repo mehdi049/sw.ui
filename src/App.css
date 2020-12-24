@@ -664,6 +664,25 @@ table .dash-separation {
   display: inline;
 }
 
+.select-item-checkbox {
+  float: right;
+  margin-right: 5px;
+}
+
+.item-to-exchange {
+  margin-bottom: 5px;
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.item-to-exchange.selected {
+  background: #d0d0d0;
+}
+
+.item-to-exchange.selected .small,
+.item-to-exchange.selected .small * {
+  color: #5c5959;
+}
 /** end item **/
 
 /** multi image upload **/
@@ -919,5 +938,9 @@ table .dash-separation {
     display: block;
     margin-right: 0px;
     margin-bottom: 10px;
+  }
+
+  .select-item-checkbox {
+    margin-right: 0px;
   }
 }

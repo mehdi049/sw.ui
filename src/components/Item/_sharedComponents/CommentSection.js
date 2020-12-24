@@ -22,7 +22,7 @@ function CommentSection() {
           </Col>
           <Col xs={9} sm={10} xl={11}>
             <span className="dark-gray">Mehdi Marouani </span> |{" "}
-            <span class="small">
+            <span className="small">
               <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
             </span>
             <p className="comment-text">

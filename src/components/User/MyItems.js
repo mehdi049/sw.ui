@@ -31,7 +31,7 @@ function MyItems() {
                   <tr key={i}>
                     <td>
                       <div className="item-img-container-md text-left">
-                        <span class="helper"></span>
+                        <span className="helper"></span>
                         {[...Array(5)].map((x, j) => (
                           <img
                             key={j}
@@ -44,7 +44,7 @@ function MyItems() {
                         ))}
                       </div>
                       <Badge className="green2-bg">Eléctronique</Badge>
-                      <span className="small gray">
+                      <span className="small">
                         &nbsp;&nbsp; <FontAwesomeIcon icon={faClock} /> 22 Aout
                         2020 | &nbsp;
                         <FontAwesomeIcon icon={faComment} /> 15
@@ -61,7 +61,7 @@ function MyItems() {
                         <div key={j} className="dash-separation">
                           <Badge className="green2-bg">Eléctronique</Badge>
                           &nbsp;
-                          <span className="small gray">
+                          <span className="small">
                             Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22
                             Aout 2020
                           </span>

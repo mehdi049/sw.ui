@@ -31,8 +31,8 @@ function HomeItems() {
                 <React.Fragment key={i}>
                   <Col xs={6} sm={4} lg={3}>
                     <Link to="/item">
-                      <div class="item-img-container-lg">
-                        <span class="helper"></span>
+                      <div className="item-img-container-lg">
+                        <span className="helper"></span>
                         <img
                           src={require("../../images/uploads/item1-3.png")}
                           className="item-img"
@@ -41,11 +41,11 @@ function HomeItems() {
                       </div>
                       <h4>Samsung galaxi s20</h4>
                       <Badge className="green2-bg">Electronique</Badge>{" "}
-                      <span className="small gray">
+                      <span className="small">
                         Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
                         2020 | <FontAwesomeIcon icon={faComment} /> 15
                       </span>
-                      <p className="gray item-description">
+                      <p className="item-description">
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% of the retail price [...]
                       </p>
@@ -53,8 +53,8 @@ function HomeItems() {
                   </Col>
                   <Col xs={6} sm={4} lg={3}>
                     <Link to="/item">
-                      <div class="item-img-container-lg">
-                        <span class="helper"></span>
+                      <div className="item-img-container-lg">
+                        <span className="helper"></span>
                         <img
                           src={require("../../images/uploads/item1-6.png")}
                           className="item-img"
@@ -63,11 +63,11 @@ function HomeItems() {
                       </div>
                       <h4>Samsung galaxi s20</h4>
                       <Badge className="green2-bg">Electronique</Badge>{" "}
-                      <span className="small gray">
+                      <span className="small">
                         Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
                         2020 | <FontAwesomeIcon icon={faComment} /> 15
                       </span>
-                      <p className="gray item-description">
+                      <p className="item-description">
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% of the retail price [...]
                       </p>
@@ -75,8 +75,8 @@ function HomeItems() {
                   </Col>
                   <Col xs={6} sm={4} lg={3}>
                     <Link to="/item">
-                      <div class="item-img-container-lg">
-                        <span class="helper"></span>
+                      <div className="item-img-container-lg">
+                        <span className="helper"></span>
                         <img
                           src={require("../../images/uploads/item1-2.png")}
                           className="item-img"
@@ -85,11 +85,11 @@ function HomeItems() {
                       </div>
                       <h4>Samsung galaxi s20</h4>
                       <Badge className="green2-bg">Electronique</Badge>{" "}
-                      <span className="small gray">
+                      <span className="small">
                         Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
                         2020 | <FontAwesomeIcon icon={faComment} /> 15
                       </span>
-                      <p className="gray item-description">
+                      <p className="item-description">
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% of the retail price [...]
                       </p>
@@ -108,8 +108,8 @@ function HomeItems() {
               totalItemsCount={100}
               pageRangeDisplayed={5}
               onChange={handlePageChange.bind(this)}
-              itemClass="page-item"
-              linkClass="page-link"
+              itemclassName="page-item"
+              linkclassName="page-link"
             />
           </Col>
         </Row>

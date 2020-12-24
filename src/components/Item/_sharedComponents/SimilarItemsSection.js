@@ -13,7 +13,7 @@ function SimilarItemsSection() {
           <Row>
             <Col md={3}>
               <div className="item-img-container-sm">
-                <span class="helper"></span>
+                <span className="helper"></span>
                 <img
                   src={require("../../../images/uploads/item1-1.png")}
                   className="item-img"
@@ -23,7 +23,7 @@ function SimilarItemsSection() {
             </Col>
             <Col>
               <p className="bold blue">Samsung galaxi s20</p>
-              <span className="small gray">
+              <span className="small">
                 <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 | &nbsp;&nbsp;
                 <FontAwesomeIcon icon={faComment} /> 15
               </span>

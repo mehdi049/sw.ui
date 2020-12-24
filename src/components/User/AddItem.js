@@ -39,7 +39,7 @@ function AddItem() {
               </Form.Group>
               <Form.Group>
                 <Form.Label className="dark-blue">Image</Form.Label>&nbsp;
-                <span className="gray small">(Maximum 5 photos)</span>
+                <span className="small">(Maximum 5 photos)</span>
                 <br />
                 <MultipleImageUploadComponent />
               </Form.Group>

@@ -26,7 +26,7 @@ function MyExchanges() {
                   <Col lg={3}>
                     <Link to="/item">
                       <div className="item-img-container-sm">
-                        <span class="helper"></span>
+                        <span className="helper"></span>
                         <img
                           src={require("../../images/uploads/item1.png")}
                           className="item-img"
@@ -55,7 +55,7 @@ function MyExchanges() {
                   <Col lg={3}>
                     <Link to="/item">
                       <div className="item-img-container-sm">
-                        <span class="helper"></span>
+                        <span className="helper"></span>
                         <img
                           src={require("../../images/uploads/item1.png")}
                           className="item-img"
@@ -66,7 +66,7 @@ function MyExchanges() {
                   </Col>
                   <Col>
                     <Badge className="green2-bg">Eléctronique</Badge>&nbsp;
-                    <span className="small gray">Par Ahmed Chetouane</span>
+                    <span className="small">Par Ahmed Chetouane</span>
                     <p>
                       <span className="bold blue">Samsung galaxi s20</span>
                     </p>
