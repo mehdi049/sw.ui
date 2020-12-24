@@ -78,8 +78,8 @@ function CategoryItems() {
                   totalItemsCount={100}
                   pageRangeDisplayed={5}
                   onChange={handlePageChange.bind(this)}
-                  itemclassName="page-item"
-                  linkclassName="page-link"
+                  itemClass="page-item"
+                  linkClass="page-link"
                 />
               </Col>
             </Row>
