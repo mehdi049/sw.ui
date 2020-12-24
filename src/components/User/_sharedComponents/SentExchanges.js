@@ -1,5 +1,5 @@
-import React from "react";
-import { Badge, Row, Col, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Badge, Row, Col, Form, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import {
@@ -8,8 +8,14 @@ import {
   faTimesCircle,
   faGripHorizontal,
 } from "@fortawesome/free-solid-svg-icons";
+import ProfileInfoModal from "./ProfleInfoModal";
 
 function SentExchanges() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <Row>
@@ -28,6 +34,18 @@ function SentExchanges() {
           <br />
         </Col>
       </Row>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title className="dark-blue">
+            Information sur profile
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ProfileInfoModal />
+        </Modal.Body>
+      </Modal>
+
       {[...Array(8)].map((x, i) => (
         <div key={i} className="exchange-list">
           <Row>
@@ -77,7 +95,12 @@ function SentExchanges() {
                 <Col>
                   <Badge className="green2-bg">Eléctronique</Badge>
                   &nbsp;
-                  <span className="small">Par Ahmed Chetouane</span>
+                  <span
+                    className="small underline pointer"
+                    onClick={handleShow}
+                  >
+                    Par Ahmed Chetouane
+                  </span>
                   <p>
                     <span className="bold blue">Samsung galaxi s20</span>
                   </p>

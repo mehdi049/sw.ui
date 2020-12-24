@@ -30,7 +30,7 @@ a {
 }
 
 a:hover {
-  color: #10a0c3;
+  color: #1c1f23;
   text-decoration: none;
 }
 
@@ -89,6 +89,10 @@ h5 {
 
 .pointer {
   cursor: pointer;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .badge {
@@ -310,6 +314,13 @@ textarea.form-control {
 
 .tab-content {
   padding-top: 25px;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #ffffff;
+  background-color: #1c1f23;
+  border-color: #1c1f23 #1c1f23 #fff;
 }
 
 /** end bootstrap override **/
@@ -609,6 +620,12 @@ span.helper {
 }
 
 /** my messages **/
+#discussion-item-list {
+  max-height: 680px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .discussion-item {
   margin-top: 10px;
   padding: 10px;
@@ -991,5 +1008,11 @@ table .dash-separation {
 
   .select-item-checkbox {
     margin-right: 0px;
+  }
+
+  #conversation-area,
+  #discussion-item-list {
+    height: 70vh;
+    overflow-x: hidden;
   }
 }

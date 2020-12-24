@@ -11,10 +11,10 @@ function MyExchanges() {
         <Row>
           <Col>
             <Tabs defaultActiveKey="de">
-              <Tab eventKey="de" title="Demandes d'échanges">
+              <Tab eventKey="de" title="Demandes d'échanges reçus">
                 <ReceivedExchanges />
               </Tab>
-              <Tab eventKey="dee" title="Demandes d'échanges envoyé">
+              <Tab eventKey="dee" title="Demandes d'échanges envoyées">
                 <SentExchanges />
               </Tab>
             </Tabs>

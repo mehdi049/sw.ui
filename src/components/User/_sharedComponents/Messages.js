@@ -59,6 +59,7 @@ function Messages() {
         </Row>
       </div>
       <Form.Group className="conversation-input-text">
+        <br />
         <Form.Control type="text" placeholder="répondre..." />
       </Form.Group>
     </>
