@@ -1,12 +1,7 @@
 import React from "react";
-import { Badge, Container, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import {
-  faExchangeAlt,
-  faCheckCircle,
-  faTimesCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import ReceivedExchanges from "./_sharedComponents/ReceivedExchanges";
+import SentExchanges from "./_sharedComponents/SentExchanges";
 
 function MyExchanges() {
   return (
@@ -15,80 +10,16 @@ function MyExchanges() {
       <Container>
         <Row>
           <Col>
-            <h3>8 Demandes d'échange</h3>
+            <Tabs defaultActiveKey="de">
+              <Tab eventKey="de" title="Demandes d'échanges">
+                <ReceivedExchanges />
+              </Tab>
+              <Tab eventKey="dee" title="Demandes d'échanges envoyé">
+                <SentExchanges />
+              </Tab>
+            </Tabs>
           </Col>
         </Row>
-        {[...Array(8)].map((x, i) => (
-          <div className="exchange-list">
-            <Row key={i}>
-              <Col xs={4}>
-                <Row>
-                  <Col lg={3}>
-                    <Link to="/item">
-                      <div className="item-img-container-sm">
-                        <span className="helper"></span>
-                        <img
-                          src={require("../../images/uploads/item1.png")}
-                          className="item-img"
-                          alt=""
-                        />
-                      </div>
-                    </Link>
-                  </Col>
-                  <Col>
-                    <Badge className="green2-bg">Eléctronique</Badge>
-                    <p>
-                      <span className="bold blue">Samsung galaxi s20</span>
-                    </p>
-                  </Col>
-                </Row>
-              </Col>
-              <Col xs={2} sm={1}>
-                <FontAwesomeIcon
-                  icon={faExchangeAlt}
-                  className="blue exchange-icon"
-                  size="2x"
-                />
-              </Col>
-              <Col xs={4}>
-                <Row>
-                  <Col lg={3}>
-                    <Link to="/item">
-                      <div className="item-img-container-sm">
-                        <span className="helper"></span>
-                        <img
-                          src={require("../../images/uploads/item1.png")}
-                          className="item-img"
-                          alt=""
-                        />
-                      </div>
-                    </Link>
-                  </Col>
-                  <Col>
-                    <Badge className="green2-bg">Eléctronique</Badge>&nbsp;
-                    <span className="small">Par Ahmed Chetouane</span>
-                    <p>
-                      <span className="bold blue">Samsung galaxi s20</span>
-                    </p>
-                  </Col>
-                </Row>
-              </Col>
-              <Col xs={1} sm={2}>
-                <FontAwesomeIcon
-                  icon={faCheckCircle}
-                  className="blue pointer"
-                  size="2x"
-                />
-                &nbsp; <span className="d-none d-md-inline">&nbsp;</span>
-                <FontAwesomeIcon
-                  icon={faTimesCircle}
-                  className="blue pointer"
-                  size="2x"
-                />
-              </Col>
-            </Row>
-          </div>
-        ))}
       </Container>
     </>
   );

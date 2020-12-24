@@ -107,6 +107,51 @@ h5 {
   display: inline !important;
 }
 
+.text-success {
+  color: #fff !important;
+  background: #60a53a;
+  padding: 5px;
+}
+
+svg.text-success {
+  background: transparent;
+  padding: 0px;
+}
+
+svg.text-success * {
+  color: #60a53a;
+}
+
+.text-secondary {
+  color: #fff !important;
+  background: #8d918a;
+  padding: 5px;
+}
+
+svg.text-secondary {
+  background: transparent;
+  padding: 0px;
+}
+
+svg.text-secondary * {
+  color: #8d918a;
+}
+
+.text-danger {
+  color: #fff !important;
+  background: #c00e0e;
+  padding: 5px;
+}
+
+svg.text-danger {
+  background: transparent;
+  padding: 0px;
+}
+
+svg.text-danger * {
+  color: #c00e0e;
+}
+
 /** colors **/
 .dark-gray,
 .dark-gray * {
@@ -261,6 +306,10 @@ textarea.form-control {
   box-shadow: none;
   color: #fff;
   text-decoration: none;
+}
+
+.tab-content {
+  padding-top: 25px;
 }
 
 /** end bootstrap override **/
@@ -687,7 +736,7 @@ table .dash-separation {
 
 /** multi image upload **/
 .multi-preview img {
-  max-width: 20%;
+  max-width: 18%;
 }
 /** end multi image upload **/
 
