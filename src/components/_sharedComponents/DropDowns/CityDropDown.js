@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import RegionDropDown from "./RegionDropDown";
 
 function CityDropDown(props) {
-  const [city, setCity] = useState(props.all ? null : "Ariana");
+  const [city, setCity] = useState(props.all || props.choose ? null : "Ariana");
 
   function handleCityChange(event) {
     setCity(event.target.value);
@@ -13,6 +13,7 @@ function CityDropDown(props) {
     <>
       <Form.Control as="select" className="select" onChange={handleCityChange}>
         {props.all && <option>Toute la Tunisie</option>}
+        {props.choose && <option>Selectionner votre ville</option>}
         <option>Ariana</option>
         <option>Ben Arous</option>
         <option>Bizerte</option>
@@ -38,7 +39,6 @@ function CityDropDown(props) {
         <option>Tunis</option>
         <option>Zaghouan</option>
       </Form.Control>
-      <br />
       <RegionDropDown all={false} city={city} />
     </>
   );

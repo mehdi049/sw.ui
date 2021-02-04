@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import CityDropDown from "../_sharedComponents/DropDowns/CityDropDown";
 import FileUpload from "../_sharedComponents/FileUpload";
-import { useAuth0 } from "@auth0/auth0-react";
 import ProfileInfo from "./_sharedComponents/ProfileInfo";
 
 function Profile() {
-  const { user } = useAuth0();
+  const [user, setUser] = useState({
+    picture: "../../images/avatars/128_1.png",
+    name: "mehdi.marouani.developer@gmail.com",
+    family_name: "marouani",
+    given_name: "mehdi",
+    email: "mehdi.marouani.developer@gmail.com",
+  });
+
   return (
     <>
       <br />
@@ -22,7 +28,7 @@ function Profile() {
               <Form.Group>
                 <Form.Label>
                   <img
-                    src={user.picture}
+                    src={require("../../images/avatars/128_1.png")}
                     alt={user.name}
                     className="img-rounded"
                     width="50"

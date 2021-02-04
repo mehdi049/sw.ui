@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -9,6 +9,8 @@ import {
   Form,
   InputGroup,
   Badge,
+  Button,
+  Modal,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,11 +21,18 @@ import {
   faSignInAlt,
   faArrowCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
-import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "../../images/logo-white.png";
+import CityDropDown from "./DropDowns/CityDropDown";
 
 function Header() {
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("user") !== null
+  );
+  const [show, setShow] = useState(false);
+  const [displayLogin, setDisplayLogin] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -95,14 +104,7 @@ function Header() {
                     </div>
                     <NavDropdown.Divider />
                     <Link to="/">
-                      <button
-                        className="dropdown-item"
-                        onClick={() =>
-                          logout({ returnTo: window.location.origin })
-                        }
-                      >
-                        Se deconnecter
-                      </button>
+                      <button className="dropdown-item">Se deconnecter</button>
                     </Link>
                   </NavDropdown>
                   <Link className="nav-link d-none d-lg-block" to="/messages">
@@ -158,24 +160,124 @@ function Header() {
                 </Navbar.Collapse>
               )}
               {isAuthenticated && (
-                <Navbar.Collapse className="justify-content-end">
-                  <Nav.Link
-                    className="nav-link d-none d-lg-block"
-                    href="#"
-                    onClick={() => loginWithRedirect()}
-                  >
-                    <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
-                    &nbsp; Créer une annonce
-                  </Nav.Link>
-                  <Nav.Link
-                    className="nav-link"
-                    href="#"
-                    onClick={() => loginWithRedirect()}
-                  >
-                    <FontAwesomeIcon icon={faSignInAlt} className="white" />
-                    &nbsp; Se connecter
-                  </Nav.Link>
-                </Navbar.Collapse>
+                <>
+                  <Navbar.Collapse className="justify-content-end">
+                    <Nav.Link
+                      className="nav-link d-none d-lg-block"
+                      href="#"
+                      onClick={handleShow}
+                    >
+                      <FontAwesomeIcon
+                        icon={faArrowCircleUp}
+                        className="white"
+                      />
+                      &nbsp; Créer une annonce
+                    </Nav.Link>
+                    <Nav.Link
+                      className="nav-link"
+                      href="#"
+                      onClick={handleShow}
+                    >
+                      <FontAwesomeIcon icon={faSignInAlt} className="white" />
+                      &nbsp; Se connecter
+                    </Nav.Link>
+                  </Navbar.Collapse>
+
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title className="dark-blue">
+                        {displayLogin ? (
+                          <> Se connecter </>
+                        ) : (
+                          <>Créer un compte </>
+                        )}
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      {displayLogin ? (
+                        <>
+                          <Form.Group>
+                            <Form.Control type="email" placeholder="Email" />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Control
+                              type="password"
+                              placeholder="Mot de passe"
+                            />
+                          </Form.Group>
+                          <Form.Group className="text-right">
+                            <Button variant="primary">Se connecter</Button>
+                          </Form.Group>
+
+                          <p
+                            className="blue pointer underline"
+                            onClick={() => setDisplayLogin(false)}
+                          >
+                            Créer un compte
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <Form.Group>
+                            <Form.Control type="text" placeholder="Nom" />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Control type="text" placeholder="Prénom" />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Check
+                              type="radio"
+                              checked={true}
+                              label="Homme"
+                              name="sexe"
+                              style={{ display: "inline" }}
+                            />
+                            &nbsp; &nbsp; &nbsp;
+                            <Form.Check
+                              type="radio"
+                              label="Femme"
+                              name="sexe"
+                              style={{ display: "inline" }}
+                            />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Control
+                              type="text"
+                              placeholder="Num télephone"
+                            />
+                          </Form.Group>
+                          <Form.Group>
+                            <CityDropDown choose={true} />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Control type="email" placeholder="Email" />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Control
+                              type="password"
+                              placeholder="Mot de passe"
+                            />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Control
+                              type="password"
+                              placeholder="Retaper mot de passe"
+                            />
+                          </Form.Group>
+                          <Form.Group className="text-right">
+                            <Button variant="primary">Valider</Button>
+                          </Form.Group>
+                          <p
+                            className="blue pointer underline"
+                            onClick={() => setDisplayLogin(true)}
+                          >
+                            Se connecter
+                          </p>
+                        </>
+                      )}
+                    </Modal.Body>
+                  </Modal>
+                </>
               )}
             </Navbar>
           </Row>

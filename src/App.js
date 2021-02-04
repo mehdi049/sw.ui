@@ -1,7 +1,6 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./utils/History";
-import PrivateRoute from "./components/PrivateRoute";
 
 import Header from "./components/_sharedComponents/Header.js";
 import Footer from "./components/_sharedComponents/Footer";
@@ -30,18 +29,6 @@ function App() {
       <Router history={history}>
         <Header />
         <Switch>
-          {/* <PrivateRoute path="/add-item" exact component={AddItem} />
-          <PrivateRoute path="/profile" exact component={Profile} />
-          <PrivateRoute path="/myItems" exact component={MyItems} />
-          <PrivateRoute path="/messages" exact component={MyMessages} />
-          <PrivateRoute
-            path="/notifications"
-            exact
-            component={MyNotifications}
-          />
-          <PrivateRoute path="/exchanges" exact component={MyExchanges} />
-  */}
-
           <Route path="/add-item" exact component={AddItem} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/my-items" exact component={MyItems} />

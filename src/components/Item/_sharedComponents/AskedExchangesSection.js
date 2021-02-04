@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faClock, faCoins } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 function AskedExchangesSection() {
@@ -14,14 +14,15 @@ function AskedExchangesSection() {
             <React.Fragment key={i}>
               <Col xs={4} lg={2} className="exchange-items">
                 <Link to="/item">
-                  <div className="item-img-container-md">
-                    <span className="helper"></span>
-                    <img
-                      src={require("../../../images/uploads/item1.png")}
-                      className="item-img"
-                      alt=""
-                    />
-                  </div>
+                  <div
+                    className="item-img-container-md"
+                    style={{
+                      backgroundImage:
+                        "url(" +
+                        require("../../../images/uploads/item1.png") +
+                        ")",
+                    }}
+                  ></div>
                 </Link>
               </Col>
               <Col xs={8} lg={4} className="exchange-items">
@@ -33,6 +34,9 @@ function AskedExchangesSection() {
                 </span>
                 <p>
                   <span className="bold blue">Samsung galaxi s20</span>
+                  <span className="price-info blue">
+                    <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                  </span>
                 </p>
               </Col>
             </React.Fragment>

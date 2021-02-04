@@ -6,6 +6,8 @@ import {
   faComment,
   faClock,
   faFilter,
+  faCoins,
+  faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "../_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./_sharedComponents/LeftSideFilter";
@@ -47,19 +49,26 @@ function CategoryItems() {
               {[...Array(3)].map((x, i) => (
                 <Col xs={6} sm={6} lg={4} key={i}>
                   <Link to="/item">
-                    <div className="item-img-container-lg">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../images/uploads/item1-3.png")}
-                        className="item-img"
-                        alt=""
-                      />
-                    </div>
-                    <h4>Samsung galaxi s20</h4>
+                    <div
+                      className="item-img-container-lg"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../images/uploads/item1-3.png") +
+                          ")",
+                      }}
+                    ></div>
+                    <span className="item-name">Samsung galaxi s20</span>
                     <Badge className="green2-bg">Electronique</Badge>{" "}
                     <span className="small">
                       Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
                       2020 | <FontAwesomeIcon icon={faComment} /> 15
+                    </span>
+                    <span className="price-info blue">
+                      <FontAwesomeIcon icon={faCoins} /> 350 Dt &nbsp;&nbsp;
+                      &nbsp;
+                      <FontAwesomeIcon icon={faExchangeAlt} />
+                      &nbsp; Echange
                     </span>
                     <p className="item-description">
                       With our Guaranteed buy-back offer, we'll cover up to 50%

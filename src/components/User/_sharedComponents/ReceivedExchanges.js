@@ -6,6 +6,7 @@ import {
   faExchangeAlt,
   faCheckCircle,
   faTimesCircle,
+  faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import ProfileInfoModal from "./ProfleInfoModal";
 
@@ -52,20 +53,24 @@ function ReceivedExchanges() {
               <Row>
                 <Col lg={3}>
                   <Link to="/item">
-                    <div className="item-img-container-sm">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../../images/uploads/item1.png")}
-                        className="item-img"
-                        alt=""
-                      />
-                    </div>
+                    <div
+                      className="item-img-container-sm"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../../images/uploads/item1-1.png") +
+                          ")",
+                      }}
+                    ></div>
                   </Link>
                 </Col>
                 <Col>
                   <Badge className="green2-bg">Eléctronique</Badge>
                   <p>
                     <span className="bold blue">Samsung galaxi s20</span>
+                    <span className="price-info blue">
+                      <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                    </span>
                   </p>
                 </Col>
               </Row>
@@ -81,14 +86,15 @@ function ReceivedExchanges() {
               <Row>
                 <Col lg={3}>
                   <Link to="/item">
-                    <div className="item-img-container-sm">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../../images/uploads/item1.png")}
-                        className="item-img"
-                        alt=""
-                      />
-                    </div>
+                    <div
+                      className="item-img-container-sm"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../../images/uploads/item1-1.png") +
+                          ")",
+                      }}
+                    ></div>
                   </Link>
                 </Col>
                 <Col>
@@ -102,6 +108,9 @@ function ReceivedExchanges() {
                   </span>
                   <p>
                     <span className="bold blue">Samsung galaxi s20</span>
+                    <span className="price-info blue">
+                      <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                    </span>
                   </p>
                 </Col>
               </Row>

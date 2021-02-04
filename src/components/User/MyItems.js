@@ -7,6 +7,8 @@ import {
   faInfoCircle,
   faClock,
   faComment,
+  faCoins,
+  faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -30,19 +32,19 @@ function MyItems() {
                 {[...Array(8)].map((x, i) => (
                   <tr key={i}>
                     <td>
-                      <div className="item-img-container-md text-left">
-                        <span className="helper"></span>
-                        {[...Array(5)].map((x, j) => (
-                          <img
-                            key={j}
-                            src={require("../../images/uploads/item1-1.png")}
-                            className={
-                              j === 0 ? " item-img item-img-first " : "item-img"
-                            }
-                            alt=""
-                          />
-                        ))}
-                      </div>
+                      {[...Array(5)].map((x, j) => (
+                        <div
+                          className="item-img-container-md"
+                          style={{
+                            backgroundImage:
+                              "url(" +
+                              require("../../images/uploads/item1-1.png") +
+                              ")",
+                          }}
+                        ></div>
+                      ))}
+                      <br style={{ clear: "both" }} />
+                      <br style={{ clear: "both" }} />
                       <Badge className="green2-bg">Eléctronique</Badge>
                       <span className="small">
                         &nbsp;&nbsp; <FontAwesomeIcon icon={faClock} /> 22 Aout
@@ -51,7 +53,12 @@ function MyItems() {
                       </span>
                       <p>
                         <span className="bold blue">Samsung galaxi s20</span>
-                        <br />
+                        <span className="price-info blue">
+                          <FontAwesomeIcon icon={faCoins} /> 350 Dt &nbsp;&nbsp;
+                          &nbsp;
+                          <FontAwesomeIcon icon={faExchangeAlt} />
+                          &nbsp; Echange
+                        </span>
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% [...]
                       </p>
@@ -65,9 +72,15 @@ function MyItems() {
                             Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22
                             Aout 2020
                           </span>
-                          <Link to="/item" className="blue exchange-item-list">
+                          <Link to="/item" className="blue bold d-block">
                             Iphone 10
                           </Link>
+                          <span className="price-info blue">
+                            <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                            &nbsp;&nbsp; &nbsp;
+                            <FontAwesomeIcon icon={faExchangeAlt} />
+                            &nbsp; Echange
+                          </span>
                         </div>
                       ))}
                     </td>

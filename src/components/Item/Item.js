@@ -6,6 +6,7 @@ import {
   faClock,
   faExchangeAlt,
   faHeart,
+  faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import HeaderCategories from "../_sharedComponents/HeaderCategories";
 import AskedExchangesSection from "./_sharedComponents/AskedExchangesSection";
@@ -47,6 +48,9 @@ function Item() {
                 <span className="small">
                   Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 |{" "}
                   <FontAwesomeIcon icon={faComment} /> 15
+                </span>
+                <span className="price-info blue big">
+                  <FontAwesomeIcon icon={faCoins} /> 350 Dt
                 </span>
               </Col>
               <Col xs={3} md={4} lg={5} className="text-right">
@@ -95,58 +99,63 @@ function Item() {
             <br />
             <Row>
               <Col sm={12} md={6}>
-                <div className="item-detail-img-container-lg">
-                  <span className="helper"></span>
-                  <img
-                    src={require("../../images/uploads/item1-5.png")}
-                    className="main-detail-img"
-                    alt=""
-                  />
-                </div>
+                <div
+                  className="item-detail-img-container-lg"
+                  style={{
+                    backgroundImage:
+                      "url(" +
+                      require("../../images/uploads/item1-5.png") +
+                      ")",
+                  }}
+                ></div>
               </Col>
               <Col sm={12} md={6}>
                 <Row>
                   <Col xs={6}>
-                    <div className="item-detail-img-container-sm">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../images/uploads/item1-6.png")}
-                        className="main-detail-img"
-                        alt=""
-                      />
-                    </div>
+                    <div
+                      className="item-detail-img-container-sm margin-bottom-10"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../images/uploads/item1-6.png") +
+                          ")",
+                      }}
+                    ></div>
                   </Col>
                   <Col xs={6}>
-                    <div className="item-detail-img-container-sm">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../images/uploads/item1-5.png")}
-                        className="main-detail-img"
-                        alt=""
-                      />
-                    </div>
+                    <div
+                      className="item-detail-img-container-sm margin-bottom-10"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../images/uploads/item1-5.png") +
+                          ")",
+                      }}
+                    ></div>
                   </Col>
                 </Row>
                 <Row>
                   <Col xs={6}>
-                    <div className="item-detail-img-container-sm">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../images/uploads/item1-3.png")}
-                        className="main-detail-img"
-                        alt=""
-                      />
-                    </div>
+                    <div
+                      className="item-detail-img-container-sm"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../images/uploads/item1-3.png") +
+                          ")",
+                      }}
+                    ></div>
                   </Col>
                   <Col xs={6}>
-                    <div className="item-detail-img-container-sm">
-                      <span className="helper"></span>
-                      <img
-                        src={require("../../images/uploads/item1-4.png")}
-                        className="main-detail-img"
-                        alt=""
-                      />
-                    </div>
+                    <div
+                      className="item-detail-img-container-sm"
+                      style={{
+                        backgroundImage:
+                          "url(" +
+                          require("../../images/uploads/item1-4.png") +
+                          ")",
+                      }}
+                    ></div>
                   </Col>
                 </Row>
               </Col>

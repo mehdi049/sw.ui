@@ -18,7 +18,7 @@
 }
 
 .big {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 .large {
@@ -95,6 +95,10 @@ h5 {
   text-decoration: underline;
 }
 
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
 .badge {
   color: #fff;
   border-radius: 0px;
@@ -114,7 +118,7 @@ h5 {
 .text-success {
   color: #fff !important;
   background: #60a53a;
-  padding: 5px;
+  padding: 2px;
 }
 
 svg.text-success {
@@ -129,7 +133,7 @@ svg.text-success * {
 .text-secondary {
   color: #fff !important;
   background: #8d918a;
-  padding: 5px;
+  padding: 2px;
 }
 
 svg.text-secondary {
@@ -144,7 +148,7 @@ svg.text-secondary * {
 .text-danger {
   color: #fff !important;
   background: #c00e0e;
-  padding: 5px;
+  padding: 2px;
 }
 
 svg.text-danger {
@@ -519,31 +523,34 @@ img#logo {
 
 .item-img-container-lg {
   height: 230px;
-  text-align: center;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .item-img-container-md {
   height: 80px;
-  text-align: center;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .item-img-container-sm {
   height: 50px;
-  text-align: center;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
-span.helper {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.item-img {
-  max-height: 100%;
-  max-width: 100%;
+.item-name {
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+  color: #1c1f23;
 }
 
 .item-description {
@@ -553,6 +560,13 @@ span.helper {
 
 .exchange-items {
   margin-bottom: 20px;
+}
+
+.price-info {
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  margin-top: 8px;
 }
 
 /** end items **/
@@ -573,17 +587,16 @@ span.helper {
 /** item details **/
 .item-detail-img-container-lg {
   height: 400px;
-  text-align: center;
-}
-
-.main-detail-img {
-  max-height: 100%;
-  max-width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .item-detail-img-container-sm {
   height: 195px;
-  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .comment-section {
@@ -682,27 +695,22 @@ span.helper {
 /** end my messages **/
 
 /** my items **/
-.exchange-item-list {
-  display: block;
-}
-
-.exchange-item-list:hover {
-  text-decoration: underline;
-}
-
 table .dash-separation {
   display: block;
   padding: 5px 0px;
   border-bottom: dashed 1px #959595;
 }
 
-#my-item-table .item-img {
+#my-item-table .item-img-container-md {
   margin-left: 5px;
+  width: 80px;
+  float: left;
 }
 
-#my-item-table .item-img-first {
+#my-item-table .item-img-container-md {
   margin-left: 0px;
 }
+
 /** end my items **/
 .exchange-list {
   border-bottom: dashed 1px #959595;
@@ -803,10 +811,6 @@ table .dash-separation {
     height: 180px;
   }
 
-  .item-img-container-sm {
-    text-align: left;
-  }
-
   .discussion-item {
     max-height: 90px;
   }
@@ -895,10 +899,6 @@ table .dash-separation {
     height: 130px;
   }
 
-  .item-img-container-sm {
-    text-align: left;
-  }
-
   .item-description {
     margin-bottom: 30px;
   }
@@ -958,6 +958,7 @@ table .dash-separation {
 
   .item-detail-img-container-lg {
     height: 300px;
+    margin-bottom: 5px;
   }
   .item-detail-img-container-sm {
     height: 145px;
