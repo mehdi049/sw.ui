@@ -50,7 +50,7 @@ function Item() {
                   <FontAwesomeIcon icon={faComment} /> 15
                 </span>
                 <span className="price-info blue big">
-                  <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                  <FontAwesomeIcon icon={faCoins} /> 350 TND
                 </span>
               </Col>
               <Col xs={3} md={4} lg={5} className="text-right">

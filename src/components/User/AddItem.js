@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form, Container, Row, Col, Button, InputGroup } from "react-bootstrap";
 import ItemCategories from "../_sharedComponents/ItemCategories";
 import MultipleImageUploadComponent from "../_sharedComponents/MultipleImageUpload";
 import ProfileInfo from "./_sharedComponents/ProfileInfo";
@@ -44,8 +44,24 @@ function AddItem() {
                 <MultipleImageUploadComponent />
               </Form.Group>
               <Form.Group>
+                <Form.Label className="dark-blue">Prix</Form.Label>
+                <InputGroup className="mb-2 mr-sm-2">
+                  <Form.Control type="text" />
+                  <InputGroup.Append className="white">
+                    <InputGroup.Text>Dt</InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group>
                 <Form.Label className="dark-blue">Echange avec</Form.Label>
                 <ItemCategories all={true} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Check
+                  type="checkbox"
+                  className="mb-2 mr-sm-2"
+                  label="Je ne suis pas ouvert à l'échange"
+                />
               </Form.Group>
               <div className="text-right">
                 <Button variant="primary" type="button">

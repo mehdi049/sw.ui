@@ -14,7 +14,7 @@
 
 * {
   font-family: "Roboto", sans-serif;
-  color: #959595;
+  color: #797777;
 }
 
 .big {
@@ -26,7 +26,7 @@
 }
 
 a {
-  color: #959595;
+  color: #797777;
 }
 
 a:hover {
@@ -108,7 +108,7 @@ h5 {
 .dash-separation {
   display: block;
   padding: 15px 0px;
-  border-bottom: dashed 1px #959595;
+  border-bottom: dashed 1px #797777;
 }
 
 .inline-block-md {
@@ -567,7 +567,7 @@ img#logo {
 .added-item-link {
   display: block;
   padding: 15px 0px;
-  border-bottom: dashed 1px #959595;
+  border-bottom: dashed 1px #797777;
 }
 
 .added-item-link p {
@@ -690,7 +690,7 @@ img#logo {
 table .dash-separation {
   display: block;
   padding: 5px 0px;
-  border-bottom: dashed 1px #959595;
+  border-bottom: dashed 1px #797777;
 }
 
 #my-item-table .item-img-container-sm {
@@ -705,7 +705,7 @@ table .dash-separation {
 
 /** end my items **/
 .exchange-list {
-  border-bottom: dashed 1px #959595;
+  border-bottom: dashed 1px #797777;
   padding-bottom: 10px;
   margin-bottom: 15px;
 }

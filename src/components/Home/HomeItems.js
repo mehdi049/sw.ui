@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Badge, Container, Row, Col } from "react-bootstrap";
+import { Badge, Container, Row, Col, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,
@@ -9,6 +9,7 @@ import {
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "react-js-pagination";
+import SortDropdown from "../_sharedComponents/SortDropdown";
 
 function HomeItems() {
   const [activePage, setActivePage] = useState(1);
@@ -21,10 +22,14 @@ function HomeItems() {
     <>
       <Container>
         <Row>
-          <Col>
+          <Col xs={6} lg={8} xl={9}>
             <br />
             <br />
             <h3>Annonces à la une</h3>
+          </Col>
+          <Col>
+            <br />
+            <SortDropdown itemCount={false} />
           </Col>
         </Row>
       </Container>
@@ -34,7 +39,7 @@ function HomeItems() {
             <Row>
               {[...Array(8)].map((x, i) => (
                 <React.Fragment key={i}>
-                  <Col xs={6} sm={4} lg={3}>
+                  <Col xs={6} md={4} lg={3}>
                     <Link to="/item">
                       <div
                         className="item-img-container-lg"
@@ -52,10 +57,12 @@ function HomeItems() {
                         2020 | <FontAwesomeIcon icon={faComment} /> 15
                       </span>
                       <span className="price-info blue">
-                        <FontAwesomeIcon icon={faCoins} /> 350 Dt &nbsp;&nbsp;
+                        <FontAwesomeIcon icon={faCoins} /> 350 TND &nbsp;&nbsp;
                         &nbsp;
-                        <FontAwesomeIcon icon={faExchangeAlt} />
-                        &nbsp; Echange
+                        <span className="d-block d-md-inline">
+                          <FontAwesomeIcon icon={faExchangeAlt} />
+                          &nbsp; Echange
+                        </span>
                       </span>
                       <p className="item-description">
                         With our Guaranteed buy-back offer, we'll cover up to
@@ -63,7 +70,7 @@ function HomeItems() {
                       </p>
                     </Link>
                   </Col>
-                  <Col xs={6} sm={4} lg={3}>
+                  <Col xs={6} md={4} lg={3}>
                     <Link to="/item">
                       <div
                         className="item-img-container-lg"
@@ -81,7 +88,7 @@ function HomeItems() {
                         2020 | <FontAwesomeIcon icon={faComment} /> 15
                       </span>
                       <span className="price-info blue">
-                        <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                        <FontAwesomeIcon icon={faCoins} /> 350 TND
                       </span>
                       <p className="item-description">
                         With our Guaranteed buy-back offer, we'll cover up to
@@ -89,7 +96,7 @@ function HomeItems() {
                       </p>
                     </Link>
                   </Col>
-                  <Col xs={6} sm={4} lg={3}>
+                  <Col xs={6} md={4} lg={3}>
                     <Link to="/item">
                       <div
                         className="item-img-container-lg"

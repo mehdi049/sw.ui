@@ -34,9 +34,11 @@ function AddedItems() {
                 <FontAwesomeIcon icon={faComment} /> 15
               </span>
               <span className="price-info blue">
-                <FontAwesomeIcon icon={faCoins} /> 350 Dt &nbsp;&nbsp; &nbsp;
-                <FontAwesomeIcon icon={faExchangeAlt} />
-                &nbsp; Echange
+                <FontAwesomeIcon icon={faCoins} /> 350 TND &nbsp;&nbsp;
+                <span className="d-block d-xl-inline">
+                  <FontAwesomeIcon icon={faExchangeAlt} />
+                  &nbsp; Echange
+                </span>
               </span>
             </Col>
           </Row>

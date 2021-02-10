@@ -45,14 +45,15 @@ function MyItemsForExchange() {
               onClick={() => addSelectedItem(i)}
             >
               <Col xs={3}>
-                <div className="item-img-container-sm">
-                  <span className="helper"></span>
-                  <img
-                    src={require("../../../images/uploads/item1-1.png")}
-                    className="item-img"
-                    alt=""
-                  />
-                </div>
+                <div
+                  className="item-img-container-sm"
+                  style={{
+                    backgroundImage:
+                      "url(" +
+                      require("../../../images/uploads/item1-1.png") +
+                      ")",
+                  }}
+                ></div>
                 <br />
               </Col>
               <Col>

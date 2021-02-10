@@ -35,7 +35,7 @@ function AskedExchangesSection() {
                 <p>
                   <span className="bold blue">Samsung galaxi s20</span>
                   <span className="price-info blue">
-                    <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                    <FontAwesomeIcon icon={faCoins} /> 350 TND
                   </span>
                 </p>
               </Col>

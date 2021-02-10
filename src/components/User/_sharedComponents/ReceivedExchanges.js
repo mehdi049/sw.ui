@@ -19,11 +19,11 @@ function ReceivedExchanges() {
   return (
     <>
       <Row>
-        <Col xs={6}>
+        <Col xs={6} sm={7} md={8} xl={9}>
           <h4>8 demandes d'échanges reçus</h4>
           <br />
         </Col>
-        <Col xs={6}>
+        <Col xs={6} sm={5} md={4} xl={3}>
           <Form.Group>
             <Form.Control as="select">
               <option>En cours</option>
@@ -69,7 +69,7 @@ function ReceivedExchanges() {
                   <p>
                     <span className="bold blue">Samsung galaxi s20</span>
                     <span className="price-info blue">
-                      <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                      <FontAwesomeIcon icon={faCoins} /> 350 TND
                     </span>
                   </p>
                 </Col>
@@ -109,7 +109,7 @@ function ReceivedExchanges() {
                   <p>
                     <span className="bold blue">Samsung galaxi s20</span>
                     <span className="price-info blue">
-                      <FontAwesomeIcon icon={faCoins} /> 350 Dt
+                      <FontAwesomeIcon icon={faCoins} /> 350 TND
                     </span>
                   </p>
                 </Col>

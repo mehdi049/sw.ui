@@ -12,6 +12,7 @@ import {
 import HeaderCategories from "../_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./_sharedComponents/LeftSideFilter";
 import Pagination from "react-js-pagination";
+import SortDropdown from "../_sharedComponents/SortDropdown";
 
 function CategoryItems() {
   const [activePage, setActivePage] = useState(1);
@@ -32,9 +33,11 @@ function CategoryItems() {
           </Col>
           <Col md={9}>
             <Row>
-              <Col xs={12}>
+              <Col xs={12} md={7} xl={8}>
+                <br className="d-none d-sm-block" />
                 <span className="blue">Eléctronique</span> > Tous
                 <br />
+                <br className="d-none d-md-block" />
                 <div
                   className="d-block d-md-none"
                   onClick={() => setActiveMenu(!activeMenu)}
@@ -46,6 +49,11 @@ function CategoryItems() {
                   {activeMenu && <LeftSideFilter />}
                 </div>
               </Col>
+              <Col>
+                <SortDropdown itemCount={true} />
+              </Col>
+            </Row>
+            <Row>
               {[...Array(3)].map((x, i) => (
                 <Col xs={6} sm={6} lg={4} key={i}>
                   <Link to="/item">
@@ -65,10 +73,12 @@ function CategoryItems() {
                       2020 | <FontAwesomeIcon icon={faComment} /> 15
                     </span>
                     <span className="price-info blue">
-                      <FontAwesomeIcon icon={faCoins} /> 350 Dt &nbsp;&nbsp;
+                      <FontAwesomeIcon icon={faCoins} /> 350 TND &nbsp;&nbsp;
                       &nbsp;
-                      <FontAwesomeIcon icon={faExchangeAlt} />
-                      &nbsp; Echange
+                      <span className="d-block d-sm-inline">
+                        <FontAwesomeIcon icon={faExchangeAlt} />
+                        &nbsp; Echange
+                      </span>
                     </span>
                     <p className="item-description">
                       With our Guaranteed buy-back offer, we'll cover up to 50%

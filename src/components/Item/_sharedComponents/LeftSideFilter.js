@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CityDropDown from "../../_sharedComponents/DropDowns/CityDropDown";
 
@@ -44,6 +44,21 @@ function LeftSideFilter() {
       <h3>Condition</h3>
       <Form.Check type="checkbox" label="Neuf" className="dark-gray" />
       <Form.Check type="checkbox" label="Usé" className="dark-gray" />
+      <br />
+      <h3>Prix</h3>
+      <InputGroup className="mb-2 mr-sm-2">
+        <Form.Control type="text" placeholder="min" />
+        <InputGroup.Append className="white">
+          <InputGroup.Text>Dt</InputGroup.Text>
+        </InputGroup.Append>
+      </InputGroup>
+
+      <InputGroup className="mb-2 mr-sm-2">
+        <Form.Control type="text" placeholder="max" />
+        <InputGroup.Append className="white">
+          <InputGroup.Text>Dt</InputGroup.Text>
+        </InputGroup.Append>
+      </InputGroup>
     </div>
   );
 }
