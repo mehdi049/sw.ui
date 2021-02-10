@@ -15,7 +15,7 @@ function AskedExchangesSection() {
               <Col xs={4} lg={2} className="exchange-items">
                 <Link to="/item">
                   <div
-                    className="item-img-container-md"
+                    className="item-img-container-sm"
                     style={{
                       backgroundImage:
                         "url(" +

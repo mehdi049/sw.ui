@@ -529,16 +529,8 @@ img#logo {
   background-size: cover;
 }
 
-.item-img-container-md {
-  height: 80px;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
 .item-img-container-sm {
-  height: 50px;
+  height: 80px;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center center;
@@ -701,13 +693,13 @@ table .dash-separation {
   border-bottom: dashed 1px #959595;
 }
 
-#my-item-table .item-img-container-md {
+#my-item-table .item-img-container-sm {
   margin-left: 5px;
   width: 80px;
   float: left;
 }
 
-#my-item-table .item-img-container-md {
+#my-item-table .item-img-container-sm {
   margin-left: 0px;
 }
 

@@ -34,7 +34,7 @@ function MyItems() {
                     <td>
                       {[...Array(5)].map((x, j) => (
                         <div
-                          className="item-img-container-md"
+                          className="item-img-container-sm"
                           style={{
                             backgroundImage:
                               "url(" +
