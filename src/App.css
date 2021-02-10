@@ -8,6 +8,21 @@
   }
 }
 
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+#wrap {
+  padding-bottom: 80px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 *:focus {
   outline: none !important;
 }
@@ -327,6 +342,9 @@ textarea.form-control {
   border-color: #1c1f23 #1c1f23 #fff;
 }
 
+.modal-content {
+  border-radius: 0px;
+}
 /** end bootstrap override **/
 
 /** toast **/

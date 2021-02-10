@@ -11,6 +11,7 @@ import {
   Badge,
   Button,
   Modal,
+  Col,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -56,7 +57,7 @@ function Header() {
                   </InputGroup.Append>
                 </InputGroup>
               </Navbar.Collapse>
-              {!isAuthenticated && (
+              {isAuthenticated && (
                 <Navbar.Collapse className="justify-content-end">
                   <Link className="nav-link d-none d-md-block" to="/add-item">
                     <FontAwesomeIcon icon={faArrowCircleUp} className="white" />
@@ -159,7 +160,7 @@ function Header() {
                   </Link>
                 </Navbar.Collapse>
               )}
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <>
                   <Navbar.Collapse className="justify-content-end">
                     <Nav.Link
@@ -205,8 +206,16 @@ function Header() {
                               placeholder="Mot de passe"
                             />
                           </Form.Group>
-                          <Form.Group className="text-right">
-                            <Button variant="primary">Se connecter</Button>
+                          <Form.Group as={Row}>
+                            <Col>
+                              <Form.Check
+                                type="checkbox"
+                                label="Se souvenir de moi"
+                              />
+                            </Col>
+                            <Col className="text-right">
+                              <Button variant="primary">Se connecter</Button>
+                            </Col>
                           </Form.Group>
 
                           <p

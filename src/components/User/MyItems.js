@@ -1,5 +1,15 @@
-import React from "react";
-import { Table, Container, Row, Col, Badge } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Table,
+  Container,
+  Row,
+  Col,
+  Badge,
+  Modal,
+  Button,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashAlt,
@@ -11,8 +21,20 @@ import {
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import MultipleImageUploadComponent from "../_sharedComponents/MultipleImageUpload";
+import ItemCategories from "../_sharedComponents/ItemCategories";
 
 function MyItems() {
+  const [showDelete, setShowDelete] = useState(false);
+
+  const handleCloseDelete = () => setShowDelete(false);
+  const handleShowDelete = () => setShowDelete(true);
+
+  const [showUpdate, setShowUpdate] = useState(false);
+
+  const handleCloseUpdate = () => setShowUpdate(false);
+  const handleShowUpdate = () => setShowUpdate(true);
+
   return (
     <>
       <br />
@@ -34,6 +56,7 @@ function MyItems() {
                     <td>
                       {[...Array(5)].map((x, j) => (
                         <div
+                          key={j}
                           className="item-img-container-sm"
                           style={{
                             backgroundImage:
@@ -92,9 +115,14 @@ function MyItems() {
                       <FontAwesomeIcon
                         icon={faTrashAlt}
                         className="blue pointer"
+                        onClick={handleShowDelete}
                       />
                       &nbsp;|&nbsp;
-                      <FontAwesomeIcon icon={faEdit} className="blue pointer" />
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="blue pointer"
+                        onClick={handleShowUpdate}
+                      />
                       &nbsp;|&nbsp;
                       <Link to="/item">
                         <FontAwesomeIcon
@@ -107,6 +135,89 @@ function MyItems() {
                 ))}
               </tbody>
             </Table>
+
+            {/* delete popup */}
+            <Modal show={showDelete} onHide={handleCloseDelete}>
+              <Modal.Header closeButton>
+                <Modal.Title>Retirer votre article</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Est ce que vous êtes sure que vous voulez supprimer votre
+                article <b>Samsung galaxi s20</b>?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="outline-secondary" onClick={handleCloseDelete}>
+                  Annuler
+                </Button>
+                <Button variant="primary" onClick={handleCloseDelete}>
+                  Supprimer
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            {/* update popup */}
+            <Modal show={showUpdate} onHide={handleCloseUpdate} size="lg">
+              <Modal.Header closeButton>
+                <Modal.Title>Modifier votre article</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Titre</Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Description</Form.Label>
+                    <Form.Control as="textarea" rows="3" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Catégorie</Form.Label>
+                    <ItemCategories />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Condition</Form.Label>
+                    <Form.Control as="select" className="select">
+                      <option>Usé</option>
+                      <option>Neuf</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Image</Form.Label>&nbsp;
+                    <span className="small">(Maximum 5 photos)</span>
+                    <br />
+                    <MultipleImageUploadComponent />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Prix</Form.Label>
+                    <InputGroup className="mb-2 mr-sm-2">
+                      <Form.Control type="text" />
+                      <InputGroup.Append className="white">
+                        <InputGroup.Text>Dt</InputGroup.Text>
+                      </InputGroup.Append>
+                    </InputGroup>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="dark-blue">Echange avec</Form.Label>
+                    <ItemCategories all={true} />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Check
+                      type="checkbox"
+                      className="mb-2 mr-sm-2"
+                      label="Je ne suis pas ouvert à l'échange"
+                    />
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="outline-secondary" onClick={handleCloseUpdate}>
+                  Annuler
+                </Button>
+                <Button variant="primary" onClick={handleCloseUpdate}>
+                  Modifier
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </Col>
         </Row>
       </Container>

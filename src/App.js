@@ -27,24 +27,26 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        <Header />
-        <Switch>
-          <Route path="/add-item" exact component={AddItem} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/my-items" exact component={MyItems} />
-          <Route path="/messages" exact component={MyMessages} />
-          <Route path="/notifications" exact component={MyNotifications} />
-          <Route path="/exchanges" exact component={MyExchanges} />
+        <div id="wrap">
+          <Header />
+          <Switch>
+            <Route path="/add-item" exact component={AddItem} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/my-items" exact component={MyItems} />
+            <Route path="/messages" exact component={MyMessages} />
+            <Route path="/notifications" exact component={MyNotifications} />
+            <Route path="/exchanges" exact component={MyExchanges} />
 
-          <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
-          <Route path="/contact" exact component={Contact} />
-          <Route path="/help" exact component={Help} />
-          <Route path="/ads" exact component={Ads} />
-          <Route path="/terms" exact component={Terms} />
-          <Route path="/category" exact component={CategoryItems} />
-          <Route path="/item" exact component={Item} />
-        </Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" exact component={About} />
+            <Route path="/contact" exact component={Contact} />
+            <Route path="/help" exact component={Help} />
+            <Route path="/ads" exact component={Ads} />
+            <Route path="/terms" exact component={Terms} />
+            <Route path="/category" exact component={CategoryItems} />
+            <Route path="/item" exact component={Item} />
+          </Switch>
+        </div>
         <Footer />
       </Router>
     </div>

@@ -16,7 +16,7 @@ function SimilarItemsSection() {
       {[...Array(4)].map((x, i) => (
         <Link key={i} to="/" className="dash-separation added-item-link">
           <Row>
-            <Col md={3}>
+            <Col md={4} xl={3}>
               <div
                 className="item-img-container-sm"
                 style={{
