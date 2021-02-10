@@ -54,10 +54,12 @@ function MyItems() {
                       <p>
                         <span className="bold blue">Samsung galaxi s20</span>
                         <span className="price-info blue">
-                          <FontAwesomeIcon icon={faCoins} /> 350 Dt &nbsp;&nbsp;
-                          &nbsp;
-                          <FontAwesomeIcon icon={faExchangeAlt} />
-                          &nbsp; Echange
+                          <FontAwesomeIcon icon={faCoins} /> 350 TND
+                          &nbsp;&nbsp;
+                          <span className="d-block d-md-inline">
+                            <FontAwesomeIcon icon={faExchangeAlt} />
+                            &nbsp; Echange
+                          </span>
                         </span>
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% [...]
@@ -76,10 +78,12 @@ function MyItems() {
                             Iphone 10
                           </Link>
                           <span className="price-info blue">
-                            <FontAwesomeIcon icon={faCoins} /> 350 Dt
-                            &nbsp;&nbsp; &nbsp;
-                            <FontAwesomeIcon icon={faExchangeAlt} />
-                            &nbsp; Echange
+                            <FontAwesomeIcon icon={faCoins} /> 350 TND
+                            &nbsp;&nbsp;
+                            <span className="d-block d-md-inline">
+                              <FontAwesomeIcon icon={faExchangeAlt} />
+                              &nbsp; Echange
+                            </span>
                           </span>
                         </div>
                       ))}
