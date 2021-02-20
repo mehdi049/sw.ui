@@ -9,9 +9,7 @@ import {
   Form,
   InputGroup,
   Badge,
-  Button,
   Modal,
-  Col,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,14 +21,13 @@ import {
   faArrowCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../images/logo-white.png";
-import CityDropDown from "./DropDowns/CityDropDown";
+import LoginForm from "./LoginForm/LoginForm";
 
 function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("user") !== null
   );
   const [show, setShow] = useState(false);
-  const [displayLogin, setDisplayLogin] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -185,106 +182,7 @@ function Header() {
                   </Navbar.Collapse>
 
                   <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title className="dark-blue">
-                        {displayLogin ? (
-                          <> Se connecter </>
-                        ) : (
-                          <>Créer un compte </>
-                        )}
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      {displayLogin ? (
-                        <>
-                          <Form.Group>
-                            <Form.Control type="email" placeholder="Email" />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Control
-                              type="password"
-                              placeholder="Mot de passe"
-                            />
-                          </Form.Group>
-                          <Form.Group as={Row}>
-                            <Col>
-                              <Form.Check
-                                type="checkbox"
-                                label="Se souvenir de moi"
-                              />
-                            </Col>
-                            <Col className="text-right">
-                              <Button variant="primary">Se connecter</Button>
-                            </Col>
-                          </Form.Group>
-
-                          <p
-                            className="blue pointer underline"
-                            onClick={() => setDisplayLogin(false)}
-                          >
-                            Créer un compte
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <Form.Group>
-                            <Form.Control type="text" placeholder="Nom" />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Control type="text" placeholder="Prénom" />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Check
-                              type="radio"
-                              checked={true}
-                              label="Homme"
-                              name="sexe"
-                              style={{ display: "inline" }}
-                            />
-                            &nbsp; &nbsp; &nbsp;
-                            <Form.Check
-                              type="radio"
-                              label="Femme"
-                              name="sexe"
-                              style={{ display: "inline" }}
-                            />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Control
-                              type="text"
-                              placeholder="Num télephone"
-                            />
-                          </Form.Group>
-                          <Form.Group>
-                            <CityDropDown choose={true} />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Control type="email" placeholder="Email" />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Control
-                              type="password"
-                              placeholder="Mot de passe"
-                            />
-                          </Form.Group>
-                          <Form.Group>
-                            <Form.Control
-                              type="password"
-                              placeholder="Retaper mot de passe"
-                            />
-                          </Form.Group>
-                          <Form.Group className="text-right">
-                            <Button variant="primary">Valider</Button>
-                          </Form.Group>
-                          <p
-                            className="blue pointer underline"
-                            onClick={() => setDisplayLogin(true)}
-                          >
-                            Se connecter
-                          </p>
-                        </>
-                      )}
-                    </Modal.Body>
+                    <LoginForm />
                   </Modal>
                 </>
               )}

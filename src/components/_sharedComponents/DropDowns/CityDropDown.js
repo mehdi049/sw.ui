@@ -6,12 +6,19 @@ function CityDropDown(props) {
   const [city, setCity] = useState(props.all || props.choose ? null : "Ariana");
 
   function handleCityChange(event) {
+    props.onCityChange(event);
     setCity(event.target.value);
   }
 
   return (
     <>
-      <Form.Control as="select" className="select" onChange={handleCityChange}>
+      <Form.Control
+        as="select"
+        className="select"
+        onChange={handleCityChange}
+        value={props.value}
+        name="city"
+      >
         {props.all && <option>Toute la Tunisie</option>}
         {props.choose && <option>Selectionner votre ville</option>}
         <option>Ariana</option>
@@ -39,7 +46,12 @@ function CityDropDown(props) {
         <option>Tunis</option>
         <option>Zaghouan</option>
       </Form.Control>
-      <RegionDropDown all={false} city={city} />
+      <RegionDropDown
+        all={false}
+        city={city}
+        select={true}
+        onRegionChange={props.onRegionChange}
+      />
     </>
   );
 }

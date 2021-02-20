@@ -6,8 +6,14 @@ function RegionDropDown(props) {
     return (
       <>
         <br />
-        <Form.Control as="select" className="select">
-          {props.all && <option>Tout</option>}
+        <Form.Control
+          as="select"
+          className="select"
+          name="region"
+          onChange={props.onRegionChange}
+        >
+          {props.all && <option value="">Tout</option>}
+          {props.select && <option value="">Selectionner la région</option>}
           <option>Ariana ville</option>
           <option>Borj Louzir</option>
           <option>Chotrana</option>
@@ -27,8 +33,14 @@ function RegionDropDown(props) {
     return (
       <>
         <br />
-        <Form.Control as="select" className="select">
-          {props.all && <option>Tout</option>}
+        <Form.Control
+          as="select"
+          className="select"
+          name="region"
+          onChange={props.onRegionChange}
+        >
+          {props.all && <option value="">Tout</option>}
+          {props.select && <option value="">Selectionner la région</option>}
           <option>Boumhel</option>
           <option>El Mourouj</option>
           <option>Ezzahra</option>
@@ -48,8 +60,14 @@ function RegionDropDown(props) {
     return (
       <>
         <br />
-        <Form.Control as="select" className="select">
-          {props.all && <option>Tout</option>}
+        <Form.Control
+          as="select"
+          className="select"
+          name="region"
+          onChange={props.onRegionChange}
+        >
+          {props.all && <option value="">Tout</option>}
+          {props.select && <option value="">Selectionner la région</option>}
           <option>Bizerte Nord</option>
           <option>Bizerte Sud</option>
           <option>Joumine</option>
@@ -70,8 +88,14 @@ function RegionDropDown(props) {
     return (
       <>
         <br />
-        <Form.Control as="select" className="select">
-          {props.all && <option>Tout</option>}
+        <Form.Control
+          as="select"
+          className="select"
+          name="region"
+          onChange={props.onRegionChange}
+        >
+          {props.all && <option value="">Tout</option>}
+          {props.select && <option value="">Selectionner la région</option>}
           <option>Béja Nord</option>
           <option>Béja Sud</option>
           <option>El Ksar</option>
@@ -89,8 +113,14 @@ function RegionDropDown(props) {
     return (
       <>
         <br />
-        <Form.Control as="select" className="select">
-          {props.all && <option>Tout</option>}
+        <Form.Control
+          as="select"
+          className="select"
+          name="region"
+          onChange={props.onRegionChange}
+        >
+          {props.all && <option value="">Tout</option>}
+          {props.select && <option value="">Selectionner la région</option>}
           <option>El Hamma</option>
           <option>Gabés Médina</option>
           <option>Gabés Ouest</option>

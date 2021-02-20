@@ -287,7 +287,7 @@ svg.text-danger * {
   border-top: none;
   border-left: none;
   border-right: none;
-  color: #343434;
+  color: #797777;
 }
 
 textarea.form-control {
@@ -348,7 +348,22 @@ textarea.form-control {
 /** end bootstrap override **/
 
 /** toast **/
+.Toastify__toast-body,
+.Toastify__toast-body * {
+  color: #fff;
+  font-weight: 300;
+}
 
+.Toastify__close-button > svg * {
+  color: #fff !important;
+}
+
+.Toastify__toast--error {
+  background: #c33223;
+}
+.Toastify__toast--success {
+  background: #4c822a;
+}
 /** end toast **/
 
 /** header **/

@@ -23,6 +23,9 @@ import MyMessages from "./components/User/MyMessages.js";
 import MyNotifications from "./components/User/MyNotifications.js";
 import MyExchanges from "./components/User/MyExchanges.js";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <div className="App">
@@ -49,6 +52,12 @@ function App() {
         </div>
         <Footer />
       </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+      />
     </div>
   );
 }
