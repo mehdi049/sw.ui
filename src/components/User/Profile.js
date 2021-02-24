@@ -66,10 +66,6 @@ function Profile() {
                 <Form.Check type="radio" label="Femme" name="sexe" />
               </Form.Group>
               <Form.Group>
-                <Form.Label className="dark-blue">Date de naissance</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-              <Form.Group>
                 <Form.Label className="dark-blue">Adresse</Form.Label>
                 <CityDropDown />
               </Form.Group>

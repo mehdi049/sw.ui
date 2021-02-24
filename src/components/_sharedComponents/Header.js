@@ -32,6 +32,13 @@ function Header() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function logOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsAuthenticated(false);
+    setShow(false);
+  }
+
   return (
     <>
       <Container fluid={true} id="header-section" className="dark-blue-bg">
@@ -102,7 +109,9 @@ function Header() {
                     </div>
                     <NavDropdown.Divider />
                     <Link to="/">
-                      <button className="dropdown-item">Se deconnecter</button>
+                      <button className="dropdown-item" onClick={logOut}>
+                        Se deconnecter
+                      </button>
                     </Link>
                   </NavDropdown>
                   <Link className="nav-link d-none d-lg-block" to="/messages">
@@ -182,7 +191,7 @@ function Header() {
                   </Navbar.Collapse>
 
                   <Modal show={show} onHide={handleClose}>
-                    <LoginForm />
+                    <LoginForm onLogin={setIsAuthenticated} />
                   </Modal>
                 </>
               )}

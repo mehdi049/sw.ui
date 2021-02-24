@@ -8,8 +8,27 @@ export function register(register) {
     },
     cache: "no-cache",
     body: JSON.stringify(register),
-  }).then((res) => {
-    if (res.ok) return res;
-    return res.json();
-  });
+  }).then((res) => res.json());
+}
+
+export function login(login) {
+  return fetch(baseUrl + "/authentication/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+    body: JSON.stringify(login),
+  }).then((res) => res.json());
+}
+
+export function getUser(email) {
+  return fetch(baseUrl + "/user/getUserByEmail/" + email, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+  }).then((res) => res.json());
 }

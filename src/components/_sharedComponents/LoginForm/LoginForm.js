@@ -1,25 +1,28 @@
 import React, { useState } from "react";
-import { Col, Form, Row, Button, Modal } from "react-bootstrap";
+import { Col, Form, Row, Button, Modal, Spinner } from "react-bootstrap";
 import CityDropDown from "../DropDowns/CityDropDown";
 import { toast } from "react-toastify";
 import * as api from "./api/loginApi";
 
-function LoginForm() {
+function LoginForm(props) {
+  const [btnLoginLoading, setBtnLoginLoading] = useState(false);
+  const [btnRegisterLoading, setBtnRegisterLoading] = useState(false);
+
   const [displayLogin, setDisplayLogin] = useState(true);
   const [registerModel, setRegisterModel] = useState({
-    firstName: "mehdi",
-    lastName: "marouani",
+    firstName: "",
+    lastName: "",
     gender: "m",
-    phone: "1234",
-    city: "Bizerte",
+    phone: "",
+    city: "",
     region: "",
-    email: "mehdi.marouani@gmail.com",
-    password: "123456",
-    confirmPassword: "123456",
-  });
-  const [loginModel, setLoginModel] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
+  });
+  const [loginModel, setLoginModel] = useState({
+    email: "mehdi.marouani@gmail.com",
+    password: "123456",
     rememberMe: false,
   });
 
@@ -76,12 +79,22 @@ function LoginForm() {
     return _error;
   }
 
+  function handleLoginChange(event) {
+    const _loginModel = {
+      ...loginModel,
+      [event.target.name]: event.target.value,
+    };
+    setLoginModel(_loginModel);
+  }
+
   function submitRegister() {
     if (checkRegisterModel().length > 0) return;
+
+    setBtnRegisterLoading(true);
     api
       .register(registerModel)
       .then((res) => {
-        if (res.ok) {
+        if (res.status === 200) {
           toast.success("Votre compte a été créé avec succès.");
           setLoginModel({
             email: registerModel.email,
@@ -100,9 +113,68 @@ function LoginForm() {
           });
           setDisplayLogin(true);
         } else toast.error(res.message);
+
+        setBtnRegisterLoading(false);
       })
       .catch((e) => {
-        console.log(e);
+        setBtnRegisterLoading(false);
+        toast.error("Une erreur s'est produite, veuillez réessayer.");
+      });
+  }
+
+  function checkLoginModel() {
+    let emailReg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
+    let _error = "";
+    if (loginModel.email === "")
+      _error += "<p>&bull; Le champ 'Email' est obligatoire.</p>";
+
+    if (
+      loginModel.email.length > 0 &&
+      emailReg.test(loginModel.email) === false
+    )
+      _error += "<p>&bull; Adresse e-mail invalide.</p>";
+
+    if (loginModel.password === "")
+      _error += "<p>&bull; Le champ 'Mot de passe' est obligatoire.</p>";
+
+    if (_error.length > 0) {
+      const Msg = () => <div dangerouslySetInnerHTML={{ __html: _error }} />;
+      toast.error(<Msg />);
+    }
+    return _error;
+  }
+
+  function submitLogin() {
+    if (checkLoginModel().length > 0) return;
+
+    setBtnLoginLoading(true);
+    api
+      .login(loginModel)
+      .then((res) => {
+        if (res.status === 200) {
+          localStorage.setItem("token", res.body.token);
+          api
+            .getUser(loginModel.email)
+            .then((getUserRes) => {
+              if (getUserRes.status === 200) {
+                localStorage.setItem("user", JSON.stringify(getUserRes.body));
+                props.onLogin(true);
+              } else {
+                localStorage.removeItem("token");
+                toast.error(res.message);
+              }
+            })
+            .catch((e) => {
+              setBtnLoginLoading(false);
+              toast.error("Une erreur s'est produite, veuillez réessayer.");
+            });
+        } else toast.error(res.message);
+
+        setBtnLoginLoading(false);
+      })
+      .catch((e) => {
+        setBtnLoginLoading(false);
         toast.error("Une erreur s'est produite, veuillez réessayer.");
       });
   }
@@ -121,6 +193,8 @@ function LoginForm() {
               <Form.Control
                 type="email"
                 placeholder="Email"
+                name="email"
+                onChange={handleLoginChange}
                 value={loginModel.email}
               />
             </Form.Group>
@@ -128,6 +202,8 @@ function LoginForm() {
               <Form.Control
                 type="password"
                 placeholder="Mot de passe"
+                name="password"
+                onChange={handleLoginChange}
                 value={loginModel.password}
               />
             </Form.Group>
@@ -137,11 +213,23 @@ function LoginForm() {
                   type="checkbox"
                   label="Se souvenir de moi"
                   value={true}
+                  onChange={handleLoginChange}
                   checked={loginModel.rememberMe}
                 />
               </Col>
               <Col className="text-right">
-                <Button variant="primary">Se connecter</Button>
+                <Button variant="primary" onClick={submitLogin}>
+                  {btnLoginLoading && (
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  )}
+                  Se connecter
+                </Button>
               </Col>
             </Form.Group>
 
@@ -239,6 +327,15 @@ function LoginForm() {
             </Form.Group>
             <Form.Group className="text-right">
               <Button variant="primary" onClick={submitRegister}>
+                {btnRegisterLoading && (
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                )}
                 Valider
               </Button>
             </Form.Group>
