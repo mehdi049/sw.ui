@@ -71,7 +71,7 @@ function Header() {
                     className="profile-links"
                     title={
                       <img
-                        src={require("../../images/avatars/128_1.png")}
+                        src={require("../../images/avatars/default_m.png")}
                         alt="mehdi"
                         className="img-rounded"
                         id="logo"
@@ -131,7 +131,7 @@ function Header() {
                       <Link to="/notifications">
                         <button className="dropdown-item" href="#">
                           <img
-                            src={require("../../images/avatars/128_1.png")}
+                            src={require("../../images/avatars/default_m.png")}
                             height={30}
                             alt=""
                           />

@@ -460,10 +460,6 @@ img#logo {
   background-color: #ffcd00;
 }
 
-.blue {
-  color: #009dff;
-}
-
 .blue-bg {
   background-color: #009dff;
 }
@@ -648,13 +644,18 @@ img#logo {
 /** profile **/
 .upload-file-area {
   width: 55px;
-  cursor: pointer;
 }
 
 .upload-file-area .form-control-file {
   position: absolute;
   opacity: 0;
   width: 100%;
+}
+
+.upload-file-area span {
+  text-decoration: underline;
+  color: #009abf;
+  font-size: 12px;
 }
 
 /** my messages **/

@@ -33,7 +33,7 @@ function MyNotifications() {
                     {[...Array(3)].map((x, i) => (
                       <React.Fragment key={i}>
                         <img
-                          src={require("../../images/avatars/128_1.png")}
+                          src={require("../../images/avatars/default_m.png")}
                           height={30}
                           alt=""
                         />

@@ -15,7 +15,7 @@ function CommentSection() {
         <Row className="comment-section" key={i}>
           <Col xs={3} sm={2} xl={1}>
             <img
-              src={require("../../../images/avatars/128_1.png")}
+              src={require("../../../images/avatars/default_m.png")}
               className="profile-img"
               alt=""
             />
@@ -35,7 +35,7 @@ function CommentSection() {
       <Row className="comment-section">
         <Col xs={3} sm={2} xl={1}>
           <img
-            src={require("../../../images/avatars/128_1.png")}
+            src={require("../../../images/avatars/default_m.png")}
             className="profile-img"
             alt=""
           />

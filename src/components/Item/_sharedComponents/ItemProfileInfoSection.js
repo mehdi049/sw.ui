@@ -16,7 +16,7 @@ function ItemProfileInfoSection() {
       <Row>
         <Col xs={3} sm={2} md={12}>
           <img
-            src={require("../../../images/avatars/128_1.png")}
+            src={require("../../../images/avatars/default_m.png")}
             className="profile-img"
             alt=""
           />

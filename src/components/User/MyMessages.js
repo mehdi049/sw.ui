@@ -46,7 +46,7 @@ function MyMessages() {
                 <Row className="discussion-item not-read" key={i}>
                   <Col xs={12} sm={5} md={4} lg={3} xl={2}>
                     <img
-                      src={require("../../images/avatars/128_1.png")}
+                      src={require("../../images/avatars/default_m.png")}
                       className="msg-img"
                       alt=""
                     />

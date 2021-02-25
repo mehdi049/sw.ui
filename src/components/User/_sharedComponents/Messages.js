@@ -9,7 +9,7 @@ function Messages() {
           <Row key={i}>
             <Col>
               <img
-                src={require("../../../images/avatars/128_1.png")}
+                src={require("../../../images/avatars/default_m.png")}
                 alt=""
                 className="discussion-avatar-left"
               />
@@ -23,7 +23,7 @@ function Messages() {
           <Row key={i}>
             <Col className="text-right">
               <img
-                src={require("../../../images/avatars/128_16.png")}
+                src={require("../../../images/avatars/default_m.png")}
                 alt=""
                 className="discussion-avatar-right"
               />
@@ -36,7 +36,7 @@ function Messages() {
         <Row>
           <Col>
             <img
-              src={require("../../../images/avatars/128_1.png")}
+              src={require("../../../images/avatars/default_m.png")}
               alt=""
               className="discussion-avatar-left"
             />
@@ -48,7 +48,7 @@ function Messages() {
         <Row>
           <Col className="text-right">
             <img
-              src={require("../../../images/avatars/128_16.png")}
+              src={require("../../../images/avatars/default_m.png")}
               alt=""
               className="discussion-avatar-right"
             />

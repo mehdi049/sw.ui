@@ -293,7 +293,7 @@ function LoginForm(props) {
             <Form.Group>
               <CityDropDown
                 choose={true}
-                value={registerModel.city}
+                cityValue={registerModel.city}
                 onCityChange={handleRegisterChange}
                 onRegionChange={handleRegisterChange}
               />

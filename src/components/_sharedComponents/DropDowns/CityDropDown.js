@@ -16,7 +16,7 @@ function CityDropDown(props) {
         as="select"
         className="select"
         onChange={handleCityChange}
-        value={props.value}
+        value={props.cityValue}
         name="city"
       >
         {props.all && <option>Toute la Tunisie</option>}
@@ -49,6 +49,7 @@ function CityDropDown(props) {
       <RegionDropDown
         all={false}
         city={city}
+        regionValue={props.regionValue}
         select={true}
         onRegionChange={props.onRegionChange}
       />

@@ -9,7 +9,7 @@ function ProfileInfoModal() {
       <Row>
         <Col xs={3} sm={2} md={4}>
           <img
-            src={require("../../../images/avatars/128_1.png")}
+            src={require("../../../images/avatars/default_m.png")}
             className="profile-img"
             alt=""
           />

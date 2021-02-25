@@ -11,6 +11,7 @@ function RegionDropDown(props) {
           className="select"
           name="region"
           onChange={props.onRegionChange}
+          value={props.regionValue}
         >
           {props.all && <option value="">Tout</option>}
           {props.select && <option value="">Selectionner la région</option>}
@@ -38,6 +39,7 @@ function RegionDropDown(props) {
           className="select"
           name="region"
           onChange={props.onRegionChange}
+          value={props.regionValue}
         >
           {props.all && <option value="">Tout</option>}
           {props.select && <option value="">Selectionner la région</option>}
@@ -65,6 +67,7 @@ function RegionDropDown(props) {
           className="select"
           name="region"
           onChange={props.onRegionChange}
+          value={props.regionValue}
         >
           {props.all && <option value="">Tout</option>}
           {props.select && <option value="">Selectionner la région</option>}
@@ -93,6 +96,7 @@ function RegionDropDown(props) {
           className="select"
           name="region"
           onChange={props.onRegionChange}
+          value={props.regionValue}
         >
           {props.all && <option value="">Tout</option>}
           {props.select && <option value="">Selectionner la région</option>}
@@ -118,6 +122,7 @@ function RegionDropDown(props) {
           className="select"
           name="region"
           onChange={props.onRegionChange}
+          value={props.regionValue}
         >
           {props.all && <option value="">Tout</option>}
           {props.select && <option value="">Selectionner la région</option>}
