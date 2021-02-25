@@ -24,6 +24,9 @@ import Logo from "../../images/logo-white.png";
 import LoginForm from "./LoginForm/LoginForm";
 
 function Header() {
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("user") !== null
   );
@@ -71,10 +74,12 @@ function Header() {
                     className="profile-links"
                     title={
                       <img
-                        src={require("../../images/avatars/default_m.png")}
-                        alt="mehdi"
+                        src={require("../../images/avatars/" +
+                          userInfo.user.picture)}
+                        alt={userInfo.user.firstName}
                         className="img-rounded"
-                        id="logo"
+                        width="30"
+                        height="30"
                       />
                     }
                   >
@@ -191,7 +196,10 @@ function Header() {
                   </Navbar.Collapse>
 
                   <Modal show={show} onHide={handleClose}>
-                    <LoginForm onLogin={setIsAuthenticated} />
+                    <LoginForm
+                      onAuthenticate={setIsAuthenticated}
+                      onLogin={setUserInfo}
+                    />
                   </Modal>
                 </>
               )}

@@ -21,7 +21,7 @@ function LoginForm(props) {
     confirmPassword: "",
   });
   const [loginModel, setLoginModel] = useState({
-    email: "mehdi.marouani@gmail.com",
+    email: "mehdi.marouani8@gmail.com",
     password: "123456",
     rememberMe: false,
   });
@@ -80,9 +80,14 @@ function LoginForm(props) {
   }
 
   function handleLoginChange(event) {
+    const _value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+
     const _loginModel = {
       ...loginModel,
-      [event.target.name]: event.target.value,
+      [event.target.name]: _value,
     };
     setLoginModel(_loginModel);
   }
@@ -153,13 +158,14 @@ function LoginForm(props) {
       .login(loginModel)
       .then((res) => {
         if (res.status === 200) {
-          localStorage.setItem("token", res.body.token);
+          localStorage.setItem("token", JSON.stringify(res.body));
           api
             .getUser(loginModel.email)
             .then((getUserRes) => {
               if (getUserRes.status === 200) {
                 localStorage.setItem("user", JSON.stringify(getUserRes.body));
-                props.onLogin(true);
+                props.onLogin(JSON.parse(localStorage.getItem("user")));
+                props.onAuthenticate(true);
               } else {
                 localStorage.removeItem("token");
                 toast.error(res.message);
@@ -213,8 +219,9 @@ function LoginForm(props) {
                   type="checkbox"
                   label="Se souvenir de moi"
                   value={true}
+                  name="rememberMe"
                   onChange={handleLoginChange}
-                  checked={loginModel.rememberMe}
+                  checked={loginModel.rememberMe === true}
                 />
               </Col>
               <Col className="text-right">

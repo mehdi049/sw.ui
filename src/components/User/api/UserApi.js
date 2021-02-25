@@ -4,7 +4,8 @@ export function updateUser(userInfo) {
   return fetch(baseUrl + "/user/updateUser/", {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
       "Content-Type": "application/json",
     },
     cache: "no-cache",

@@ -26,7 +26,8 @@ export function getUser(email) {
   return fetch(baseUrl + "/user/getUserByEmail/" + email, {
     method: "GET",
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
       "Content-Type": "application/json",
     },
     cache: "no-cache",

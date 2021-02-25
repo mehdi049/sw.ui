@@ -55,7 +55,6 @@ function Profile() {
   }
 
   function handleUserImageChange(event) {
-    console.log(event.target.files[0]);
     setImgPreview(URL.createObjectURL(event.target.files[0]));
   }
 
