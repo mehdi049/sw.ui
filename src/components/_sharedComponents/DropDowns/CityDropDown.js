@@ -3,7 +3,9 @@ import { Form } from "react-bootstrap";
 import RegionDropDown from "./RegionDropDown";
 
 function CityDropDown(props) {
-  const [city, setCity] = useState(props.all || props.choose ? null : "Ariana");
+  const [city, setCity] = useState(
+    props.cityValue ? props.cityValue : "Ariana"
+  );
 
   function handleCityChange(event) {
     props.onCityChange(event);

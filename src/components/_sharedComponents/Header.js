@@ -75,8 +75,8 @@ function Header() {
                     title={
                       <img
                         src={require("../../images/avatars/" +
-                          userInfo.user.picture)}
-                        alt={userInfo.user.firstName}
+                          userInfo.picture)}
+                        alt={userInfo.firstName}
                         className="img-rounded"
                         width="30"
                         height="30"

@@ -22,36 +22,52 @@ function Profile() {
     JSON.parse(localStorage.getItem("user"))
   );
 
-  function handleUserChange(event) {
-    const _userInfoUser = {
-      ...userInfo.user,
-      [event.target.name]: event.target.value,
-    };
-    setUserInfo({ user: _userInfoUser });
+  function checkUpdateProfileModel() {
+    let emailReg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
+    let _error = "";
+    if (userInfo.firstName === "")
+      _error += "<p>&bull; Le champ 'Prénom' est obligatoire.</p>";
+    if (userInfo.lastName === "")
+      _error += "<p>&bull; Le champ 'Nom' est obligatoire.</p>";
+    if (userInfo.phoneNumber === "")
+      _error += "<p>&bull; Le champ 'Num télephone' est obligatoire.</p>";
+    if (userInfo.city === "")
+      _error += "<p>&bull; Le champ 'Cité' est obligatoire.</p>";
+    if (userInfo.region === "")
+      _error += "<p>&bull; Le champ 'Region' est obligatoire.</p>";
+    if (userInfo.email === "")
+      _error += "<p>&bull; Le champ 'Email' est obligatoire.</p>";
+    if (userInfo.email.length > 0 && emailReg.test(userInfo.email) === false)
+      _error += "<p>&bull; Adresse e-mail invalide.</p>";
+
+    if (_error.length > 0) {
+      const Msg = () => <div dangerouslySetInnerHTML={{ __html: _error }} />;
+      toast.error(<Msg />);
+    }
+    return _error;
   }
 
-  function handleIdentityChange(event) {
-    const _userInfoIdentity = {
-      ...userInfo.user.identity,
+  function handleUserChange(event) {
+    const _userInfoUser = {
+      ...userInfo,
       [event.target.name]: event.target.value,
     };
+    if (event.target.name === "city") _userInfoUser.region = "";
 
-    const _userInfoUser = { ...userInfo.user };
-    _userInfoUser.identity = _userInfoIdentity;
-
-    setUserInfo({ user: _userInfoUser });
+    setUserInfo(_userInfoUser);
   }
 
   function handlePreferenceChange(event) {
     const _userInfoPreference = {
-      ...userInfo.user.preference,
+      ...userInfo.preference,
       [event.target.name]: event.target.value === "true",
     };
 
-    const _userInfoUser = { ...userInfo.user };
+    const _userInfoUser = { ...userInfo };
     _userInfoUser.preference = _userInfoPreference;
 
-    setUserInfo({ user: _userInfoUser });
+    setUserInfo(_userInfoUser);
   }
 
   function handleUserImageChange(event) {
@@ -59,6 +75,8 @@ function Profile() {
   }
 
   function handleUserUpdateSubmit() {
+    if (checkUpdateProfileModel().length > 0) return;
+
     setBtnSubmitLoading(true);
     api
       .updateUser(userInfo)
@@ -96,9 +114,8 @@ function Profile() {
                 <Form.Label>
                   {imgPreview == null && (
                     <img
-                      src={require("../../images/avatars/" +
-                        userInfo.user.picture)}
-                      alt={userInfo.user.firstName}
+                      src={require("../../images/avatars/" + userInfo.picture)}
+                      alt={userInfo.firstName}
                       className="img-rounded"
                       width="50"
                     />
@@ -120,7 +137,7 @@ function Profile() {
                 <Form.Label className="dark-blue">Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  value={userInfo.user.lastName}
+                  value={userInfo.lastName}
                   name="lastName"
                   onChange={handleUserChange}
                 />
@@ -130,7 +147,7 @@ function Profile() {
                 <Form.Label className="dark-blue">Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  value={userInfo.user.firstName}
+                  value={userInfo.firstName}
                   name="firstName"
                   onChange={handleUserChange}
                 />
@@ -139,9 +156,9 @@ function Profile() {
                 <Form.Label className="dark-blue">Email</Form.Label>
                 <Form.Control
                   type="text"
-                  value={userInfo.user.identity.email}
+                  value={userInfo.email}
                   name="email"
-                  onChange={handleIdentityChange}
+                  onChange={handleUserChange}
                 />
               </Form.Group>
               <Form.Group>
@@ -149,8 +166,8 @@ function Profile() {
                 <Form.Control
                   type="text"
                   name="phoneNumber"
-                  value={userInfo.user.identity.phoneNumber}
-                  onChange={handleIdentityChange}
+                  value={userInfo.phoneNumber}
+                  onChange={handleUserChange}
                 />
               </Form.Group>
               <Form.Group>
@@ -159,7 +176,7 @@ function Profile() {
                 <Form.Check
                   type="radio"
                   label="Homme"
-                  checked={userInfo.user.gender === "m"}
+                  checked={userInfo.gender === "m"}
                   onChange={handleUserChange}
                   name="gender"
                   value="m"
@@ -171,7 +188,7 @@ function Profile() {
                   label="Femme"
                   name="gender"
                   value="f"
-                  checked={userInfo.user.gender === "f"}
+                  checked={userInfo.gender === "f"}
                   onChange={handleUserChange}
                   style={{ display: "inline" }}
                 />
@@ -179,11 +196,10 @@ function Profile() {
               <Form.Group>
                 <Form.Label className="dark-blue">Adresse</Form.Label>
                 <CityDropDown
-                  choose={false}
                   onCityChange={handleUserChange}
                   onRegionChange={handleUserChange}
-                  cityValue={userInfo.user.city}
-                  regionValue={userInfo.user.region}
+                  cityValue={userInfo.city}
+                  regionValue={userInfo.region}
                 />
               </Form.Group>
               <div className="text-right">
@@ -217,7 +233,7 @@ function Profile() {
                 <Form.Check
                   type="radio"
                   label="Oui"
-                  checked={userInfo.user.preference.displayPhoneNumber === true}
+                  checked={userInfo.preference.displayPhoneNumber === true}
                   onChange={handlePreferenceChange}
                   name="displayPhoneNumber"
                   value={true}
@@ -226,9 +242,7 @@ function Profile() {
                   type="radio"
                   label="Non"
                   name="displayPhoneNumber"
-                  checked={
-                    userInfo.user.preference.displayPhoneNumber === false
-                  }
+                  checked={userInfo.preference.displayPhoneNumber === false}
                   onChange={handlePreferenceChange}
                   value={false}
                 />
@@ -242,8 +256,7 @@ function Profile() {
                   type="radio"
                   label="Oui"
                   checked={
-                    userInfo.user.preference.receiveNotificationNewArticle ===
-                    true
+                    userInfo.preference.receiveNotificationNewArticle === true
                   }
                   name="receiveNotificationNewArticle"
                   onChange={handlePreferenceChange}
@@ -253,8 +266,7 @@ function Profile() {
                   type="radio"
                   label="Non"
                   checked={
-                    userInfo.user.preference.receiveNotificationNewArticle ===
-                    false
+                    userInfo.preference.receiveNotificationNewArticle === false
                   }
                   name="receiveNotificationNewArticle"
                   onChange={handlePreferenceChange}
@@ -268,7 +280,7 @@ function Profile() {
                 <Form.Check
                   type="radio"
                   label="Oui"
-                  checked={userInfo.user.preference.receiveEmail === true}
+                  checked={userInfo.preference.receiveEmail === true}
                   name="receiveEmail"
                   onChange={handlePreferenceChange}
                   value={true}
@@ -277,7 +289,7 @@ function Profile() {
                   type="radio"
                   label="Non"
                   name="receiveEmail"
-                  checked={userInfo.user.preference.receiveEmail === false}
+                  checked={userInfo.preference.receiveEmail === false}
                   onChange={handlePreferenceChange}
                   value={false}
                 />
