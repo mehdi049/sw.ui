@@ -12,3 +12,15 @@ export function updateUser(userInfo) {
     body: JSON.stringify(userInfo),
   }).then((res) => res.json());
 }
+
+export function updateUserImage(image, userId) {
+  return fetch(baseUrl + "/user/updateUserImage/" + userId, {
+    method: "PUT",
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+    },
+    cache: "no-cache",
+    body: image,
+  }).then((res) => res.json());
+}

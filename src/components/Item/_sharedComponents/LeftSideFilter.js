@@ -43,7 +43,7 @@ function LeftSideFilter() {
       <br />
       <h3>Condition</h3>
       <Form.Check type="checkbox" label="Neuf" className="dark-gray" />
-      <Form.Check type="checkbox" label="Usé" className="dark-gray" />
+      <Form.Check type="checkbox" label="Occasion" className="dark-gray" />
       <br />
       <h3>Prix</h3>
       <InputGroup className="mb-2 mr-sm-2">

@@ -7,16 +7,28 @@ import {
   Button,
   Spinner,
   Image,
+  Modal,
 } from "react-bootstrap";
 import CityDropDown from "../_sharedComponents/DropDowns/CityDropDown";
 import FileUpload from "../_sharedComponents/FileUpload";
 import ProfileInfo from "./_sharedComponents/ProfileInfo";
 import { toast } from "react-toastify";
 import * as api from "./api/UserApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
   const [btnSubmitLoading, setBtnSubmitLoading] = useState(false);
+  const [btnSubmitImgLoading, setBtnSubmitImgLoading] = useState(false);
+  const [isImgLoading, setIsImgLoading] = useState(false);
+
   const [imgPreview, setImgPreview] = useState();
+  const [userImg, setUserImg] = useState();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("user"))
@@ -71,7 +83,35 @@ function Profile() {
   }
 
   function handleUserImageChange(event) {
+    const formData = new FormData();
+    formData.append("model", event.target.files[0]);
+
+    setUserImg(formData);
     setImgPreview(URL.createObjectURL(event.target.files[0]));
+  }
+
+  function handleImageSubmit() {
+    setBtnSubmitImgLoading(true);
+
+    api
+      .updateUserImage(userImg, userInfo.id)
+      .then((res) => {
+        if (res.status === 200) {
+          setIsImgLoading(true);
+          userInfo.picture = res.body;
+          localStorage.setItem("user", JSON.stringify(userInfo));
+          setUserInfo(userInfo);
+          handleClose();
+          toast.success("Votre photo de profile a été modifié avec succès.");
+        } else toast.error(res.message);
+        setBtnSubmitImgLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsImgLoading(false);
+        setBtnSubmitImgLoading(false);
+        toast.error("Une erreur s'est produite, veuillez réessayer.");
+      });
   }
 
   function handleUserUpdateSubmit() {
@@ -112,25 +152,29 @@ function Profile() {
             <Form>
               <Form.Group>
                 <Form.Label>
-                  {imgPreview == null && (
+                  {!isImgLoading ? (
                     <img
-                      src={require("../../images/avatars/" + userInfo.picture)}
+                      src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
+                        userInfo.picture)}
                       alt={userInfo.firstName}
                       className="img-rounded"
-                      width="50"
+                      width="100"
+                      height="100"
                     />
-                  )}
-                  {imgPreview != null && (
+                  ) : (
                     <Image
                       src={imgPreview}
+                      alt={userInfo.firstName}
                       className="img-rounded"
-                      width="50"
-                      height="50"
+                      width="100"
+                      height="100"
                     />
                   )}
+
+                  <span className="edit-img" onClick={handleShow}>
+                    <FontAwesomeIcon icon={faEdit} size="2x" />
+                  </span>
                 </Form.Label>
-                <br />
-                <FileUpload onChange={handleUserImageChange} />
               </Form.Group>
 
               <Form.Group>
@@ -297,6 +341,61 @@ function Profile() {
             </Form>
           </Col>
         </Row>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modifier la photo de profile</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              <Col>
+                {imgPreview == null && (
+                  <img
+                    src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
+                      userInfo.picture)}
+                    alt={userInfo.firstName}
+                    className="img-rounded"
+                    width="180"
+                    height="180"
+                  />
+                )}
+                {imgPreview != null && (
+                  <Image
+                    src={imgPreview}
+                    className="img-rounded"
+                    width="180"
+                    height="180"
+                  />
+                )}
+              </Col>
+              <Col>
+                <br />
+                <Form.Text className="text-muted">
+                  Veuillez utiliser les extensions .png, .jpg, .jpeg.
+                </Form.Text>
+                <br />
+                <FileUpload onChange={handleUserImageChange} name="picture" />
+              </Col>
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Annuler
+            </Button>
+            <Button variant="primary" onClick={handleImageSubmit}>
+              {btnSubmitImgLoading && (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              )}{" "}
+              Changer
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     </>
   );

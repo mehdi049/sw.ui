@@ -10,6 +10,7 @@ import {
   InputGroup,
   Badge,
   Modal,
+  Image,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -73,8 +74,8 @@ function Header() {
                   <NavDropdown
                     className="profile-links"
                     title={
-                      <img
-                        src={require("../../images/avatars/" +
+                      <Image
+                        src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
                           userInfo.picture)}
                         alt={userInfo.firstName}
                         className="img-rounded"

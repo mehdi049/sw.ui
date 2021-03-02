@@ -1,11 +1,12 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 function FileUpload(props) {
   return (
-    <div className="upload-file-area">
-      <Form.Control type="file" name="picture" onChange={props.onChange} />
-      <span>Modifer</span>
+    <div className="upload-file-area" onClick={props.onClick}>
+      <p>Selectionenr une image</p>
+      <Button variant="outline-dark">Importer</Button>
+      <Form.Control type="file" name={props.name} onChange={props.onChange} />
     </div>
   );
 }

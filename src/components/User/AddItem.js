@@ -33,7 +33,7 @@ function AddItem() {
               <Form.Group>
                 <Form.Label className="dark-blue">Condition</Form.Label>
                 <Form.Control as="select" className="select">
-                  <option>Usé</option>
+                  <option>Occasion</option>
                   <option>Neuf</option>
                 </Form.Control>
               </Form.Group>
