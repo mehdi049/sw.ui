@@ -23,7 +23,7 @@ function Profile() {
   const [isImgLoading, setIsImgLoading] = useState(false);
 
   const [imgPreview, setImgPreview] = useState();
-  const [userImg, setUserImg] = useState();
+  const [userImg, setUserImg] = useState(null);
 
   const [show, setShow] = useState(false);
 
@@ -50,7 +50,7 @@ function Profile() {
       _error += "<p>&bull; Le champ 'Region' est obligatoire.</p>";
     if (userInfo.email === "")
       _error += "<p>&bull; Le champ 'Email' est obligatoire.</p>";
-    if (userInfo.email.length > 0 && emailReg.test(userInfo.email) === false)
+    if (userInfo.email.length > 0 && !emailReg.test(userInfo.email))
       _error += "<p>&bull; Adresse e-mail invalide.</p>";
 
     if (_error.length > 0) {
@@ -83,35 +83,56 @@ function Profile() {
   }
 
   function handleUserImageChange(event) {
+    let supportedExtension = ["jpg", "jpeg", "png"];
+    const userImg = event.target.files[0];
+    const extension = userImg.name.substr(
+      userImg.name.toLowerCase().lastIndexOf(".") + 1
+    );
+
+    if (supportedExtension.indexOf(extension) === -1) {
+      toast.error(
+        "Extension de l'image est invalide, veuillez utiliser .png, .jpg, .jpeg."
+      );
+      return;
+    }
+    // < 5mb
+    if (userImg.size > 5242880) {
+      toast.error(
+        "L'image téléchargée est très grande, veuillez télécharger une image < 5 Mo."
+      );
+      return;
+    }
+
     const formData = new FormData();
-    formData.append("model", event.target.files[0]);
+    formData.append("model", userImg);
 
     setUserImg(formData);
-    setImgPreview(URL.createObjectURL(event.target.files[0]));
+    setImgPreview(URL.createObjectURL(userImg));
   }
 
   function handleImageSubmit() {
-    setBtnSubmitImgLoading(true);
-
-    api
-      .updateUserImage(userImg, userInfo.id)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsImgLoading(true);
-          userInfo.picture = res.body;
-          localStorage.setItem("user", JSON.stringify(userInfo));
-          setUserInfo(userInfo);
-          handleClose();
-          toast.success("Votre photo de profile a été modifié avec succès.");
-        } else toast.error(res.message);
-        setBtnSubmitImgLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsImgLoading(false);
-        setBtnSubmitImgLoading(false);
-        toast.error("Une erreur s'est produite, veuillez réessayer.");
-      });
+    if (userImg !== null) {
+      setBtnSubmitImgLoading(true);
+      api
+        .updateUserImage(userImg, userInfo.id)
+        .then((res) => {
+          if (res.status === 200) {
+            setIsImgLoading(true);
+            userInfo.picture = res.body;
+            localStorage.setItem("user", JSON.stringify(userInfo));
+            setUserInfo(userInfo);
+            handleClose();
+            toast.success("Votre photo de profile a été modifié avec succès.");
+            setUserImg(null);
+          } else toast.error(res.message);
+          setBtnSubmitImgLoading(false);
+        })
+        .catch((e) => {
+          setIsImgLoading(false);
+          setBtnSubmitImgLoading(false);
+          toast.error("Une erreur s'est produite, veuillez réessayer.");
+        });
+    }
   }
 
   function handleUserUpdateSubmit() {
@@ -133,10 +154,6 @@ function Profile() {
         toast.error("Une erreur s'est produite, veuillez réessayer.");
       });
   }
-
-  useEffect(() => {
-    console.log(userInfo);
-  }, []);
 
   return (
     <>
