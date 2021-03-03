@@ -39,7 +39,7 @@ function HomeItems() {
             <Row>
               {[...Array(8)].map((x, i) => (
                 <React.Fragment key={i}>
-                  <Col xs={6} md={4} lg={3}>
+                  <Col xs={12} sm={6} md={4} lg={3}>
                     <Link to="/item">
                       <div
                         className="item-img-container-lg"
@@ -59,18 +59,18 @@ function HomeItems() {
                       <span className="price-info blue">
                         <FontAwesomeIcon icon={faCoins} /> 350 TND &nbsp;&nbsp;
                         &nbsp;
-                        <span className="d-block d-md-inline">
-                          <FontAwesomeIcon icon={faExchangeAlt} />
-                          &nbsp; Echange
-                        </span>
+                        <FontAwesomeIcon icon={faExchangeAlt} />
+                        &nbsp; Echange
                       </span>
-                      <p className="item-description">
+                      <p className="item-description d-none d-lg-block">
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% of the retail price [...]
                       </p>
+                      <br className="d-block d-lg-none" />
+                      <br className="d-block d-lg-none" />
                     </Link>
                   </Col>
-                  <Col xs={6} md={4} lg={3}>
+                  <Col xs={12} sm={6} md={4} lg={3}>
                     <Link to="/item">
                       <div
                         className="item-img-container-lg"
@@ -90,13 +90,15 @@ function HomeItems() {
                       <span className="price-info blue">
                         <FontAwesomeIcon icon={faCoins} /> 350 TND
                       </span>
-                      <p className="item-description">
+                      <p className="item-description d-none d-lg-block">
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% of the retail price [...]
                       </p>
+                      <br className="d-block d-lg-none" />
+                      <br className="d-block d-lg-none" />
                     </Link>
                   </Col>
-                  <Col xs={6} md={4} lg={3}>
+                  <Col xs={12} sm={6} md={4} lg={3}>
                     <Link to="/item">
                       <div
                         className="item-img-container-lg"
@@ -118,10 +120,12 @@ function HomeItems() {
                         <FontAwesomeIcon icon={faExchangeAlt} />
                         &nbsp; Echange
                       </span>
-                      <p className="item-description">
+                      <p className="item-description d-none d-lg-block">
                         With our Guaranteed buy-back offer, we'll cover up to
                         50% of the retail price [...]
                       </p>
+                      <br className="d-block d-lg-none" />
+                      <br className="d-block d-lg-none" />
                     </Link>
                   </Col>
                 </React.Fragment>

@@ -55,7 +55,7 @@ function CategoryItems() {
             </Row>
             <Row>
               {[...Array(3)].map((x, i) => (
-                <Col xs={6} sm={6} lg={4} key={i}>
+                <Col xs={12} sm={6} lg={4} key={i}>
                   <Link to="/item">
                     <div
                       className="item-img-container-lg"
@@ -75,15 +75,15 @@ function CategoryItems() {
                     <span className="price-info blue">
                       <FontAwesomeIcon icon={faCoins} /> 350 TND &nbsp;&nbsp;
                       &nbsp;
-                      <span className="d-block d-sm-inline">
-                        <FontAwesomeIcon icon={faExchangeAlt} />
-                        &nbsp; Echange
-                      </span>
+                      <FontAwesomeIcon icon={faExchangeAlt} />
+                      &nbsp; Echange
                     </span>
-                    <p className="item-description">
+                    <p className="item-description d-none d-lg-block">
                       With our Guaranteed buy-back offer, we'll cover up to 50%
                       of the retail price [...]
                     </p>
+                    <br className="d-block d-lg-none" />
+                    <br className="d-block d-lg-none" />
                   </Link>
                 </Col>
               ))}

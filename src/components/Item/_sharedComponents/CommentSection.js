@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 function CommentSection() {
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("user") !== null
+  );
+
   return (
     <>
       <Row>
@@ -32,19 +39,21 @@ function CommentSection() {
           </Col>
         </Row>
       ))}
-      <Row className="comment-section">
-        <Col xs={3} sm={2} xl={1}>
-          <img
-            src={require("../../../images/avatars/default_m.png")}
-            className="profile-img"
-            alt=""
-          />
-        </Col>
-        <Col xs={9} sm={10} xl={11}>
-          <span className="dark-gray">Mehdi Marouani </span>
-          <Form.Control as="textarea" rows="2" />
-        </Col>
-      </Row>
+      {isAuthenticated && (
+        <Row className="comment-section">
+          <Col xs={3} sm={2} xl={1}>
+            <img
+              src={require("../../../images/avatars/default_m.png")}
+              className="profile-img"
+              alt=""
+            />
+          </Col>
+          <Col xs={9} sm={10} xl={11}>
+            <span className="dark-gray">Mehdi Marouani </span>
+            <Form.Control as="textarea" rows="2" />
+          </Col>
+        </Row>
+      )}
     </>
   );
 }

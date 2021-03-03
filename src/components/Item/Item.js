@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Badge, Container, Row, Col, Button, Modal } from "react-bootstrap";
+import {
+  Badge,
+  Container,
+  Row,
+  Col,
+  Button,
+  Modal,
+  OverlayTrigger,
+  Popover,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,
@@ -16,10 +25,17 @@ import ItemProfileInfoSection from "./_sharedComponents/ItemProfileInfoSection";
 import MyItemsForExchange from "./_sharedComponents/MyItemsForExchange";
 
 function Item() {
-  const [show, setShow] = useState(false);
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("user") !== null
+  );
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showExchangeModal, setShowExchangeModal] = useState(false);
+
+  const handleCloseExchangeModal = () => setShowExchangeModal(false);
+  const handleShowExchangeModal = () => setShowExchangeModal(true);
 
   return (
     <>
@@ -53,32 +69,96 @@ function Item() {
                   <FontAwesomeIcon icon={faCoins} /> 350 TND
                 </span>
               </Col>
+
               <Col xs={3} md={4} lg={5} className="text-right">
                 <br />
-                <Button
-                  variant="outline-secondary"
-                  type="button"
-                  id="ask-exchange-btn"
-                  className="d-none d-lg-inline"
-                  onClick={handleShow}
-                >
-                  Demander un échange
-                </Button>
+                {isAuthenticated ? (
+                  <>
+                    <Button
+                      variant="outline-secondary"
+                      type="button"
+                      id="ask-exchange-btn"
+                      className="d-none d-lg-inline"
+                      onClick={handleShowExchangeModal}
+                    >
+                      Demander un échange
+                    </Button>
 
-                <FontAwesomeIcon
-                  icon={faExchangeAlt}
-                  onClick={handleShow}
-                  className="pointer icon-large d-inline d-lg-none blue"
-                />
+                    <FontAwesomeIcon
+                      icon={faExchangeAlt}
+                      onClick={handleShowExchangeModal}
+                      className="pointer icon-large d-inline d-lg-none blue"
+                    />
 
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className="pointer icon-large"
-                  id="item-like-icon"
-                />
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className="pointer icon-large"
+                      id="item-like-icon"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <OverlayTrigger
+                      trigger="click"
+                      key="top"
+                      placement="top"
+                      overlay={
+                        <Popover>
+                          <Popover.Title as="h3">
+                            Veuillez vous connecter
+                          </Popover.Title>
+                        </Popover>
+                      }
+                    >
+                      <Button
+                        variant="outline-secondary"
+                        type="button"
+                        id="ask-exchange-btn"
+                        className="d-none d-lg-inline"
+                      >
+                        Demander un échange
+                      </Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      trigger="click"
+                      key="top"
+                      placement="top"
+                      overlay={
+                        <Popover>
+                          <Popover.Title as="h3">
+                            Veuillez vous connecter
+                          </Popover.Title>
+                        </Popover>
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={faExchangeAlt}
+                        className="pointer icon-large d-inline d-lg-none blue"
+                      />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      trigger="click"
+                      key="top"
+                      placement="top"
+                      overlay={
+                        <Popover>
+                          <Popover.Title as="h3">
+                            Veuillez vous connecter
+                          </Popover.Title>
+                        </Popover>
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="pointer icon-large"
+                        id="item-like-icon"
+                      />
+                    </OverlayTrigger>
+                  </>
+                )}
               </Col>
 
-              <Modal show={show} onHide={handleClose}>
+              <Modal show={showExchangeModal} onHide={handleCloseExchangeModal}>
                 <Modal.Header closeButton>
                   <Modal.Title className="dark-blue">Echanger avec</Modal.Title>
                 </Modal.Header>
@@ -87,10 +167,10 @@ function Item() {
                   <MyItemsForExchange />
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="light" onClick={handleClose}>
+                  <Button variant="light" onClick={handleCloseExchangeModal}>
                     Annuler
                   </Button>
-                  <Button variant="primary" onClick={handleClose}>
+                  <Button variant="primary" onClick={handleCloseExchangeModal}>
                     Demander un échange
                   </Button>
                 </Modal.Footer>

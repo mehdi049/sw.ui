@@ -16,22 +16,22 @@ function ProfileInfo() {
         <Col xs={3} sm={12} className="profile-info">
           <FontAwesomeIcon icon={faEye} className="blue" />
           &nbsp;&nbsp; <span className="bold big dark-blue">118</span>{" "}
-          <span className="d-none d-sm-block inline-block-md">fois</span>
+          <span className="d-none d-sm-block d-md-inline">fois</span>
         </Col>
         <Col xs={3} sm={12} className="profile-info">
           <FontAwesomeIcon icon={faHeart} className="blue" />
           &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-          <span className="d-none d-sm-block inline-block-md">personne(s)</span>
+          <span className="d-none d-sm-block d-md-inline">personne(s)</span>
         </Col>
         <Col xs={3} sm={12} className="profile-info">
           <FontAwesomeIcon icon={faSyncAlt} className="blue" />
           &nbsp;&nbsp; <span className="bold big dark-blue">3</span>{" "}
-          <span className="d-none d-sm-block inline-block-md">en cours</span>
+          <span className="d-none d-sm-block d-md-inline">en cours</span>
         </Col>
         <Col xs={3} sm={12} className="profile-info">
           <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
           &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
-          <span className="d-none d-sm-block inline-block-md">
+          <span className="d-none d-sm-block d-md-inline">
             échange(s) aboutie
           </span>
         </Col>
