@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import CityDropDown from "../../_sharedComponents/DropDowns/CityDropDown";
 
-function LeftSideFilter() {
+function LeftSideFilter(props) {
   const [activeCat, setActiveCat] = useState("");
 
   function setActive(name) {
@@ -12,30 +11,18 @@ function LeftSideFilter() {
   return (
     <div id="sidebar-left">
       <h3>Categories</h3>
-      <Link
-        to="/category"
-        active={activeCat === 1 ? "true" : "false"}
-        onClick={() => setActive(1)}
-        className="dash-separation side-category-link"
-      >
-        Electroménager et vaisselles
-      </Link>
-      <Link
-        to="/category"
-        active={activeCat === 2 ? "true" : "false"}
-        onClick={() => setActive(2)}
-        className="dash-separation side-category-link"
-      >
-        Meubles et décoration
-      </Link>
-      <Link
-        to="/category"
-        active={activeCat === 3 ? "true" : "false"}
-        onClick={() => setActive(3)}
-        className="dash-separation side-category-link"
-      >
-        Jardin et outils de bricolage
-      </Link>
+      {props.subCategories.map((x) => {
+        return (
+          <span
+            key={x.id}
+            active={activeCat === x.id ? "true" : "false"}
+            onClick={() => setActive(x.id)}
+            className="dash-separation side-category-link"
+          >
+            {x.name}
+          </span>
+        );
+      })}
       <br />
       <br className="d-none d-md-block" />
       <h3>Emplacement</h3>

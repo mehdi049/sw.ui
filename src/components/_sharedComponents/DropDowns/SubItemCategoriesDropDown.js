@@ -76,7 +76,7 @@ function SubItemCategoriesDropDown(props) {
         {props.all && <option>Tout</option>}
         <option>Famille et bien-être</option>
         <option>Actu, politique et société</option>
-        <option>Etuds supérieures</option>
+        <option>Etudes supérieures</option>
         <option>Santé, forme et dietétique</option>
         <option>Religions et spiritualités</option>
         <option>Histoire</option>

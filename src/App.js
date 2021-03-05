@@ -46,7 +46,7 @@ function App() {
             <Route path="/help" exact component={Help} />
             <Route path="/ads" exact component={Ads} />
             <Route path="/terms" exact component={Terms} />
-            <Route path="/category" exact component={CategoryItems} />
+            <Route path="/category/:id" exact component={CategoryItems} />
             <Route path="/item" exact component={Item} />
           </Switch>
         </div>

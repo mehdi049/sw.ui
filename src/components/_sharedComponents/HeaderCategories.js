@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import * as api from "./api/CategoryApi";
 
-function HeaderCategories() {
+function HeaderCategories(props) {
   const [activeCat, setActiveCat] = useState("");
   const [activeMenu, setActiveMenu] = useState(false);
+  const [categories, setCategories] = useState([]);
 
-  function setActive(name) {
-    setActiveCat(name);
+  function setActive(id) {
+    setActiveCat(id);
+    if (props.handleCategoryChange) props.handleCategoryChange(id);
   }
+
+  useEffect(() => {
+    api.getCategories().then((res) => {
+      console.log(res.body);
+      setCategories(res.body);
+    });
+  }, []);
 
   return (
     <Container fluid={true} style={{ background: "#203040" }}>
@@ -21,55 +31,18 @@ function HeaderCategories() {
               <FontAwesomeIcon icon={faBars} /> &nbsp; Tout
             </a>
           </Col>
-          <Col
-            className="top-main-catagtory-item"
-            active={activeCat === "vehicule" ? "true" : "false"}
-            onClick={() => setActive("vehicule")}
-          >
-            <Link to="/category">Véhicules</Link>
-          </Col>
-          <Col
-            className="top-main-catagtory-item"
-            active={activeCat === "entertainement" ? "true" : "false"}
-            onClick={() => setActive("entertainement")}
-          >
-            <Link to="/category">Loisirs</Link>
-          </Col>
-          <Col
-            className="top-main-catagtory-item"
-            active={activeCat === "electronic" ? "true" : "false"}
-            onClick={() => setActive("electronic")}
-          >
-            <Link to="/category">Eléctronique</Link>
-          </Col>
-          <Col
-            className="top-main-catagtory-item"
-            active={activeCat === "home" ? "true" : "false"}
-            onClick={() => setActive("home")}
-          >
-            <Link to="/category">Maison et jardin</Link>
-          </Col>
-          <Col
-            className="top-main-catagtory-item d-none d-md-block"
-            active={activeCat === "clothes" ? "true" : "false"}
-            onClick={() => setActive("clothes")}
-          >
-            <Link to="/category">Habillement</Link>
-          </Col>
-          <Col
-            className="top-main-catagtory-item d-none d-md-block"
-            active={activeCat === "games" ? "true" : "false"}
-            onClick={() => setActive("games")}
-          >
-            <Link to="/category">Jeux video</Link>
-          </Col>
-          <Col
-            className="top-main-catagtory-item d-none d-md-block"
-            active={activeCat === "books" ? "true" : "false"}
-            onClick={() => setActive("books")}
-          >
-            <Link to="/category">Livres</Link>
-          </Col>
+          {categories.map((x) => {
+            return (
+              <Col
+                key={x.id}
+                className="top-main-catagtory-item"
+                active={activeCat === x.id ? "true" : "false"}
+                onClick={() => setActive(x.id)}
+              >
+                <Link to={"/category/" + x.id}>{x.name}</Link>
+              </Col>
+            );
+          })}
         </Row>
 
         {activeMenu && (
@@ -79,57 +52,19 @@ function HeaderCategories() {
               id="close-menu"
               onClick={() => setActiveMenu(false)}
             />
-
-            <Link
-              to="/category"
-              active={activeCat === "vehicule" ? "true" : "false"}
-              onClick={() => setActive("vehicule")}
-              className="left-category-menu-first"
-            >
-              Véhicules
-            </Link>
-            <Link
-              to="/category"
-              active={activeCat === "entertainement" ? "true" : "false"}
-              onClick={() => setActive("entertainement")}
-            >
-              Loisirs
-            </Link>
-            <Link
-              to="/category"
-              active={activeCat === "electronic" ? "true" : "false"}
-              onClick={() => setActive("electronic")}
-            >
-              Eléctronique
-            </Link>
-            <Link
-              to="/category"
-              active={activeCat === "home" ? "true" : "false"}
-              onClick={() => setActive("home")}
-            >
-              Maison et jardin
-            </Link>
-            <Link
-              to="/category"
-              active={activeCat === "clothes" ? "true" : "false"}
-              onClick={() => setActive("clothes")}
-            >
-              Habillement
-            </Link>
-            <Link
-              to="/category"
-              active={activeCat === "games" ? "true" : "false"}
-              onClick={() => setActive("games")}
-            >
-              Jeux video
-            </Link>
-            <Link
-              to="/category"
-              active={activeCat === "books" ? "true" : "false"}
-              onClick={() => setActive("books")}
-            >
-              Livres
-            </Link>
+            {categories.map((x) => {
+              return (
+                <Link
+                  key={x.id}
+                  to={"/category/" + x.id}
+                  active={activeCat === x.id ? "true" : "false"}
+                  onClick={() => setActive(x.id)}
+                  className="left-category-menu-first"
+                >
+                  {x.name}
+                </Link>
+              );
+            })}
           </div>
         )}
       </Container>

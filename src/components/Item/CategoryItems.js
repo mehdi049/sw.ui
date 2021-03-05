@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,23 +13,41 @@ import HeaderCategories from "../_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./_sharedComponents/LeftSideFilter";
 import Pagination from "react-js-pagination";
 import SortDropdown from "../_sharedComponents/SortDropdown";
+import * as api from "./api/CategoryApi";
 
-function CategoryItems() {
+function CategoryItems(props) {
+  const [isSubCategoryLoading, setSubCategoryLoading] = useState(false);
   const [activePage, setActivePage] = useState(1);
   const [activeMenu, setActiveMenu] = useState(false);
+  const [category, setCategory] = useState();
 
   function handlePageChange(pageNumber) {
     setActivePage(pageNumber);
   }
 
+  function handleCategoryChange(id) {
+    setSubCategoryLoading(false);
+    api.getCategory(id).then((res) => {
+      console.log(res.body);
+      setCategory(res.body);
+      setSubCategoryLoading(true);
+    });
+  }
+
+  useEffect(() => {
+    handleCategoryChange(props.match.params.id);
+  }, []);
+
   return (
     <>
-      <HeaderCategories />
+      <HeaderCategories handleCategoryChange={handleCategoryChange} />
       <br />
       <Container>
         <Row>
           <Col className="d-none d-md-block" md={3}>
-            <LeftSideFilter />
+            {isSubCategoryLoading && (
+              <LeftSideFilter subCategories={category.subCategories} />
+            )}
           </Col>
           <Col md={9}>
             <Row>
