@@ -463,31 +463,31 @@ img#logo {
   color: white;
 }
 
-.yellow-bg {
-  background-color: #ffcd00;
+.bg-1 {
+  background-color: #ff6093;
 }
 
-.blue-bg {
+.bg-2 {
   background-color: #009dff;
 }
 
-.blue2-bg {
+.bg-3 {
   background-color: #2bc9ce;
 }
 
-.green-bg {
+.bg-4 {
   background-color: #3ad531;
 }
 
-.green2-bg {
+.bg-5 {
   background-color: #54803c;
 }
 
-.red-bg {
+.bg-6 {
   background-color: #ab192d;
 }
 
-.violet-bg {
+.bg-7 {
   background-color: #8c19ab;
 }
 
@@ -584,6 +584,7 @@ img#logo {
 .item-description {
   margin-top: 10px;
   margin-bottom: 50px;
+  word-break: break-all;
 }
 
 .exchange-items {

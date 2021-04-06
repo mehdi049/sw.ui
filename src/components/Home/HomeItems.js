@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { Link } from "react-router-dom";
-import { Badge, Container, Row, Col, Form } from "react-bootstrap";
+import { Badge, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComment,
@@ -10,13 +12,55 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "react-js-pagination";
 import SortDropdown from "../_sharedComponents/SortDropdown";
+import * as api from "./api/ItemApi";
 
 function HomeItems() {
+  const [items, setItems] = useState([]);
+  const [paginatedItems, setPaginatedItems] = useState([]);
+  const [contentLoaded, setContentLoaded] = useState(false);
+
   const [activePage, setActivePage] = useState(1);
 
   function handlePageChange(pageNumber) {
     setActivePage(pageNumber);
+    const pStart = (pageNumber - 1) * 20;
+    setPaginatedItems(items.slice(pStart, pStart + 20));
   }
+
+  function validateImage(imgPath) {
+    console.log(imgPath);
+    try {
+      return (
+        <div
+          className="item-img-container-lg"
+          style={{
+            backgroundImage:
+              "url(" +
+              require(process.env.REACT_APP_ITEM_UPLOAD_PATH + imgPath) +
+              ")",
+          }}
+        ></div>
+      );
+    } catch (err) {
+      return (
+        <div
+          className="item-img-container-lg"
+          style={{
+            backgroundImage: "url(/images/not-available.jpg)",
+          }}
+        ></div>
+      );
+    }
+  }
+
+  useEffect(() => {
+    api.getHomeItems().then((res) => {
+      console.log(res.body);
+      setItems(res.body);
+      setPaginatedItems(res.body.slice(0, 20));
+      setContentLoaded(true);
+    });
+  }, []);
 
   return (
     <>
@@ -33,120 +77,70 @@ function HomeItems() {
           </Col>
         </Row>
       </Container>
-      <Container>
-        <Row>
-          <Col>
-            <Row>
-              {[...Array(8)].map((x, i) => (
-                <React.Fragment key={i}>
-                  <Col xs={12} sm={6} md={4} lg={3}>
-                    <Link to="/item">
-                      <div
-                        className="item-img-container-lg"
-                        style={{
-                          backgroundImage:
-                            "url(" +
-                            require("../../images/uploads/item1-3.png") +
-                            ")",
-                        }}
-                      ></div>
-                      <span className="item-name">Samsung galaxi s20</span>
-                      <Badge className="green2-bg">Electronique</Badge>{" "}
-                      <span className="small">
-                        Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
-                        2020 | <FontAwesomeIcon icon={faComment} /> 15
-                      </span>
-                      <span className="price-info blue">
-                        <FontAwesomeIcon icon={faCoins} /> 350 TND &nbsp;&nbsp;
-                        &nbsp;
-                        <FontAwesomeIcon icon={faExchangeAlt} />
-                        &nbsp; Echange
-                      </span>
-                      <p className="item-description d-none d-lg-block">
-                        With our Guaranteed buy-back offer, we'll cover up to
-                        50% of the retail price [...]
-                      </p>
-                      <br className="d-block d-lg-none" />
-                      <br className="d-block d-lg-none" />
-                    </Link>
-                  </Col>
-                  <Col xs={12} sm={6} md={4} lg={3}>
-                    <Link to="/item">
-                      <div
-                        className="item-img-container-lg"
-                        style={{
-                          backgroundImage:
-                            "url(" +
-                            require("../../images/uploads/item1-6.png") +
-                            ")",
-                        }}
-                      ></div>
-                      <span className="item-name">Samsung galaxi s20</span>
-                      <Badge className="green2-bg">Electronique</Badge>{" "}
-                      <span className="small">
-                        Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
-                        2020 | <FontAwesomeIcon icon={faComment} /> 15
-                      </span>
-                      <span className="price-info blue">
-                        <FontAwesomeIcon icon={faCoins} /> 350 TND
-                      </span>
-                      <p className="item-description d-none d-lg-block">
-                        With our Guaranteed buy-back offer, we'll cover up to
-                        50% of the retail price [...]
-                      </p>
-                      <br className="d-block d-lg-none" />
-                      <br className="d-block d-lg-none" />
-                    </Link>
-                  </Col>
-                  <Col xs={12} sm={6} md={4} lg={3}>
-                    <Link to="/item">
-                      <div
-                        className="item-img-container-lg"
-                        style={{
-                          backgroundImage:
-                            "url(" +
-                            require("../../images/uploads/item1-5.png") +
-                            ")",
-                        }}
-                      ></div>
-                      <span className="item-name">Samsung galaxi s20</span>
-                      <Badge className="green2-bg">Electronique</Badge>{" "}
-                      <span className="small">
-                        Par Mehdi | <FontAwesomeIcon icon={faClock} /> 22 Aout
-                        2020 | <FontAwesomeIcon icon={faComment} /> 15
-                      </span>
-                      <span className="price-info blue">
-                        &nbsp;
-                        <FontAwesomeIcon icon={faExchangeAlt} />
-                        &nbsp; Echange
-                      </span>
-                      <p className="item-description d-none d-lg-block">
-                        With our Guaranteed buy-back offer, we'll cover up to
-                        50% of the retail price [...]
-                      </p>
-                      <br className="d-block d-lg-none" />
-                      <br className="d-block d-lg-none" />
-                    </Link>
-                  </Col>
-                </React.Fragment>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Pagination
-              activePage={activePage}
-              itemsCountPerPage={10}
-              totalItemsCount={100}
-              pageRangeDisplayed={5}
-              onChange={handlePageChange.bind(this)}
-              itemClass="page-item"
-              linkClass="page-link"
-            />
-          </Col>
-        </Row>
-      </Container>
+      {contentLoaded && (
+        <Container>
+          <Row>
+            <Col>
+              <Row>
+                {paginatedItems.map((x, i) => (
+                  <React.Fragment key={i}>
+                    <Col xs={12} sm={6} md={4} lg={3}>
+                      <Link to={"/item/" + x.id}>
+                        {validateImage(x.images.split(";")[0])}
+                        <span className="item-name">{x.title}</span>
+                        <Badge className={"bg-" + x.subCategory.category.id}>
+                          {x.subCategory.category.name}
+                        </Badge>{" "}
+                        <span className="small">
+                          Par Mehdi | <FontAwesomeIcon icon={faClock} />{" "}
+                          {format(new Date(x.addedTime), "dd MMMM yyyy", {
+                            locale: fr,
+                          })}{" "}
+                          | <FontAwesomeIcon icon={faComment} />{" "}
+                          {x.itemFeedbacks.length}
+                        </span>
+                        <span className="price-info blue">
+                          {x.price && x.price !== 0 && (
+                            <>
+                              {" "}
+                              <FontAwesomeIcon icon={faCoins} /> {x.price} TND
+                              &nbsp;&nbsp; &nbsp;
+                            </>
+                          )}
+                          {x.exchange && (
+                            <>
+                              <FontAwesomeIcon icon={faExchangeAlt} />
+                              &nbsp; Echange
+                            </>
+                          )}
+                        </span>
+                        <p className="item-description d-none d-lg-block">
+                          {x.description.substr(0, 100)} [...]
+                        </p>
+                        <br className="d-block d-lg-none" />
+                        <br className="d-block d-lg-none" />
+                      </Link>
+                    </Col>
+                  </React.Fragment>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={20}
+                totalItemsCount={items.length}
+                pageRangeDisplayed={5}
+                onChange={handlePageChange.bind(this)}
+                itemClass="page-item"
+                linkClass="page-link"
+              />
+            </Col>
+          </Row>
+        </Container>
+      )}
     </>
   );
 }
