@@ -3,11 +3,6 @@ import { Form, InputGroup } from "react-bootstrap";
 import CityDropDown from "../../_sharedComponents/DropDowns/CityDropDown";
 
 function LeftSideFilter(props) {
-  const [activeCat, setActiveCat] = useState("");
-
-  function setActive(name) {
-    setActiveCat(name);
-  }
   return (
     <div id="sidebar-left">
       <h3>Categories</h3>
@@ -15,8 +10,8 @@ function LeftSideFilter(props) {
         return (
           <span
             key={x.id}
-            active={activeCat === x.id ? "true" : "false"}
-            onClick={() => setActive(x.id)}
+            active={props.activeSubCategoryId === x.id ? "true" : "false"}
+            onClick={() => props.subCategoriesOnChange(x.id, x.name)}
             className="dash-separation side-category-link"
           >
             {x.name}

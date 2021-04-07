@@ -13,8 +13,11 @@ import {
 import Pagination from "react-js-pagination";
 import SortDropdown from "../_sharedComponents/SortDropdown";
 import * as api from "./api/ItemApi";
+import Error from "../_sharedComponents/Error";
 
 function HomeItems() {
+  const [isError, setIsError] = useState(false);
+
   const [items, setItems] = useState([]);
   const [paginatedItems, setPaginatedItems] = useState([]);
   const [contentLoaded, setContentLoaded] = useState(false);
@@ -28,7 +31,6 @@ function HomeItems() {
   }
 
   function validateImage(imgPath) {
-    console.log(imgPath);
     try {
       return (
         <div
@@ -53,13 +55,33 @@ function HomeItems() {
     }
   }
 
+  function sortItems(event) {
+    let _items = { ...items };
+    if (event.target.value === "newest")
+      _items = items.sort((a, b) =>
+        a.item.addedTime < b.item.addedTime ? 1 : -1
+      );
+    if (event.target.value === "hPrice")
+      _items = items.sort((a, b) => (a.item.price < b.item.price ? 1 : -1));
+    if (event.target.value === "lPrice")
+      _items = items.sort((a, b) => (a.item.price > b.item.price ? 1 : -1));
+
+    setItems(_items);
+    handlePageChange(1);
+  }
+
   useEffect(() => {
-    api.getHomeItems().then((res) => {
-      console.log(res.body);
-      setItems(res.body);
-      setPaginatedItems(res.body.slice(0, 20));
-      setContentLoaded(true);
-    });
+    api
+      .getHomeItems()
+      .then((res) => {
+        setIsError(false);
+        setItems(res.body);
+        setPaginatedItems(res.body.slice(0, 20));
+        setContentLoaded(true);
+      })
+      .catch((error) => {
+        setIsError(true);
+      });
   }, []);
 
   return (
@@ -73,7 +95,7 @@ function HomeItems() {
           </Col>
           <Col>
             <br />
-            <SortDropdown itemCount={false} />
+            <SortDropdown itemCount={false} onChange={sortItems} />
           </Col>
         </Row>
       </Container>
@@ -83,45 +105,44 @@ function HomeItems() {
             <Col>
               <Row>
                 {paginatedItems.map((x, i) => (
-                  <React.Fragment key={i}>
-                    <Col xs={12} sm={6} md={4} lg={3}>
-                      <Link to={"/item/" + x.id}>
-                        {validateImage(x.images.split(";")[0])}
-                        <span className="item-name">{x.title}</span>
-                        <Badge className={"bg-" + x.subCategory.category.id}>
-                          {x.subCategory.category.name}
-                        </Badge>{" "}
-                        <span className="small">
-                          Par Mehdi | <FontAwesomeIcon icon={faClock} />{" "}
-                          {format(new Date(x.addedTime), "dd MMMM yyyy", {
-                            locale: fr,
-                          })}{" "}
-                          | <FontAwesomeIcon icon={faComment} />{" "}
-                          {x.itemFeedbacks.length}
-                        </span>
-                        <span className="price-info blue">
-                          {x.price && x.price !== 0 && (
-                            <>
-                              {" "}
-                              <FontAwesomeIcon icon={faCoins} /> {x.price} TND
-                              &nbsp;&nbsp; &nbsp;
-                            </>
-                          )}
-                          {x.exchange && (
-                            <>
-                              <FontAwesomeIcon icon={faExchangeAlt} />
-                              &nbsp; Echange
-                            </>
-                          )}
-                        </span>
-                        <p className="item-description d-none d-lg-block">
-                          {x.description.substr(0, 100)} [...]
-                        </p>
-                        <br className="d-block d-lg-none" />
-                        <br className="d-block d-lg-none" />
-                      </Link>
-                    </Col>
-                  </React.Fragment>
+                  <Col xs={12} sm={6} md={4} lg={3} key={i}>
+                    <Link to={"/item/" + x.item.id}>
+                      {validateImage(x.item.images.split(";")[0])}
+                      <span className="item-name">{x.item.title}</span>
+                      <Badge className={"bg-" + x.item.subCategory.category.id}>
+                        {x.item.subCategory.category.name}
+                      </Badge>{" "}
+                      <span className="small">
+                        Par {x.user.firstName} |{" "}
+                        <FontAwesomeIcon icon={faClock} />{" "}
+                        {format(new Date(x.item.addedTime), "dd MMMM yyyy", {
+                          locale: fr,
+                        })}{" "}
+                        | <FontAwesomeIcon icon={faComment} />{" "}
+                        {x.item.itemFeedbacks.length}
+                      </span>
+                      <span className="price-info blue">
+                        {x.item.price && x.item.price !== 0 && (
+                          <>
+                            {" "}
+                            <FontAwesomeIcon icon={faCoins} /> {x.item.price}{" "}
+                            TND &nbsp;&nbsp; &nbsp;
+                          </>
+                        )}
+                        {x.item.exchange && (
+                          <>
+                            <FontAwesomeIcon icon={faExchangeAlt} />
+                            &nbsp; Echange
+                          </>
+                        )}
+                      </span>
+                      <p className="item-description d-none d-lg-block">
+                        {x.item.description.substr(0, 100)} [...]
+                      </p>
+                      <br className="d-block d-lg-none" />
+                      <br className="d-block d-lg-none" />
+                    </Link>
+                  </Col>
                 ))}
               </Row>
             </Col>
@@ -141,6 +162,8 @@ function HomeItems() {
           </Row>
         </Container>
       )}
+
+      {isError && <Error />}
     </>
   );
 }

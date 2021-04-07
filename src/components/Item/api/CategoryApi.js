@@ -6,3 +6,10 @@ export function getCategory(id) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function getItemsByCategory(id) {
+  return fetch(baseUrl + "/item/getItemsByCategory/" + id, {
+    method: "GET",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

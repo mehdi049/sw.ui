@@ -356,6 +356,12 @@ textarea.form-control {
   border-radius: 100px;
 }
 
+.alert-danger {
+  background-color: #c33223;
+  border-color: none;
+  color: #fff;
+}
+
 /** end bootstrap override **/
 
 /** toast **/
