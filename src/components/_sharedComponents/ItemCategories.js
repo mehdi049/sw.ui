@@ -9,10 +9,6 @@ function ItemCategories(props) {
 
   function handleCategoryChange(event) {
     setCategory(event.target.value);
-    console.log(
-      categories.find((x) => x.id === parseInt(event.target.value))
-        .subCategories
-    );
   }
 
   useEffect(() => {

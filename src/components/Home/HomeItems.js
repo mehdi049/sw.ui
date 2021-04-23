@@ -118,8 +118,9 @@ function HomeItems() {
                         {format(new Date(x.item.addedTime), "dd MMMM yyyy", {
                           locale: fr,
                         })}{" "}
-                        | <FontAwesomeIcon icon={faComment} />{" "}
+                        {/*   | <FontAwesomeIcon icon={faComment} />{" "}
                         {x.item.itemFeedbacks.length}
+                        */}
                       </span>
                       <span className="price-info blue">
                         {x.item.price && x.item.price !== 0 && (

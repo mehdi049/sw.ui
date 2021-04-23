@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import CityDropDown from "../../_sharedComponents/DropDowns/CityDropDown";
 
@@ -21,24 +21,64 @@ function LeftSideFilter(props) {
       <br />
       <br className="d-none d-md-block" />
       <h3>Emplacement</h3>
-      <CityDropDown all={true} />
+      <CityDropDown
+        all={true}
+        onCityChange={props.onCityChange}
+        onRegionChange={props.onRegionChange}
+        cityValue={props.activeCityFilter}
+        regionValue={props.activeRegionFilter}
+      />
       <br />
+      <br className="d-none d-md-block" />
       <h3>Condition</h3>
-      <Form.Check type="checkbox" label="Neuf" className="dark-gray" />
-      <Form.Check type="checkbox" label="Occasion" className="dark-gray" />
+      <Form.Check
+        type="radio"
+        label="Tout"
+        value=""
+        className="dark-gray"
+        checked={props.conditionFilter === ""}
+        onChange={props.onConditionFilterChange}
+      />
+      <Form.Check
+        type="radio"
+        label="Neuf"
+        value="2"
+        className="dark-gray"
+        checked={props.conditionFilter === "2"}
+        onChange={props.onConditionFilterChange}
+      />
+      <Form.Check
+        type="radio"
+        label="Occasion"
+        value="1"
+        className="dark-gray"
+        checked={props.conditionFilter === "1"}
+        onChange={props.onConditionFilterChange}
+      />
       <br />
+      <br className="d-none d-md-block" />
       <h3>Prix</h3>
       <InputGroup className="mb-2 mr-sm-2">
-        <Form.Control type="text" placeholder="min" />
+        <Form.Control
+          type="number"
+          placeholder="min"
+          value={props.minPriceFilter}
+          onChange={props.onMinPriceFilterChange}
+        />
         <InputGroup.Append className="white">
-          <InputGroup.Text>Dt</InputGroup.Text>
+          <InputGroup.Text>TND</InputGroup.Text>
         </InputGroup.Append>
       </InputGroup>
 
       <InputGroup className="mb-2 mr-sm-2">
-        <Form.Control type="text" placeholder="max" />
+        <Form.Control
+          type="number"
+          placeholder="max"
+          value={props.maxPriceFilter}
+          onChange={props.onMaxPriceFilterChange}
+        />
         <InputGroup.Append className="white">
-          <InputGroup.Text>Dt</InputGroup.Text>
+          <InputGroup.Text>TND</InputGroup.Text>
         </InputGroup.Append>
       </InputGroup>
     </div>

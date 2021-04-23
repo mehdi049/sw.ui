@@ -17,7 +17,6 @@ function HeaderCategories(props) {
 
   useEffect(() => {
     api.getCategories().then((res) => {
-      console.log(res.body);
       setCategories(res.body);
     });
   }, []);

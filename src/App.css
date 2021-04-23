@@ -501,6 +501,11 @@ img#logo {
 
 /** home **/
 
+.item .small {
+  line-height: 15px;
+  display: block;
+}
+
 .carousel-control-next,
 .carousel-control-prev {
   opacity: 1;
@@ -1030,6 +1035,10 @@ table .dash-separation {
     opacity: 1;
     animation-name: openFilter;
     animation-duration: 1s;
+  }
+
+  #sidebar-left .dash-separation {
+    cursor: pointer;
   }
 
   @keyframes openFilter {
