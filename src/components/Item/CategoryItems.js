@@ -51,6 +51,14 @@ function CategoryItems(props) {
   );
   /** /filter hooks */
 
+  function closeFilter() {
+    setActiveMenu(false);
+  }
+
+  function openFilter() {
+    if (!activeMenu) setActiveMenu(true);
+  }
+
   function handlePageChange(pageNumber, dataToPaginate) {
     if (!dataToPaginate) dataToPaginate = itemsToPaginate;
 
@@ -250,10 +258,7 @@ function CategoryItems(props) {
                       : activeSubCategoryName}
                     <br />
                     <br className="d-none d-md-block" />
-                    <div
-                      className="d-block d-md-none"
-                      onClick={() => setActiveMenu(!activeMenu)}
-                    >
+                    <div className="d-block d-md-none" onClick={openFilter}>
                       <br />
                       <p className="pointer category-filter-bar">
                         <FontAwesomeIcon icon={faFilter} /> &nbsp; Filtrer
@@ -265,6 +270,7 @@ function CategoryItems(props) {
                           activeSubCategoryId={activeSubCategoryId}
                           onFilterChange={onFilterChange}
                           filter={filter}
+                          onClose={closeFilter}
                         />
                       )}
                     </div>

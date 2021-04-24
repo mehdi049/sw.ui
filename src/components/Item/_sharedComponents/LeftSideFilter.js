@@ -1,10 +1,19 @@
 import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import CityDropDown from "../../_sharedComponents/DropDowns/CityDropDown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 function LeftSideFilter(props) {
   return (
     <div id="sidebar-left">
+      <div className="d-block d-md-none" style={{ float: "right" }}>
+        <FontAwesomeIcon
+          icon={faTimesCircle}
+          onClick={props.onClose}
+          className="pointer dark-blue"
+        />
+      </div>
       <h3>Categories</h3>
       {props.subCategories.map((x) => {
         return (
