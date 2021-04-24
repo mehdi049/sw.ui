@@ -23,10 +23,10 @@ function LeftSideFilter(props) {
       <h3>Emplacement</h3>
       <CityDropDown
         all={true}
-        onCityChange={props.onCityChange}
-        onRegionChange={props.onRegionChange}
-        cityValue={props.activeCityFilter}
-        regionValue={props.activeRegionFilter}
+        onCityChange={props.onFilterChange}
+        onRegionChange={props.onFilterChange}
+        cityValue={props.filter.city}
+        regionValue={props.filter.region}
       />
       <br />
       <br className="d-none d-md-block" />
@@ -35,25 +35,28 @@ function LeftSideFilter(props) {
         type="radio"
         label="Tout"
         value=""
+        name="conditionFilter"
         className="dark-gray"
-        checked={props.conditionFilter === ""}
-        onChange={props.onConditionFilterChange}
+        checked={props.filter.conditionFilter === ""}
+        onChange={props.onFilterChange}
       />
       <Form.Check
         type="radio"
         label="Neuf"
         value="2"
+        name="conditionFilter"
         className="dark-gray"
-        checked={props.conditionFilter === "2"}
-        onChange={props.onConditionFilterChange}
+        checked={props.filter.conditionFilter === "2"}
+        onChange={props.onFilterChange}
       />
       <Form.Check
         type="radio"
         label="Occasion"
         value="1"
+        name="conditionFilter"
         className="dark-gray"
-        checked={props.conditionFilter === "1"}
-        onChange={props.onConditionFilterChange}
+        checked={props.filter.conditionFilter === "1"}
+        onChange={props.onFilterChange}
       />
       <br />
       <br className="d-none d-md-block" />
@@ -62,8 +65,9 @@ function LeftSideFilter(props) {
         <Form.Control
           type="number"
           placeholder="min"
-          value={props.minPriceFilter}
-          onChange={props.onMinPriceFilterChange}
+          name="minPriceFilter"
+          value={props.filter.minPriceFilter}
+          onChange={props.onFilterChange}
         />
         <InputGroup.Append className="white">
           <InputGroup.Text>TND</InputGroup.Text>
@@ -74,8 +78,9 @@ function LeftSideFilter(props) {
         <Form.Control
           type="number"
           placeholder="max"
-          value={props.maxPriceFilter}
-          onChange={props.onMaxPriceFilterChange}
+          name="maxPriceFilter"
+          value={props.filter.maxPriceFilter}
+          onChange={props.onFilterChange}
         />
         <InputGroup.Append className="white">
           <InputGroup.Text>TND</InputGroup.Text>

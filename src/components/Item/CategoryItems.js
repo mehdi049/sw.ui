@@ -42,21 +42,13 @@ function CategoryItems(props) {
     localStorage.getItem("categoryFilter") !== null
       ? JSON.parse(localStorage.getItem("categoryFilter"))
       : {
-          activeCityFilter: "",
-          activeRegionFilter: "",
+          city: "",
+          region: "",
           conditionFilter: "",
           minPriceFilter: "",
           maxPriceFilter: "",
         }
   );
-
-  const [activeCityFilter, setActiveCityFilter] = useState("");
-  const [activeRegionFilter, setActiveRegionFilter] = useState("");
-
-  const [conditionFilter, setConditionFilter] = useState("");
-
-  const [minPriceFilter, setMinPriceFilter] = useState("");
-  const [maxPriceFilter, setMaxPriceFilter] = useState("");
   /** /filter hooks */
 
   function handlePageChange(pageNumber, dataToPaginate) {
@@ -67,11 +59,10 @@ function CategoryItems(props) {
     setPaginatedItems(dataToPaginate.slice(pStart, pStart + 6));
   }
 
+  /** get item categories */
   function handleCategoryChange(id) {
     setActiveSubCategoryId("");
     setActiveSubCategoryName("");
-    setActiveCityFilter("");
-    setActiveRegionFilter("");
     setSubCategoryLoading(false);
     api.getCategory(id).then((res) => {
       setCategory(res.body);
@@ -81,16 +72,21 @@ function CategoryItems(props) {
       .getItemsByCategory(id)
       .then((res) => {
         setIsError(false);
-        setItems(res.body);
-        handlePageChange(1, res.body);
-        setItemsToPaginate(res.body);
-        setItemCount(res.body.length);
+        let _items = res.body;
+        if (localStorage.getItem("categoryFilter") !== null)
+          _items = applyFilter(_items, filter);
+
+        setItems(_items);
+        handlePageChange(1, _items);
+        setItemsToPaginate(_items);
+        setItemCount(_items.length);
         setContentLoaded(true);
       })
       .catch((error) => {
         setIsError(true);
       });
   }
+  /** /get item categories */
 
   /** filter functions */
 
@@ -104,270 +100,97 @@ function CategoryItems(props) {
       setActiveSubCategoryId("");
       setActiveSubCategoryName("");
     } else if (name.length > 0)
-      _items = _items.filter((x) => x.item.subCategoryId === id);
+      _items = _items.filter((x) => x.item.subCategoryId === parseInt(id));
 
-    if (activeCityFilter.length > 0)
-      _items = _items.filter((x) => x.user.city === activeCityFilter);
-
-    if (activeRegionFilter.length > 0)
-      _items = _items.filter((x) => x.user.region === activeRegionFilter);
-
-    if (conditionFilter !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(conditionFilter)
-      );
-
-    if (
-      (minPriceFilter !== "" &&
-        maxPriceFilter !== "" &&
-        parseFloat(minPriceFilter) <= maxPriceFilter) ||
-      (minPriceFilter !== "" && maxPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price >= parseFloat(minPriceFilter)
-      );
-    if (
-      (maxPriceFilter !== "" &&
-        minPriceFilter !== "" &&
-        parseFloat(maxPriceFilter) >= minPriceFilter) ||
-      (maxPriceFilter !== "" && minPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price <= parseFloat(maxPriceFilter)
-      );
+    _items = applyFilter(_items, filter);
 
     setItemCount(_items.length);
     handlePageChange(1, _items);
     setItemsToPaginate(_items);
   }
 
-  function onCityChange(event) {
-    let _items = items;
+  function onFilterChange(event) {
+    const _filter = {
+      ...filter,
+      [event.target.name]: event.target.value,
+    };
+    setFilter(_filter);
+    if (_filter.city === "") _filter.region = "";
+    let _items = applyFilter(items, _filter, true);
 
-    if (activeSubCategoryName.length > 0)
-      _items = _items.filter(
-        (x) => x.item.subCategoryId === activeSubCategoryId
-      );
+    localStorage.setItem("categoryFilter", JSON.stringify(_filter));
 
-    if (event.target.value.length > 0)
-      _items = _items.filter((x) => x.user.city === event.target.value);
-    else setActiveRegionFilter("");
-
-    if (activeRegionFilter.length > 0)
-      _items = _items.filter((x) => x.user.region === activeRegionFilter);
-
-    if (conditionFilter !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(conditionFilter)
-      );
-
-    if (
-      (minPriceFilter !== "" &&
-        maxPriceFilter !== "" &&
-        parseFloat(minPriceFilter) <= maxPriceFilter) ||
-      (minPriceFilter !== "" && maxPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price >= parseFloat(minPriceFilter)
-      );
-    if (
-      (maxPriceFilter !== "" &&
-        minPriceFilter !== "" &&
-        parseFloat(maxPriceFilter) >= minPriceFilter) ||
-      (maxPriceFilter !== "" && minPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price <= parseFloat(maxPriceFilter)
-      );
-
-    setActiveCityFilter(event.target.value);
     setItemCount(_items.length);
     handlePageChange(1, _items);
     setItemsToPaginate(_items);
   }
 
-  function onRegionChange(event) {
-    let _items = items;
+  function applyFilter(items, filter, ignoreSubCategoryFilter = false) {
+    if (ignoreSubCategoryFilter && activeSubCategoryName.length > 0)
+      items = items.filter((x) => x.item.subCategoryId === activeSubCategoryId);
 
-    if (activeSubCategoryName.length > 0)
-      _items = _items.filter(
-        (x) => x.item.subCategoryId === activeSubCategoryId
-      );
+    if (filter.city.length > 0)
+      items = items.filter((x) => x.user.city === filter.city);
 
-    if (activeCityFilter.length > 0)
-      _items = _items.filter((x) => x.user.city === activeCityFilter);
+    if (filter.region.length > 0)
+      items = items.filter((x) => x.user.region === filter.region);
 
-    if (event.target.value.length > 0)
-      _items = _items.filter((x) => x.user.region === event.target.value);
-
-    if (conditionFilter !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(conditionFilter)
+    if (filter.conditionFilter !== "")
+      items = items.filter(
+        (x) => x.item.condition.id === parseInt(filter.conditionFilter)
       );
 
     if (
-      (minPriceFilter !== "" &&
-        maxPriceFilter !== "" &&
-        parseFloat(minPriceFilter) <= maxPriceFilter) ||
-      (minPriceFilter !== "" && maxPriceFilter === "")
+      (filter.minPriceFilter !== "" &&
+        filter.maxPriceFilter !== "" &&
+        parseFloat(filter.minPriceFilter) <= filter.maxPriceFilter) ||
+      (filter.minPriceFilter !== "" && filter.maxPriceFilter === "")
     )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price >= parseFloat(minPriceFilter)
-      );
-    if (
-      (maxPriceFilter !== "" &&
-        minPriceFilter !== "" &&
-        parseFloat(maxPriceFilter) >= minPriceFilter) ||
-      (maxPriceFilter !== "" && minPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price <= parseFloat(maxPriceFilter)
-      );
-
-    setActiveRegionFilter(event.target.value);
-    setItemCount(_items.length);
-    handlePageChange(1, _items);
-    setItemsToPaginate(_items);
-  }
-
-  function onConditionFilterChange(event) {
-    let _items = items;
-
-    if (activeSubCategoryName.length > 0)
-      _items = _items.filter(
-        (x) => x.item.subCategoryId === activeSubCategoryId
-      );
-
-    if (activeCityFilter.length > 0)
-      _items = _items.filter((x) => x.user.city === activeCityFilter);
-
-    if (activeRegionFilter.length > 0)
-      _items = _items.filter((x) => x.user.region === activeRegionFilter);
-
-    if (event.target.value !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(event.target.value)
-      );
-
-    if (
-      (minPriceFilter !== "" &&
-        maxPriceFilter !== "" &&
-        parseFloat(minPriceFilter) <= maxPriceFilter) ||
-      (minPriceFilter !== "" && maxPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price >= parseFloat(minPriceFilter)
-      );
-    if (
-      (maxPriceFilter !== "" &&
-        minPriceFilter !== "" &&
-        parseFloat(maxPriceFilter) >= minPriceFilter) ||
-      (maxPriceFilter !== "" && minPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price <= parseFloat(maxPriceFilter)
-      );
-
-    setConditionFilter(event.target.value);
-    setItemCount(_items.length);
-    handlePageChange(1, _items);
-    setItemsToPaginate(_items);
-  }
-
-  function onMinPriceFilterChange(event) {
-    let _items = items;
-
-    if (activeSubCategoryName.length > 0)
-      _items = _items.filter(
-        (x) => x.item.subCategoryId === activeSubCategoryId
-      );
-
-    if (activeCityFilter.length > 0)
-      _items = _items.filter((x) => x.user.city === activeCityFilter);
-
-    if (activeRegionFilter.length > 0)
-      _items = _items.filter((x) => x.user.region === activeRegionFilter);
-
-    if (conditionFilter !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(conditionFilter)
-      );
-
-    if (
-      (event.target.value !== "" &&
-        maxPriceFilter !== "" &&
-        parseFloat(event.target.value) <= maxPriceFilter) ||
-      (event.target.value !== "" && maxPriceFilter === "")
-    )
-      _items = _items.filter(
+      items = items.filter(
         (x) =>
           x.item.price !== null &&
-          x.item.price >= parseFloat(event.target.value)
+          x.item.price >= parseFloat(filter.minPriceFilter)
       );
-    if (maxPriceFilter !== "")
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price <= parseFloat(maxPriceFilter)
-      );
-
-    setMinPriceFilter(event.target.value);
-    setItemCount(_items.length);
-    handlePageChange(1, _items);
-    setItemsToPaginate(_items);
-  }
-
-  function onMaxPriceFilterChange(event) {
-    let _items = items;
-
-    if (activeSubCategoryName.length > 0)
-      _items = _items.filter(
-        (x) => x.item.subCategoryId === activeSubCategoryId
-      );
-
-    if (activeCityFilter.length > 0)
-      _items = _items.filter((x) => x.user.city === activeCityFilter);
-
-    if (activeRegionFilter.length > 0)
-      _items = _items.filter((x) => x.user.region === activeRegionFilter);
-
-    if (conditionFilter !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(conditionFilter)
-      );
-
-    if (minPriceFilter !== "")
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price >= parseFloat(minPriceFilter)
-      );
-
     if (
-      (event.target.value !== "" &&
-        minPriceFilter !== "" &&
-        parseFloat(event.target.value) >= minPriceFilter) ||
-      (event.target.value !== "" && minPriceFilter === "")
+      (filter.maxPriceFilter !== "" &&
+        filter.minPriceFilter !== "" &&
+        parseFloat(filter.maxPriceFilter) >= filter.minPriceFilter) ||
+      (filter.maxPriceFilter !== "" && filter.minPriceFilter === "")
     )
-      _items = _items.filter(
+      items = items.filter(
         (x) =>
           x.item.price !== null &&
-          x.item.price <= parseFloat(event.target.value)
+          x.item.price <= parseFloat(filter.maxPriceFilter)
       );
 
-    setMaxPriceFilter(event.target.value);
-    setItemCount(_items.length);
-    handlePageChange(1, _items);
-    setItemsToPaginate(_items);
+    return items;
   }
 
   /** /filter functions */
+
+  /** sort items */
+  function sortItems(event) {
+    let _items = items;
+    if (event.target.value === "newest")
+      _items = _items.sort((a, b) =>
+        a.item.addedTime < b.item.addedTime ? 1 : -1
+      );
+    if (event.target.value === "hPrice")
+      _items = _items.sort((a, b) => (a.item.price < b.item.price ? 1 : -1));
+    if (event.target.value === "lPrice")
+      _items = _items.sort((a, b) => (a.item.price > b.item.price ? 1 : -1));
+
+    if (activeSubCategoryName.length > 0)
+      _items = _items.filter(
+        (x) => x.item.subCategoryId === activeSubCategoryId
+      );
+
+    _items = applyFilter(_items, filter, true);
+
+    handlePageChange(1, _items);
+    setItemsToPaginate(_items);
+  }
+  /** /sort items */
 
   function validateImage(imgPath) {
     try {
@@ -394,59 +217,6 @@ function CategoryItems(props) {
     }
   }
 
-  function sortItems(event) {
-    let _items = items;
-    if (event.target.value === "newest")
-      _items = _items.sort((a, b) =>
-        a.item.addedTime < b.item.addedTime ? 1 : -1
-      );
-    if (event.target.value === "hPrice")
-      _items = _items.sort((a, b) => (a.item.price < b.item.price ? 1 : -1));
-    if (event.target.value === "lPrice")
-      _items = _items.sort((a, b) => (a.item.price > b.item.price ? 1 : -1));
-
-    if (activeSubCategoryName.length > 0)
-      _items = _items.filter(
-        (x) => x.item.subCategoryId === activeSubCategoryId
-      );
-
-    if (activeCityFilter.length > 0)
-      _items = _items.filter((x) => x.user.city === activeCityFilter);
-
-    if (activeRegionFilter.length > 0)
-      _items = _items.filter((x) => x.user.region === activeRegionFilter);
-
-    if (conditionFilter !== "")
-      _items = _items.filter(
-        (x) => x.item.condition.id === parseInt(conditionFilter)
-      );
-
-    if (
-      (minPriceFilter !== "" &&
-        maxPriceFilter !== "" &&
-        parseFloat(minPriceFilter) <= maxPriceFilter) ||
-      (minPriceFilter !== "" && maxPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price >= parseFloat(minPriceFilter)
-      );
-
-    if (
-      (maxPriceFilter !== "" &&
-        minPriceFilter !== "" &&
-        parseFloat(maxPriceFilter) >= minPriceFilter) ||
-      (maxPriceFilter !== "" && minPriceFilter === "")
-    )
-      _items = _items.filter(
-        (x) =>
-          x.item.price !== null && x.item.price <= parseFloat(maxPriceFilter)
-      );
-
-    handlePageChange(1, _items);
-    setItemsToPaginate(_items);
-  }
-
   useEffect(() => {
     handleCategoryChange(props.match.params.id);
   }, []);
@@ -463,21 +233,13 @@ function CategoryItems(props) {
                 subCategories={category.subCategories}
                 subCategoriesOnChange={handleSubCategoryFilter}
                 activeSubCategoryId={activeSubCategoryId}
-                onCityChange={onCityChange}
-                onRegionChange={onRegionChange}
-                cityValue={activeCityFilter}
-                regionValue={activeRegionFilter}
-                conditionFilter={conditionFilter}
-                onConditionFilterChange={onConditionFilterChange}
-                minPriceFilter={minPriceFilter}
-                onMinPriceFilterChange={onMinPriceFilterChange}
-                maxPriceFilter={maxPriceFilter}
-                onMaxPriceFilterChange={onMaxPriceFilterChange}
+                onFilterChange={onFilterChange}
+                filter={filter}
               />
             )}
           </Col>
           <Col md={9}>
-            {category !== null && contentLoaded && (
+            {category && contentLoaded && (
               <>
                 <Row>
                   <Col xs={12} md={7} xl={8}>
@@ -501,16 +263,8 @@ function CategoryItems(props) {
                           subCategories={category.subCategories}
                           subCategoriesOnChange={handleSubCategoryFilter}
                           activeSubCategoryId={activeSubCategoryId}
-                          onCityChange={onCityChange}
-                          onRegionChange={onRegionChange}
-                          cityValue={activeCityFilter}
-                          regionValue={activeRegionFilter}
-                          conditionFilter={conditionFilter}
-                          onConditionFilterChange={onConditionFilterChange}
-                          minPriceFilter={minPriceFilter}
-                          onMinPriceFilterChange={onMinPriceFilterChange}
-                          maxPriceFilter={maxPriceFilter}
-                          onMaxPriceFilterChange={onMaxPriceFilterChange}
+                          onFilterChange={onFilterChange}
+                          filter={filter}
                         />
                       )}
                     </div>
