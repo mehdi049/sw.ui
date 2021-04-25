@@ -13,3 +13,10 @@ export function getItemsByCategory(id) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function getItemById(id) {
+  return fetch(baseUrl + "/item/getItem/" + id, {
+    method: "GET",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Row, Col, Form } from "react-bootstrap";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import { Row, Col, Form, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
-function CommentSection() {
+function CommentSection(props) {
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
@@ -11,45 +13,76 @@ function CommentSection() {
     localStorage.getItem("user") !== null
   );
 
+  function validateProfileImage(profile, className) {
+    try {
+      return (
+        <Image
+          src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
+            profile.picture)}
+          alt={profile.firstName}
+          className={className}
+          roundedCircle
+        />
+      );
+    } catch (err) {
+      return profile.gender === "m" ? (
+        <Image
+          src={"/images/default_m.png"}
+          alt={profile.firstName}
+          className={className}
+          roundedCircle
+        />
+      ) : (
+        <Image
+          src={"/images/not-default_f.png"}
+          alt={profile.firstName}
+          className={className}
+          roundedCircle
+        />
+      );
+    }
+  }
+
   return (
     <>
       <Row>
         <Col>
-          <h3>3 commentaires</h3>
+          {props.itemFeedbacks.length < 2 ? (
+            <h3>{props.itemFeedbacks.length} commentaire</h3>
+          ) : (
+            <h3>{props.itemFeedbacks.length} commentaires</h3>
+          )}
         </Col>
       </Row>
-      {[...Array(3)].map((x, i) => (
-        <Row className="comment-section" key={i}>
+      {props.itemFeedbacks.map((x) => (
+        <Row className="comment-section" key={x.id}>
           <Col xs={3} sm={2} xl={1}>
-            <img
-              src={require("../../../images/avatars/default_m.png")}
-              className="profile-img"
-              alt=""
-            />
+            {validateProfileImage(x.user, "profile-img")}
           </Col>
           <Col xs={9} sm={10} xl={11}>
-            <span className="dark-gray">Mehdi Marouani </span> |{" "}
+            <span className="dark-gray">
+              {x.user.firstName} {x.user.lastName}{" "}
+            </span>{" "}
+            |{" "}
             <span className="small">
-              <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 15:30
+              <FontAwesomeIcon icon={faClock} />{" "}
+              {format(new Date(x.addedTime), "dd MMMM yyyy hh:mm", {
+                locale: fr,
+              })}
             </span>
-            <p className="comment-text">
-              Super Fast Charging: Charge up quicker with Super Fast Charge so
-              you can keep moving with more juice
-            </p>
+            <p className="comment-text">{x.feedback}</p>
           </Col>
         </Row>
       ))}
       {isAuthenticated && (
         <Row className="comment-section">
           <Col xs={3} sm={2} xl={1}>
-            <img
-              src={require("../../../images/avatars/default_m.png")}
-              className="profile-img"
-              alt=""
-            />
+            {validateProfileImage(userInfo, "profile-img")}
           </Col>
           <Col xs={9} sm={10} xl={11}>
-            <span className="dark-gray">Mehdi Marouani </span>
+            <span className="dark-gray">
+              {userInfo.firstName} {userInfo.lastName}{" "}
+            </span>
             <Form.Control as="textarea" rows="2" />
           </Col>
         </Row>

@@ -1,5 +1,5 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Row, Col, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapMarker,
@@ -7,57 +7,93 @@ import {
   faExchangeAlt,
   faEye,
   faHeart,
-  faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-function ItemProfileInfoSection() {
+function ItemProfileInfoSection(props) {
+  const [profile, setProfile] = useState(props.profile);
+
+  function validateProfileImage(profile, className) {
+    if (profile)
+      try {
+        return (
+          <Image
+            src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
+              profile.picture)}
+            alt={profile.firstName}
+            className={className}
+            roundedCircle
+          />
+        );
+      } catch (err) {
+        return profile.gender === "m" ? (
+          <Image
+            src={"/images/default_m.png"}
+            alt={profile.firstName}
+            className={className}
+            roundedCircle
+          />
+        ) : (
+          <Image
+            src={"/images/default_f.png"}
+            alt={profile.firstName}
+            className={className}
+            roundedCircle
+          />
+        );
+      }
+  }
+
   return (
     <>
-      <Row>
-        <Col xs={3} sm={2} md={12}>
-          <img
-            src={require("../../../images/avatars/default_m.png")}
-            className="profile-img"
-            alt=""
-          />
-          <span className="dark-gray profile-info-text d-none d-md-inline">
-            &nbsp; Mehdi Marouani
-          </span>
-        </Col>
-        <Col xs={9} sm={10} md={12}>
-          <br className="d-none d-md-inline" />
-          <p className="dark-gray profile-info-text d-block d-sm-inline d-md-none">
-            Mehdi Marouani
-          </p>
-          <p className="profile-info-text">
-            <FontAwesomeIcon icon={faMapMarker} className="blue" /> &nbsp;
-            Bizerte, Bizerte nord
-          </p>
-          <p>
-            <FontAwesomeIcon icon={faPhoneAlt} className="blue" /> &nbsp; +216
-            25 447 885
-          </p>
-
-          <div className="d-none d-md-block">
-            <p>
-              <FontAwesomeIcon icon={faExchangeAlt} className="blue" /> &nbsp; a
-              échangé 8 articles
+      {profile && (
+        <Row>
+          <Col xs={3} sm={2} md={12}>
+            {validateProfileImage(profile, "profile-img")}
+            <span className="dark-gray profile-info-text d-none d-md-inline">
+              &nbsp; {profile.firstName} {profile.lastName}
+            </span>
+          </Col>
+          <Col xs={9} sm={10} md={12}>
+            <br className="d-none d-md-inline" />
+            <p className="dark-gray profile-info-text d-block d-sm-inline d-md-none">
+              {profile.firstName} {profile.lastName}
             </p>
-            <br />
-            <FontAwesomeIcon icon={faEye} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">118</span> fois
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faHeart} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">12</span>{" "}
-            personnes
-            <br />
-            <br />
-            <FontAwesomeIcon icon={faSyncAlt} className="blue" />
-            &nbsp;&nbsp; <span className="bold big dark-blue">3</span> en cours
-          </div>
-        </Col>
-      </Row>
+            <p className="profile-info-text">
+              <FontAwesomeIcon icon={faMapMarker} className="blue" /> &nbsp;
+              {profile.city}, {profile.region}
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faPhoneAlt} className="blue" /> &nbsp; +216
+              {profile.phoneNumber}
+            </p>
+
+            <div className="d-none d-md-block">
+              <p>
+                <FontAwesomeIcon icon={faExchangeAlt} className="blue" /> &nbsp;
+                a échangé {props.profile.exchangesDoneCount} article(s)
+              </p>
+              <br />
+              {props.seen > 0 && (
+                <>
+                  <FontAwesomeIcon icon={faEye} className="blue" />
+                  &nbsp;&nbsp;{" "}
+                  <span className="bold big dark-blue">{props.seen}</span> fois
+                  <br />
+                  <br />
+                </>
+              )}
+              {props.likes > 0 && (
+                <>
+                  <FontAwesomeIcon icon={faHeart} className="blue" />
+                  &nbsp;&nbsp;{" "}
+                  <span className="bold big dark-blue">{props.likes}</span>{" "}
+                  personnes
+                </>
+              )}
+            </div>
+          </Col>
+        </Row>
+      )}
     </>
   );
 }
