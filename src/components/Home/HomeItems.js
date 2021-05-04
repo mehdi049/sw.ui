@@ -11,7 +11,7 @@ import {
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "react-js-pagination";
-import SortDropdown from "../_sharedComponents/SortDropdown";
+import SortDropdown from "../_sharedComponents/DropDowns/SortDropdown";
 import * as api from "./api/ItemApi";
 import Error from "../_sharedComponents/Error";
 

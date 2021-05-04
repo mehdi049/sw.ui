@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Accordion, Container, Row, Col, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,8 +7,17 @@ import {
   faCalendarAlt,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from "react-router";
 
 function MyNotifications() {
+  const [userInfo, setUserInfo] = useState(
+    localStorage.getItem("user") !== null
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+
+  if (userInfo === null) return <Redirect to="/" />;
+
   return (
     <>
       <br />

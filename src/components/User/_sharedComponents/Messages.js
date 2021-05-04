@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
+import { Redirect } from "react-router";
 
 function Messages() {
+  const [userInfo, setUserInfo] = useState(
+    localStorage.getItem("user") !== null
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+
+  if (userInfo === null) return <Redirect to="/" />;
+
   return (
     <>
       <div id="conversation-area">

@@ -574,7 +574,8 @@ img#logo {
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
+  /*background-size: cover;*/
 }
 
 .item-img-container-sm {
@@ -582,7 +583,8 @@ img#logo {
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
+  /*background-size: cover;*/
 }
 
 .item-name {
@@ -630,14 +632,16 @@ img#logo {
   height: 400px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
+  /*background-size: cover;*/
 }
 
 .item-detail-img-container-sm {
   height: 195px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
+  /*background-size: cover;*/
 }
 
 .comment-section {
@@ -847,8 +851,14 @@ table .dash-separation {
 /** end item **/
 
 /** multi image upload **/
-.multi-preview img {
+.multi-preview div {
   max-width: 18%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.multi-preview img {
+  max-width: 100%;
 }
 /** end multi image upload **/
 

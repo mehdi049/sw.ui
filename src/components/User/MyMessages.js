@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import { Redirect } from "react-router";
 import Messages from "./_sharedComponents/Messages";
 
 function MyMessages() {
+  const [userInfo, setUserInfo] = useState(
+    localStorage.getItem("user") !== null
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+
+  if (userInfo === null) return <Redirect to="/" />;
+
   return (
     <>
       <br />

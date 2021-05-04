@@ -14,7 +14,7 @@ import {
 import HeaderCategories from "../_sharedComponents/HeaderCategories";
 import LeftSideFilter from "./_sharedComponents/LeftSideFilter";
 import Pagination from "react-js-pagination";
-import SortDropdown from "../_sharedComponents/SortDropdown";
+import SortDropdown from "../_sharedComponents/DropDowns/SortDropdown";
 import * as api from "./api/CategoryApi";
 import Error from "../_sharedComponents/Error";
 

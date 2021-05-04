@@ -16,8 +16,15 @@ import { toast } from "react-toastify";
 import * as api from "./api/UserApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from "react-router";
 
 function Profile() {
+  const [userInfo, setUserInfo] = useState(
+    localStorage.getItem("user") !== null
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+
   const [btnSubmitLoading, setBtnSubmitLoading] = useState(false);
   const [btnSubmitImgLoading, setBtnSubmitImgLoading] = useState(false);
   const [isImgLoading, setIsImgLoading] = useState(false);
@@ -29,10 +36,6 @@ function Profile() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const [userInfo, setUserInfo] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
 
   function checkUpdateProfileModel() {
     let emailReg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -95,6 +98,7 @@ function Profile() {
       );
       return;
     }
+
     // < 5mb
     if (userImg.size > 5242880) {
       toast.error(
@@ -154,6 +158,8 @@ function Profile() {
         toast.error("Une erreur s'est produite, veuillez réessayer.");
       });
   }
+
+  if (userInfo === null) return <Redirect to="/" />;
 
   return (
     <>

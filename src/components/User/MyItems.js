@@ -20,11 +20,17 @@ import {
   faCoins,
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import MultipleImageUploadComponent from "../_sharedComponents/MultipleImageUpload";
-import ItemCategories from "../_sharedComponents/ItemCategories";
+import ItemCategories from "../_sharedComponents/DropDowns/ItemCategories";
 
 function MyItems() {
+  const [userInfo, setUserInfo] = useState(
+    localStorage.getItem("user") !== null
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+
   const [showDelete, setShowDelete] = useState(false);
 
   const handleCloseDelete = () => setShowDelete(false);
@@ -34,6 +40,8 @@ function MyItems() {
 
   const handleCloseUpdate = () => setShowUpdate(false);
   const handleShowUpdate = () => setShowUpdate(true);
+
+  if (userInfo === null) return <Redirect to="/" />;
 
   return (
     <>

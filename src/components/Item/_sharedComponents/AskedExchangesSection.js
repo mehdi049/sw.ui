@@ -8,7 +8,7 @@ function AskedExchangesSection() {
   return (
     <Row>
       <Col>
-        <h3>Demandes d'échange</h3>
+        <h3>4 Demandes d'échanges</h3>
         <Row>
           {[...Array(4)].map((x, i) => (
             <React.Fragment key={i}>
@@ -26,7 +26,7 @@ function AskedExchangesSection() {
                 </Link>
               </Col>
               <Col xs={8} lg={4} className="exchange-items">
-                <Badge className="green2-bg">Eléctronique</Badge>&nbsp;
+                <Badge className="bg-3">Eléctronique</Badge>&nbsp;
                 <span className="small">
                   Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22 Aout 2020 |
                   &nbsp;

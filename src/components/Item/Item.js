@@ -47,6 +47,7 @@ function Item(props) {
   const [contentLoaded, setContentLoaded] = useState(false);
 
   const [item, setItem] = useState();
+  const [similarItems, setSimilarItems] = useState([]);
 
   useEffect(() => {
     api
@@ -54,8 +55,12 @@ function Item(props) {
       .then((res) => {
         setIsError(false);
         setItem(res.body);
-        console.log(res.body);
-        setContentLoaded(true);
+        api
+          .getItemsByCategory(res.body.item.subCategory.category.id)
+          .then((similarItemsResult) => {
+            setSimilarItems(similarItemsResult.body);
+            setContentLoaded(true);
+          });
       })
       .catch((error) => {
         setIsError(true);
@@ -255,10 +260,14 @@ function Item(props) {
                 seen={item.item.seen}
                 likes={item.item.likes.length}
               />
-              <br />
-              <br />
-              <br />
-              <SimilarItemsSection />
+              {item.item.seen > 0 && item.item.likes.length > 0 && (
+                <>
+                  <br />
+                  <br />
+                  <br />
+                </>
+              )}
+              <SimilarItemsSection similarItems={similarItems} />
             </Col>
           </Row>
         </Container>
