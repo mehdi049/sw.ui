@@ -24,3 +24,10 @@ export function addItem(item) {
     body: JSON.stringify(item),
   }).then((res) => res.json());
 }
+
+export function getItemsByUser(userId) {
+  return fetch(baseUrl + "/item/getItemsByUser/" + userId, {
+    method: "GET",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

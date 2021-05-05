@@ -12,7 +12,6 @@ import {
 import { Link } from "react-router-dom";
 
 function SimilarItemsSection(props) {
-  console.log(props.similarItems);
   function validateImage(imgPath, className) {
     try {
       return (
@@ -32,6 +31,7 @@ function SimilarItemsSection(props) {
           className={className}
           style={{
             backgroundImage: "url(/images/not-available.jpg)",
+            backgroundSize: "cover",
           }}
         ></div>
       );

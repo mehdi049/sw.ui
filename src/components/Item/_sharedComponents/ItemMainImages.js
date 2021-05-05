@@ -23,6 +23,7 @@ function ItemMainImages(props) {
           className={className}
           style={{
             backgroundImage: "url(/images/not-available.jpg)",
+            backgroundSize: "cover",
           }}
         ></div>
       );

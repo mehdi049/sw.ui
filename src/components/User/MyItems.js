@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import {
   Table,
   Container,
@@ -9,6 +11,7 @@ import {
   Button,
   Form,
   InputGroup,
+  Alert,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,6 +26,10 @@ import {
 import { Link, Redirect } from "react-router-dom";
 import MultipleImageUploadComponent from "../_sharedComponents/MultipleImageUpload";
 import ItemCategories from "../_sharedComponents/DropDowns/ItemCategories";
+import { toast } from "react-toastify";
+import * as api from "./api/ItemApi";
+import Pagination from "react-js-pagination";
+import Error from "../_sharedComponents/Error";
 
 function MyItems() {
   const [userInfo, setUserInfo] = useState(
@@ -30,6 +37,13 @@ function MyItems() {
       ? JSON.parse(localStorage.getItem("user"))
       : null
   );
+  const [isError, setIsError] = useState(false);
+
+  const [addedItems, setAddedItems] = useState([]);
+  const [displayAddedItems, setDisplayAddedItems] = useState(false);
+
+  const [paginatedItems, setPaginatedItems] = useState([]);
+  const [activePage, setActivePage] = useState(1);
 
   const [showDelete, setShowDelete] = useState(false);
 
@@ -41,194 +55,339 @@ function MyItems() {
   const handleCloseUpdate = () => setShowUpdate(false);
   const handleShowUpdate = () => setShowUpdate(true);
 
+  useEffect(() => {
+    if (userInfo.id) {
+      api
+        .getItemsByUser(userInfo.id)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res.body);
+            setAddedItems(res.body);
+            setPaginatedItems(res.body.slice(0, 5));
+            setDisplayAddedItems(true);
+          }
+        })
+        .catch((e) => {
+          setIsError(true);
+        });
+    }
+  }, []);
+
+  function handlePageChange(pageNumber) {
+    setActivePage(pageNumber);
+    const pStart = (pageNumber - 1) * 5;
+    setPaginatedItems(addedItems.slice(pStart, pStart + 5));
+  }
+
+  function validateImage(imgPath, className) {
+    try {
+      return (
+        <div
+          className={className}
+          style={{
+            backgroundImage:
+              "url(" +
+              require(process.env.REACT_APP_ITEM_UPLOAD_PATH + imgPath) +
+              ")",
+          }}
+        ></div>
+      );
+    } catch (err) {
+      return (
+        <div
+          className={className}
+          style={{
+            backgroundImage: "url(/images/not-available.jpg)",
+            backgroundSize: "cover",
+          }}
+        ></div>
+      );
+    }
+  }
+
   if (userInfo === null) return <Redirect to="/" />;
 
   return (
     <>
       <br />
-      <Container>
-        <Row>
-          <Col>
-            <h3>Mes articles</h3>
-            <Table striped bordered responsive id="my-item-table">
-              <thead>
-                <tr>
-                  <th>Article</th>
-                  <th>Demandes d'échange</th>
-                  <th style={{ width: 100 }}></th>
-                </tr>
-              </thead>
-              <tbody>
-                {[...Array(8)].map((x, i) => (
-                  <tr key={i}>
-                    <td>
-                      {[...Array(5)].map((x, j) => (
-                        <div
-                          key={j}
-                          className="item-img-container-sm"
-                          style={{
-                            backgroundImage:
-                              "url(" +
-                              require("../../images/uploads/item1-1.png") +
-                              ")",
-                          }}
-                        ></div>
-                      ))}
-                      <br style={{ clear: "both" }} />
-                      <br style={{ clear: "both" }} />
-                      <Badge className="green2-bg">Eléctronique</Badge>
-                      <span className="small">
-                        &nbsp;&nbsp; <FontAwesomeIcon icon={faClock} /> 22 Aout
-                        2020 | &nbsp;
-                        <FontAwesomeIcon icon={faComment} /> 15
-                      </span>
-                      <p>
-                        <span className="bold blue">Samsung galaxi s20</span>
-                        <span className="price-info blue">
-                          <FontAwesomeIcon icon={faCoins} /> 350 TND
-                          &nbsp;&nbsp;
-                          <span className="d-block d-md-inline">
-                            <FontAwesomeIcon icon={faExchangeAlt} />
-                            &nbsp; Echange
-                          </span>
-                        </span>
-                        With our Guaranteed buy-back offer, we'll cover up to
-                        50% [...]
-                      </p>
-                    </td>
-                    <td>
-                      {[...Array(2)].map((x, j) => (
-                        <div key={j} className="dash-separation">
-                          <Badge className="green2-bg">Eléctronique</Badge>
-                          &nbsp;
+      {isError ? (
+        <Error />
+      ) : (
+        <Container>
+          <Row>
+            <Col>
+              <h3>Mes articles</h3>
+
+              {addedItems.length > 0 ? (
+                <>
+                  <p className="bold blue text-right">
+                    {addedItems.length} article(s)
+                  </p>
+                  <Row className="dark-blue-bg">
+                    <Col xs={6} lg={7}>
+                      <br />
+                      <p>Article</p>
+                    </Col>
+                    <Col xs={6} lg={5}>
+                      <br />
+                      <p>Demandes d'échange(s)</p>
+                    </Col>
+                    <Col className="d-none d-sm-block" xs={2} lg={1}></Col>
+                  </Row>
+                  <br />
+                  {paginatedItems.map((x) => (
+                    <React.Fragment key={x.item.id}>
+                      <Row id="my-item-table">
+                        <Col
+                          className="d-none d-sm-block"
+                          xs={2}
+                          sm={2}
+                          md={2}
+                          lg={1}
+                        >
+                          {validateImage(
+                            x.item.images.split(";")[0],
+                            "item-img-container-sm"
+                          )}
+                        </Col>
+                        <Col xs={6} sm={4} md={4} lg={6}>
+                          <div className="d-block d-sm-none">
+                            <FontAwesomeIcon
+                              icon={faTrashAlt}
+                              className="blue pointer"
+                              onClick={handleShowDelete}
+                            />
+                            &nbsp;|&nbsp;
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              className="blue pointer"
+                              onClick={handleShowUpdate}
+                            />
+                          </div>
+                          <Badge
+                            className={"bg-" + x.item.subCategory.category.id}
+                          >
+                            {x.item.subCategory.category.name}
+                          </Badge>
+                          <br className="d-block d-md-none" />
                           <span className="small">
-                            Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22
-                            Aout 2020
+                            <span className="d-none d-md-inline">
+                              &nbsp;&nbsp;
+                            </span>{" "}
+                            <FontAwesomeIcon icon={faClock} />{" "}
+                            {format(
+                              new Date(x.item.addedTime),
+                              "dd MMMM yyyy",
+                              {
+                                locale: fr,
+                              }
+                            )}{" "}
+                            | <FontAwesomeIcon icon={faComment} />{" "}
+                            {x.item.itemFeedbacks.length}
                           </span>
-                          <Link to="/item" className="blue bold d-block">
-                            Iphone 10
-                          </Link>
-                          <span className="price-info blue">
-                            <FontAwesomeIcon icon={faCoins} /> 350 TND
-                            &nbsp;&nbsp;
-                            <span className="d-block d-md-inline">
-                              <FontAwesomeIcon icon={faExchangeAlt} />
-                              &nbsp; Echange
+                          <p style={{ wordBreak: "break-word" }}>
+                            <Link
+                              className="bold blue"
+                              to={"/item/" + x.item.id}
+                            >
+                              {x.item.title}
+                            </Link>
+                            <br className="d-block d-md-none" />
+                            <span className="price-info blue">
+                              {x.item.price && x.item.price !== 0 && (
+                                <>
+                                  {" "}
+                                  <FontAwesomeIcon icon={faCoins} />{" "}
+                                  {x.item.price} TND &nbsp;&nbsp; &nbsp;
+                                </>
+                              )}
+                              {x.item.exchange && (
+                                <>
+                                  <br className="d-block d-md-none" />
+                                  <FontAwesomeIcon icon={faExchangeAlt} />
+                                  &nbsp; Echange
+                                </>
+                              )}
                             </span>
-                          </span>
-                        </div>
-                      ))}
-                    </td>
-                    <td>
-                      <FontAwesomeIcon
-                        icon={faTrashAlt}
-                        className="blue pointer"
-                        onClick={handleShowDelete}
+                            {x.item.description.substr(0, 100)}{" "}
+                            {x.item.description.length > 100 && <>[...]</>}
+                          </p>
+                          <p className="item-status">
+                            <span
+                              className={
+                                "status status-" +
+                                x.item.itemStatus.status.toLowerCase()
+                              }
+                            ></span>{" "}
+                            <span className="underline">
+                              {x.item.itemStatus.id === 1 && <>Active</>}
+                              {x.item.itemStatus.id === 2 && <>Rejeté</>}
+                              {x.item.itemStatus.id === 3 && (
+                                <>En cours de vérification</>
+                              )}
+                            </span>
+                          </p>
+                        </Col>
+                        <Col xs={6} sm={4} md={4} lg={4}>
+                          {[...Array(2)].map((x, j) => (
+                            <div key={j} className="dash-separation">
+                              <Badge className="bg-3 badge">Eléctronique</Badge>
+                              &nbsp;
+                              <span className="small">
+                                Par Ahmed | <FontAwesomeIcon icon={faClock} />{" "}
+                                22 Aout 2020
+                              </span>
+                              <Link to="/item" className="blue bold d-block">
+                                Iphone 10
+                              </Link>
+                            </div>
+                          ))}
+                        </Col>
+                        <Col
+                          className="d-none d-sm-block"
+                          xs={2}
+                          sm={2}
+                          md={2}
+                          lg={1}
+                        >
+                          <FontAwesomeIcon
+                            icon={faTrashAlt}
+                            className="blue pointer"
+                            onClick={handleShowDelete}
+                          />
+                          &nbsp;|&nbsp;
+                          <FontAwesomeIcon
+                            icon={faEdit}
+                            className="blue pointer"
+                            onClick={handleShowUpdate}
+                          />
+                        </Col>
+                      </Row>
+                      <hr />
+                      <br />
+                    </React.Fragment>
+                  ))}
+                  <Row>
+                    <Col>
+                      <Pagination
+                        activePage={activePage}
+                        itemsCountPerPage={5}
+                        totalItemsCount={addedItems.length}
+                        pageRangeDisplayed={5}
+                        onChange={handlePageChange.bind(this)}
+                        itemClass="page-item"
+                        linkClass="page-link"
                       />
-                      &nbsp;|&nbsp;
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className="blue pointer"
-                        onClick={handleShowUpdate}
-                      />
-                      &nbsp;|&nbsp;
-                      <Link to="/item">
-                        <FontAwesomeIcon
-                          icon={faInfoCircle}
-                          className="blue pointer"
-                        />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+                    </Col>
+                  </Row>
 
-            {/* delete popup */}
-            <Modal show={showDelete} onHide={handleCloseDelete}>
-              <Modal.Header closeButton>
-                <Modal.Title>Retirer votre article</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                Est ce que vous êtes sure que vous voulez supprimer votre
-                article <b>Samsung galaxi s20</b>?
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="outline-secondary" onClick={handleCloseDelete}>
-                  Annuler
-                </Button>
-                <Button variant="primary" onClick={handleCloseDelete}>
-                  Supprimer
-                </Button>
-              </Modal.Footer>
-            </Modal>
+                  {/* delete popup */}
+                  <Modal show={showDelete} onHide={handleCloseDelete}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Retirer votre article</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      Est ce que vous êtes sure que vous voulez supprimer votre
+                      article <b>Samsung galaxi s20</b>?
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="outline-secondary"
+                        onClick={handleCloseDelete}
+                      >
+                        Annuler
+                      </Button>
+                      <Button variant="primary" onClick={handleCloseDelete}>
+                        Supprimer
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
 
-            {/* update popup */}
-            <Modal show={showUpdate} onHide={handleCloseUpdate} size="lg">
-              <Modal.Header closeButton>
-                <Modal.Title>Modifier votre article</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Titre</Form.Label>
-                    <Form.Control type="text" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Description</Form.Label>
-                    <Form.Control as="textarea" rows="3" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Catégorie</Form.Label>
-                    <ItemCategories />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Condition</Form.Label>
-                    <Form.Control as="select" className="select">
-                      <option>Occasion</option>
-                      <option>Neuf</option>
-                    </Form.Control>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Image</Form.Label>&nbsp;
-                    <span className="small">(Maximum 5 photos)</span>
-                    <br />
-                    <MultipleImageUploadComponent />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Prix</Form.Label>
-                    <InputGroup className="mb-2 mr-sm-2">
-                      <Form.Control type="text" />
-                      <InputGroup.Append className="white">
-                        <InputGroup.Text>Dt</InputGroup.Text>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="dark-blue">Echange avec</Form.Label>
-                    <ItemCategories all={true} />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Check
-                      type="checkbox"
-                      className="mb-2 mr-sm-2"
-                      label="Je ne suis pas ouvert à l'échange"
-                    />
-                  </Form.Group>
-                </Form>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="outline-secondary" onClick={handleCloseUpdate}>
-                  Annuler
-                </Button>
-                <Button variant="primary" onClick={handleCloseUpdate}>
-                  Modifier
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </Col>
-        </Row>
-      </Container>
+                  {/* update popup */}
+                  <Modal show={showUpdate} onHide={handleCloseUpdate} size="lg">
+                    <Modal.Header closeButton>
+                      <Modal.Title>Modifier votre article</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Form>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">Titre</Form.Label>
+                          <Form.Control type="text" />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">
+                            Description
+                          </Form.Label>
+                          <Form.Control as="textarea" rows="3" />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">
+                            Catégorie
+                          </Form.Label>
+                          <ItemCategories />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">
+                            Condition
+                          </Form.Label>
+                          <Form.Control as="select" className="select">
+                            <option>Occasion</option>
+                            <option>Neuf</option>
+                          </Form.Control>
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">Image</Form.Label>
+                          &nbsp;
+                          <span className="small">(Maximum 5 photos)</span>
+                          <br />
+                          <MultipleImageUploadComponent />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">Prix</Form.Label>
+                          <InputGroup className="mb-2 mr-sm-2">
+                            <Form.Control type="text" />
+                            <InputGroup.Append className="white">
+                              <InputGroup.Text>Dt</InputGroup.Text>
+                            </InputGroup.Append>
+                          </InputGroup>
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label className="dark-blue">
+                            Echange avec
+                          </Form.Label>
+                          <ItemCategories all={true} />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Check
+                            type="checkbox"
+                            className="mb-2 mr-sm-2"
+                            label="Je ne suis pas ouvert à l'échange"
+                          />
+                        </Form.Group>
+                      </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="outline-secondary"
+                        onClick={handleCloseUpdate}
+                      >
+                        Annuler
+                      </Button>
+                      <Button variant="primary" onClick={handleCloseUpdate}>
+                        Modifier
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                </>
+              ) : (
+                displayAddedItems && (
+                  <Alert variant="info">Pas d'articles recement ajouté.</Alert>
+                )
+              )}
+            </Col>
+          </Row>
+        </Container>
+      )}
     </>
   );
 }

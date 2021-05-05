@@ -154,7 +154,7 @@ function AddItem() {
       <br />
       <Container>
         <Row>
-          <Col xs={12} sm={4} md={3}>
+          <Col className="d-none d-sm-block" xs={12} sm={4} md={3}>
             <ProfileInfo />
           </Col>
           <Col xs={12} sm={8} lg={6}>
@@ -268,7 +268,7 @@ function AddItem() {
             <br />
           </Col>
           <Col lg={3} className="d-none d-lg-block">
-            <AddedItems />
+            <AddedItems userId={userInfo.id} />
           </Col>
         </Row>
       </Container>

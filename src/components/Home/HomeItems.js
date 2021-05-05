@@ -49,6 +49,7 @@ function HomeItems() {
           className="item-img-container-lg"
           style={{
             backgroundImage: "url(/images/not-available.jpg)",
+            backgroundSize: "cover",
           }}
         ></div>
       );
@@ -138,7 +139,8 @@ function HomeItems() {
                         )}
                       </span>
                       <p className="item-description d-none d-lg-block">
-                        {x.item.description.substr(0, 100)} [...]
+                        {x.item.description.substr(0, 100)}{" "}
+                        {x.item.description.length > 100 && <>[...]</>}
                       </p>
                       <br className="d-block d-lg-none" />
                       <br className="d-block d-lg-none" />

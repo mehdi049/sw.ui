@@ -207,7 +207,8 @@ svg.text-danger * {
 }
 
 .dark-blue-bg a,
-.dark-blue-bg span {
+.dark-blue-bg span,
+.dark-blue-bg p {
   color: #fff !important;
 }
 
@@ -598,7 +599,7 @@ img#logo {
 .item-description {
   margin-top: 10px;
   margin-bottom: 50px;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .exchange-items {
@@ -786,20 +787,40 @@ img#logo {
 /** end my messages **/
 
 /** my items **/
-table .dash-separation {
+#my-item-table .dash-separation {
   display: block;
   padding: 5px 0px;
   border-bottom: dashed 1px #797777;
 }
 
 #my-item-table .item-img-container-sm {
-  margin-left: 5px;
-  width: 80px;
+  width: 100%;
   float: left;
+  margin-right: 5px;
+}
+.item-status {
+  font-size: 12px;
 }
 
-#my-item-table .item-img-container-sm {
-  margin-left: 0px;
+.status {
+  display: inline-block;
+  border-radius: 20px;
+  width: 10px;
+  height: 10px;
+  background: #777474;
+  margin-right: 5px;
+}
+
+.status-pending {
+  background: #777474;
+}
+
+.status-accepted {
+  background: #40af3f;
+}
+
+.status-rejected {
+  background: #ff1515;
 }
 
 /** end my items **/
@@ -1113,6 +1134,12 @@ table .dash-separation {
 
   .item-detail-img-container-lg {
     height: 200px;
+  }
+
+  #my-item-table .item-img-container-sm {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 5px;
   }
 
   .profile-info-text {
