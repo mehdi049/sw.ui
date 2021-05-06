@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import {
-  Table,
   Container,
   Row,
   Col,
@@ -17,7 +16,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashAlt,
   faEdit,
-  faInfoCircle,
   faClock,
   faComment,
   faCoins,
@@ -42,13 +40,12 @@ function MyItems() {
   const [addedItems, setAddedItems] = useState([]);
   const [displayAddedItems, setDisplayAddedItems] = useState(false);
 
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   const [paginatedItems, setPaginatedItems] = useState([]);
   const [activePage, setActivePage] = useState(1);
 
   const [showDelete, setShowDelete] = useState(false);
-
-  const handleCloseDelete = () => setShowDelete(false);
-  const handleShowDelete = () => setShowDelete(true);
 
   const [showUpdate, setShowUpdate] = useState(false);
 
@@ -57,21 +54,48 @@ function MyItems() {
 
   useEffect(() => {
     if (userInfo.id) {
-      api
-        .getItemsByUser(userInfo.id)
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(res.body);
-            setAddedItems(res.body);
-            setPaginatedItems(res.body.slice(0, 5));
-            setDisplayAddedItems(true);
-          }
-        })
-        .catch((e) => {
-          setIsError(true);
-        });
+      loadMyItems();
     }
   }, []);
+
+  function loadMyItems() {
+    api
+      .getItemsByUser(userInfo.id)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.body);
+          setAddedItems(res.body);
+          setPaginatedItems(res.body.slice(0, 5));
+          setDisplayAddedItems(true);
+        }
+      })
+      .catch((e) => {
+        setIsError(true);
+      });
+  }
+
+  function deleteItem() {
+    if (userInfo.id && itemToDelete.id) {
+      api
+        .deleteItem(itemToDelete.id, userInfo.id)
+        .then((res) => {
+          if (res.status === 200) {
+            setShowDelete(false);
+            toast.success("Article supprimé avec succès.");
+            loadMyItems();
+            setItemToDelete({});
+          } else toast.error(res.message);
+        })
+        .catch((e) => {
+          toast.error("Une erreur s'est produite, veuillez réessayer.");
+        });
+    }
+  }
+
+  function showDeletePopup(item) {
+    setItemToDelete(item);
+    setShowDelete(true);
+  }
 
   function handlePageChange(pageNumber) {
     setActivePage(pageNumber);
@@ -155,7 +179,7 @@ function MyItems() {
                             <FontAwesomeIcon
                               icon={faTrashAlt}
                               className="blue pointer"
-                              onClick={handleShowDelete}
+                              onClick={() => showDeletePopup(x.item)}
                             />
                             &nbsp;|&nbsp;
                             <FontAwesomeIcon
@@ -253,7 +277,7 @@ function MyItems() {
                           <FontAwesomeIcon
                             icon={faTrashAlt}
                             className="blue pointer"
-                            onClick={handleShowDelete}
+                            onClick={() => showDeletePopup(x.item)}
                           />
                           &nbsp;|&nbsp;
                           <FontAwesomeIcon
@@ -282,27 +306,31 @@ function MyItems() {
                   </Row>
 
                   {/* delete popup */}
-                  <Modal show={showDelete} onHide={handleCloseDelete}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Retirer votre article</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      Est ce que vous êtes sure que vous voulez supprimer votre
-                      article <b>Samsung galaxi s20</b>?
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="outline-secondary"
-                        onClick={handleCloseDelete}
-                      >
-                        Annuler
-                      </Button>
-                      <Button variant="primary" onClick={handleCloseDelete}>
-                        Supprimer
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-
+                  {itemToDelete !== null && (
+                    <Modal
+                      show={showDelete}
+                      onHide={() => setShowDelete(false)}
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>Retirer votre article</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        Est ce que vous êtes sure que vous voulez supprimer
+                        votre article <b>{itemToDelete.title}</b>?
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          variant="outline-secondary"
+                          onClick={() => setShowDelete(false)}
+                        >
+                          Annuler
+                        </Button>
+                        <Button variant="primary" onClick={deleteItem}>
+                          Supprimer
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  )}
                   {/* update popup */}
                   <Modal show={showUpdate} onHide={handleCloseUpdate} size="lg">
                     <Modal.Header closeButton>

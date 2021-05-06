@@ -31,3 +31,15 @@ export function getItemsByUser(userId) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function deleteItem(itemId, userId) {
+  return fetch(baseUrl + "/item/deleteItem/" + itemId + "/" + userId, {
+    method: "DELETE",
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+  }).then((res) => res.json());
+}
