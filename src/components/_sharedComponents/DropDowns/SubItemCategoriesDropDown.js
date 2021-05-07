@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import * as api from "../api/CategoryApi";
 
 function SubItemCategoriesDropDown(props) {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(props.categoryId);
 
   useEffect(() => {
     if (props.categoryId !== "")
@@ -18,6 +18,7 @@ function SubItemCategoriesDropDown(props) {
       className="select"
       name={props.subCategoryFieldName}
       onChange={props.onChange}
+      value={props.subCategoryId !== null ? props.subCategoryId : ""}
     >
       {props.all && <option value="">Tout</option>}
       {!props.all && <option value="">Selectionner une sous catégorie</option>}

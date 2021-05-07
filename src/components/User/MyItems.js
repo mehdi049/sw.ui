@@ -8,8 +8,6 @@ import {
   Badge,
   Modal,
   Button,
-  Form,
-  InputGroup,
   Alert,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,12 +20,11 @@ import {
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, Redirect } from "react-router-dom";
-import MultipleImageUploadComponent from "../_sharedComponents/MultipleImageUpload";
-import ItemCategories from "../_sharedComponents/DropDowns/ItemCategories";
 import { toast } from "react-toastify";
 import * as api from "./api/ItemApi";
 import Pagination from "react-js-pagination";
 import Error from "../_sharedComponents/Error";
+import AddUpdateItemForm from "./_sharedComponents/AddUpdateItemForm";
 
 function MyItems() {
   const [userInfo, setUserInfo] = useState(
@@ -49,8 +46,6 @@ function MyItems() {
   const [showDelete, setShowDelete] = useState(false);
 
   const [showUpdate, setShowUpdate] = useState(false);
-
-  const handleShowUpdate = () => setShowUpdate(true);
 
   useEffect(() => {
     if (userInfo.id) {
@@ -100,11 +95,6 @@ function MyItems() {
   function showUpdatePopup(item) {
     setItemToUpdate(item);
     setShowUpdate(true);
-  }
-
-  function updateItem() {
-    if (userInfo.id && itemToUpdate.id) {
-    }
   }
 
   function handlePageChange(pageNumber) {
@@ -351,100 +341,13 @@ function MyItems() {
                     </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    <Form>
-                      <Form.Group>
-                        <Form.Label className="dark-blue">Titre</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="title"
-                          value={itemToUpdate.title}
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label className="dark-blue">
-                          Description
-                        </Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          rows="3"
-                          name="description"
-                          value={itemToUpdate.description}
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label className="dark-blue">Catégorie</Form.Label>
-                        <ItemCategories
-                          select={true}
-                          categoryFieldName="categoryId"
-                          subCategoryFieldName="subCategoryId"
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label className="dark-blue">Condition</Form.Label>
-                        <Form.Control
-                          as="select"
-                          className="select"
-                          name="conditionId"
-                          value={itemToUpdate.conditionId}
-                        >
-                          <option value="1">Occasion</option>
-                          <option value="2">Neuf</option>
-                        </Form.Control>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label className="dark-blue">Image(s)</Form.Label>
-                        &nbsp;
-                        <span className="small">(Maximum 5 photos)</span>
-                        <br />
-                        <MultipleImageUploadComponent />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label className="dark-blue">Prix</Form.Label>
-                        <InputGroup className="mb-2 mr-sm-2">
-                          <Form.Control
-                            type="number"
-                            name="price"
-                            value={itemToUpdate.price}
-                          />
-                          <InputGroup.Append className="white">
-                            <InputGroup.Text>Dt</InputGroup.Text>
-                          </InputGroup.Append>
-                        </InputGroup>
-                      </Form.Group>
-                      {itemToUpdate.exchange === true && (
-                        <Form.Group>
-                          <Form.Label className="dark-blue">
-                            Echange avec
-                          </Form.Label>
-                          <ItemCategories
-                            openForAll={true}
-                            categoryFieldName="exchangeWithCategoryId"
-                            subCategoryFieldName="exchangeWithSubCategoryId"
-                          />
-                        </Form.Group>
-                      )}
-                      <Form.Group>
-                        <Form.Check
-                          type="checkbox"
-                          className="mb-2 mr-sm-2"
-                          label="Je ne suis pas ouvert à l'échange"
-                          value={false}
-                          name="exchange"
-                        />
-                      </Form.Group>
-                    </Form>
+                    <AddUpdateItemForm
+                      edit={true}
+                      item={itemToUpdate}
+                      refreshData={loadMyItems}
+                      closePopup={() => setShowUpdate(false)}
+                    />
                   </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      variant="outline-secondary"
-                      onClick={() => setShowUpdate(false)}
-                    >
-                      Annuler
-                    </Button>
-                    <Button variant="primary" onClick={updateItem}>
-                      Modifier
-                    </Button>
-                  </Modal.Footer>
                 </Modal>
               )}
             </>

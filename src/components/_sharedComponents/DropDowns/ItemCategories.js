@@ -4,7 +4,9 @@ import SubItemCategoriesDropDown from "../DropDowns/SubItemCategoriesDropDown";
 import * as api from "../api/CategoryApi";
 
 function ItemCategories(props) {
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState(
+    props.categoryId && props.categoryId !== null ? props.categoryId : ""
+  );
   const [categories, setCategories] = useState([]);
 
   function handleCategoryChange(event) {
@@ -25,6 +27,7 @@ function ItemCategories(props) {
         className="select"
         name={props.categoryFieldName}
         onChange={handleCategoryChange}
+        value={categoryId}
       >
         {props.openForAll && <option value="">Ouvert à tout</option>}
         {props.select && <option value="">Selectionner une catégorie</option>}
@@ -36,12 +39,13 @@ function ItemCategories(props) {
           );
         })}
       </Form.Control>
-      {categoryId.length > 0 && (
+      {categoryId && categoryId !== "" > 0 && (
         <>
           <br />
           <SubItemCategoriesDropDown
             all
             categoryId={categoryId}
+            subCategoryId={props.subCategoryId ? props.subCategoryId : ""}
             onChange={props.subCategoryOnChange}
             subCategoryFieldName={props.subCategoryFieldName}
           />

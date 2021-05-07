@@ -25,6 +25,19 @@ export function addItem(item) {
   }).then((res) => res.json());
 }
 
+export function updateItem(item) {
+  return fetch(baseUrl + "/item/edit/", {
+    method: "PUT",
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+    body: JSON.stringify(item),
+  }).then((res) => res.json());
+}
+
 export function getItemsByUser(userId) {
   return fetch(baseUrl + "/item/getItemsByUser/" + userId, {
     method: "GET",
