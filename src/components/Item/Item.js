@@ -27,7 +27,6 @@ import ItemProfileInfoSection from "./_sharedComponents/ItemProfileInfoSection";
 import MyItemsForExchange from "./_sharedComponents/MyItemsForExchange";
 import * as api from "./api/CategoryApi";
 import Error from "../_sharedComponents/Error";
-import ItemMainImages from "./_sharedComponents/ItemMainImages";
 import ImageGallery from "react-image-gallery";
 
 function Item(props) {
@@ -71,8 +70,8 @@ function Item(props) {
               });
             } catch (err) {
               _images.push({
-                original: require("/images/not-available.jpg"),
-                thumbnail: require("/images/not-available.jpg"),
+                original: require("../../images/not-available.jpg"),
+                thumbnail: require("../../images/not-available.jpg"),
               });
             }
           });
@@ -267,7 +266,6 @@ function Item(props) {
                 showFullscreenButton={false}
                 showPlayButton={false}
               />
-              {/*<ItemMainImages images={item.item.images.split(";")} />*/}
               <br />
               <Row>
                 <Col>

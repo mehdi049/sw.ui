@@ -58,7 +58,6 @@ function MyItems() {
       .getItemsByUser(userInfo.id)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.body);
           setAddedItems(res.body);
           setPaginatedItems(res.body.slice(0, 5));
           setDisplayAddedItems(true);
