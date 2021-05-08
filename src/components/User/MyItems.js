@@ -44,8 +44,8 @@ function MyItems() {
   const [activePage, setActivePage] = useState(1);
 
   const [showDelete, setShowDelete] = useState(false);
-
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showUpdateImgs, setShowUpdateImgs] = useState(false);
 
   useEffect(() => {
     if (userInfo.id) {
@@ -95,6 +95,25 @@ function MyItems() {
   function showUpdatePopup(item) {
     setItemToUpdate(item);
     setShowUpdate(true);
+  }
+
+  function showUpdateImgsPopup(item) {
+    setItemToUpdate(item);
+    setShowUpdateImgs(true);
+  }
+
+  function removeImage(event, img, imgKey) {
+    event.preventDefault();
+    api
+      .deleteItemImg(itemToUpdate.id, img)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Image supprimé avec succès.");
+        } else toast.error(res.message);
+      })
+      .catch((e) => {
+        toast.error("Une erreur s'est produite, veuillez réessayer.");
+      });
   }
 
   function handlePageChange(pageNumber) {
@@ -181,6 +200,14 @@ function MyItems() {
                         x.item.images.split(";")[0],
                         "item-img-container-sm"
                       )}
+                      <div className="text-center">
+                        <span
+                          className="underline dark-blue pointer small"
+                          onClick={() => showUpdateImgsPopup(x.item)}
+                        >
+                          Modifier
+                        </span>
+                      </div>
                     </Col>
                     <Col xs={6} sm={4} md={4} lg={6}>
                       <div className="d-block d-sm-none">
@@ -347,6 +374,40 @@ function MyItems() {
                       refreshData={loadMyItems}
                       closePopup={() => setShowUpdate(false)}
                     />
+                  </Modal.Body>
+                </Modal>
+              )}
+
+              {/* update popup */}
+              {itemToUpdate !== null && (
+                <Modal
+                  show={showUpdateImgs}
+                  onHide={() => setShowUpdateImgs(false)}
+                  size="lg"
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title className="dark-blue">
+                      Modifier les images de votre article
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    {itemToUpdate.images
+                      .split(";")
+                      .filter((x) => x !== "")
+                      .map((img, i) => {
+                        return (
+                          <div key={i} className="item-img-toDelete">
+                            {validateImage(img, "item-img-container-sm")}
+                            <span>
+                              <FontAwesomeIcon
+                                icon={faTrashAlt}
+                                className="dark-blue pointer"
+                                onClick={(e) => removeImage(e, img, i)}
+                              />
+                            </span>
+                          </div>
+                        );
+                      })}
                   </Modal.Body>
                 </Modal>
               )}

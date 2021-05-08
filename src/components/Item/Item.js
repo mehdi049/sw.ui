@@ -28,6 +28,7 @@ import MyItemsForExchange from "./_sharedComponents/MyItemsForExchange";
 import * as api from "./api/CategoryApi";
 import Error from "../_sharedComponents/Error";
 import ItemMainImages from "./_sharedComponents/ItemMainImages";
+import ImageGallery from "react-image-gallery";
 
 function Item(props) {
   const [isError, setIsError] = useState(false);
@@ -47,6 +48,7 @@ function Item(props) {
   const [contentLoaded, setContentLoaded] = useState(false);
 
   const [item, setItem] = useState();
+  const [images, setImages] = useState([]);
   const [similarItems, setSimilarItems] = useState([]);
 
   useEffect(() => {
@@ -54,7 +56,28 @@ function Item(props) {
       .getItemById(props.match.params.id)
       .then((res) => {
         setIsError(false);
+
         setItem(res.body);
+
+        const _images = [];
+        res.body.item.images
+          .split(";")
+          .filter((x) => x !== "")
+          .map((x) => {
+            try {
+              _images.push({
+                original: require(process.env.REACT_APP_ITEM_UPLOAD_PATH + x),
+                thumbnail: require(process.env.REACT_APP_ITEM_UPLOAD_PATH + x),
+              });
+            } catch (err) {
+              _images.push({
+                original: require("/images/not-available.jpg"),
+                thumbnail: require("/images/not-available.jpg"),
+              });
+            }
+          });
+        setImages(_images);
+
         api
           .getItemsByCategory(res.body.item.subCategory.category.id)
           .then((similarItemsResult) => {
@@ -239,7 +262,12 @@ function Item(props) {
                 )}
               </Row>
               <br />
-              <ItemMainImages images={item.item.images.split(";")} />
+              <ImageGallery
+                items={images}
+                showFullscreenButton={false}
+                showPlayButton={false}
+              />
+              {/*<ItemMainImages images={item.item.images.split(";")} />*/}
               <br />
               <Row>
                 <Col>

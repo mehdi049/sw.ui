@@ -56,3 +56,15 @@ export function deleteItem(itemId, userId) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function deleteItemImg(itemId, img) {
+  return fetch(baseUrl + "/item/deleteItemImg/" + itemId + "/" + img, {
+    method: "PUT",
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

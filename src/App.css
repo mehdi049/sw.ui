@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 @page {
   size: auto;
 }
@@ -659,6 +661,17 @@ img#logo {
   margin-top: 10px;
   word-break: break-word;
 }
+
+.image-gallery-slide .image-gallery-image {
+  max-width: 100%;
+  height: 400px;
+}
+
+.image-gallery-left-nav *,
+.image-gallery-right-nav * {
+  color: #1c1f23;
+}
+
 /** end item details **/
 
 /** add item **/
@@ -797,6 +810,18 @@ img#logo {
   width: 100%;
   float: left;
   margin-right: 5px;
+}
+
+.item-img-toDelete {
+  display: inline-block;
+  width: 80px;
+  margin-right: 5px;
+}
+
+.item-img-toDelete span {
+  display: block;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .item-status {
