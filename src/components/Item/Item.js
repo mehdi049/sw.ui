@@ -28,9 +28,12 @@ import MyItemsForExchange from "./_sharedComponents/MyItemsForExchange";
 import * as api from "./api/CategoryApi";
 import Error from "../_sharedComponents/Error";
 import ImageGallery from "react-image-gallery";
+import { toast } from "react-toastify";
 
 function Item(props) {
   const [isError, setIsError] = useState(false);
+
+  const [disableSubmitButton, setDisableSubmitButton] = useState(false);
 
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("user"))
@@ -50,7 +53,17 @@ function Item(props) {
   const [images, setImages] = useState([]);
   const [similarItems, setSimilarItems] = useState([]);
 
+  const [feedback, setFeedback] = useState({
+    feedback: "",
+    itemId: props.match.params.id,
+    userId: localStorage.getItem("user") !== null ? userInfo.id : "",
+  });
+
   useEffect(() => {
+    loadItem();
+  }, []);
+
+  function loadItem() {
     api
       .getItemById(props.match.params.id)
       .then((res) => {
@@ -87,7 +100,39 @@ function Item(props) {
       .catch((error) => {
         setIsError(true);
       });
-  }, []);
+  }
+
+  function handleAddFeedbackChange(event) {
+    const _feedback = {
+      ...feedback,
+      [event.target.name]: event.target.value,
+    };
+    setFeedback(_feedback);
+  }
+
+  function handleAddFeeback() {
+    if (feedback.feedback !== "" && feedback.userId !== "") {
+      setDisableSubmitButton(true);
+      api
+        .addFeedback(feedback)
+        .then((res) => {
+          if (res.status === 200) {
+            setFeedback({
+              feedback: "",
+              itemId: props.match.params.id,
+              userId: localStorage.getItem("user") !== null ? userInfo.id : "",
+            });
+            loadItem();
+            toast.success("Commentaire ajouté avec succès.");
+          } else toast.error(res.message);
+          setDisableSubmitButton(false);
+        })
+        .catch((e) => {
+          setDisableSubmitButton(false);
+          toast.error("Une erreur s'est produite, veuillez réessayer.");
+        });
+    }
+  }
 
   return (
     <>
@@ -278,7 +323,13 @@ function Item(props) {
               <AskedExchangesSection />
               <hr />
               <br />
-              <CommentSection itemFeedbacks={item.item.itemFeedbacks} />
+              <CommentSection
+                feedback={feedback}
+                disableSubmitButton={disableSubmitButton}
+                onChange={handleAddFeedbackChange}
+                onSubmit={handleAddFeeback}
+                itemFeedbacks={item.item.itemFeedbacks}
+              />
             </Col>
             <Col xs={12} md={4} lg={3} className="d-none d-md-block">
               <ItemProfileInfoSection

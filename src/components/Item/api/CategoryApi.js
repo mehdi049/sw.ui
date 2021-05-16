@@ -20,3 +20,16 @@ export function getItemById(id) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function addFeedback(feedback) {
+  return fetch(baseUrl + "/feedback/add/", {
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(feedback),
+    method: "POST",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

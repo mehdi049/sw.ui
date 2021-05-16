@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { Row, Col, Form, Image } from "react-bootstrap";
+import { Row, Col, Form, Image, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
@@ -83,7 +83,24 @@ function CommentSection(props) {
             <span className="dark-gray">
               {userInfo.firstName} {userInfo.lastName}{" "}
             </span>
-            <Form.Control as="textarea" rows="2" />
+            <Form.Control
+              name="feedback"
+              as="textarea"
+              rows="4"
+              value={props.feedback.feedback}
+              onChange={props.onChange}
+            />
+            <br />
+            <div className="text-right">
+              <Button
+                variant="primary"
+                type="button"
+                onClick={props.onSubmit}
+                disabled={props.disableSubmitButton}
+              >
+                Ajouter
+              </Button>
+            </div>
           </Col>
         </Row>
       )}
