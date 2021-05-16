@@ -33,3 +33,15 @@ export function addFeedback(feedback) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function deleteFeedback(feedbackId) {
+  return fetch(baseUrl + "/feedback/delete/" + feedbackId, {
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

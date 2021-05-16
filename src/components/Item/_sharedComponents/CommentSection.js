@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Row, Col, Form, Image, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 function CommentSection(props) {
   const [userInfo, setUserInfo] = useState(
@@ -69,6 +69,16 @@ function CommentSection(props) {
               {format(new Date(x.addedTime), "dd MMMM yyyy hh:mm", {
                 locale: fr,
               })}
+              {x.user.id === userInfo.id && (
+                <>
+                  &nbsp; | &nbsp;
+                  <FontAwesomeIcon
+                    icon={faTrashAlt}
+                    className="pointer dark-blue"
+                    onClick={() => props.onDelete(x.id)}
+                  />
+                </>
+              )}
             </span>
             <p className="comment-text">{x.feedback}</p>
           </Col>

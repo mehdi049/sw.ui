@@ -68,7 +68,7 @@ function Item(props) {
       .getItemById(props.match.params.id)
       .then((res) => {
         setIsError(false);
-
+        console.log(res.body);
         setItem(res.body);
 
         const _images = [];
@@ -129,6 +129,22 @@ function Item(props) {
         })
         .catch((e) => {
           setDisableSubmitButton(false);
+          toast.error("Une erreur s'est produite, veuillez réessayer.");
+        });
+    }
+  }
+
+  function handleDeleteFeeback(feedbackId) {
+    if (feedbackId !== "") {
+      api
+        .deleteFeedback(feedbackId)
+        .then((res) => {
+          if (res.status === 200) {
+            loadItem();
+            toast.success("Commentaire supprimé avec succès.");
+          } else toast.error(res.message);
+        })
+        .catch((e) => {
           toast.error("Une erreur s'est produite, veuillez réessayer.");
         });
     }
@@ -328,6 +344,7 @@ function Item(props) {
                 disableSubmitButton={disableSubmitButton}
                 onChange={handleAddFeedbackChange}
                 onSubmit={handleAddFeeback}
+                onDelete={handleDeleteFeeback}
                 itemFeedbacks={item.item.itemFeedbacks}
               />
             </Col>
