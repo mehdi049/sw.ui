@@ -50,6 +50,7 @@ function Item(props) {
   const [contentLoaded, setContentLoaded] = useState(false);
 
   const [item, setItem] = useState();
+  const [likedItem, setLikedItem] = useState(false);
   const [images, setImages] = useState([]);
   const [similarItems, setSimilarItems] = useState([]);
 
@@ -68,9 +69,15 @@ function Item(props) {
       .getItemById(props.match.params.id)
       .then((res) => {
         setIsError(false);
-        console.log(res.body);
         setItem(res.body);
-
+        if (userInfo !== null) {
+          if (res.body.item.likes !== null && res.body.item.likes.length > 0)
+            if (
+              res.body.item.likes.filter((x) => x.userId === userInfo.id)
+                .length > 0
+            )
+              setLikedItem(true);
+        }
         const _images = [];
         res.body.item.images
           .split(";")
@@ -150,6 +157,23 @@ function Item(props) {
     }
   }
 
+  function handleLikeItem() {
+    const like = {
+      itemId: props.match.params.id,
+      userId: userInfo.id,
+    };
+    api
+      .addRemoveLike(like)
+      .then((res) => {
+        if (res.status === 200) {
+          setLikedItem(!likedItem);
+        } else toast.error(res.message);
+      })
+      .catch((e) => {
+        toast.error("Une erreur s'est produite, veuillez réessayer.");
+      });
+  }
+
   return (
     <>
       <HeaderCategories />
@@ -197,6 +221,24 @@ function Item(props) {
                       </>
                     )}
                   </span>
+                  <br />
+                  {item.item.exchangeWithCategory !== null && (
+                    <>
+                      <span className="small">Ouvert à l'echange avec</span>
+                      &nbsp;
+                      <Badge
+                        className={"bg-" + item.item.exchangeWithCategoryId}
+                      >
+                        {item.item.exchangeWithCategory.name}
+                        {item.item.exchangeWithSubCategory != null && (
+                          <>
+                            &nbsp;/&nbsp;
+                            {item.item.exchangeWithSubCategory.name}
+                          </>
+                        )}
+                      </Badge>
+                    </>
+                  )}
                 </Col>
 
                 <Col xs={3} md={4} lg={5} className="text-right">
@@ -224,8 +266,13 @@ function Item(props) {
                       )}
                       <FontAwesomeIcon
                         icon={faHeart}
-                        className="pointer icon-large"
+                        className={
+                          likedItem
+                            ? "pointer icon-large light-blue"
+                            : "pointer icon-large"
+                        }
                         id="item-like-icon"
+                        onClick={handleLikeItem}
                       />
                     </>
                   ) : (
@@ -301,8 +348,8 @@ function Item(props) {
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      <p>Veuillez selectionner un article.</p>
-                      <MyItemsForExchange />
+                      <p>Veuillez selectionner un ou plusieurs articles.</p>
+                      <MyItemsForExchange userId={userInfo.id} />
                     </Modal.Body>
                     <Modal.Footer>
                       <Button

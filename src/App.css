@@ -208,6 +208,9 @@ svg.text-danger * {
   color: #1c1f23;
 }
 
+.light-blue * {
+  color: #2bc9ce;
+}
 .dark-blue-bg a,
 .dark-blue-bg span,
 .dark-blue-bg p {

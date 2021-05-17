@@ -14,6 +14,13 @@ export function getItemsByCategory(id) {
   }).then((res) => res.json());
 }
 
+export function getItemsByUser(id) {
+  return fetch(baseUrl + "/item/getItemsByUser/" + id, {
+    method: "GET",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}
+
 export function getItemById(id) {
   return fetch(baseUrl + "/item/getItem/" + id, {
     method: "GET",
@@ -42,6 +49,19 @@ export function deleteFeedback(feedbackId) {
       "Content-Type": "application/json",
     },
     method: "DELETE",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}
+
+export function addRemoveLike(like) {
+  return fetch(baseUrl + "/item/addRemoveLike/", {
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(like),
+    method: "POST",
     cache: "no-cache",
   }).then((res) => res.json());
 }
