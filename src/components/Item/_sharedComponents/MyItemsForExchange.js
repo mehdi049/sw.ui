@@ -39,8 +39,9 @@ function MyItemsForExchange(props) {
 
     setSelectedItems(_items);
 
-    items[i].item.selected = !items[i].item.selected;
-    setItems(items);
+    let itemsCopy = [...items];
+    itemsCopy[i].item.selected = !itemsCopy[i].item.selected;
+    setItems(itemsCopy);
   }
 
   function validateImage(imgPath, className) {
