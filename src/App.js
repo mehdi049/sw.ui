@@ -27,6 +27,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  if (localStorage.getItem("token") !== null) {
+    let token = JSON.parse(localStorage.getItem("token"));
+    var expiration = new Date(token.expiration);
+    let expirationDate = Date.parse(expiration);
+    var today = Date.parse(new Date());
+    if (expirationDate <= today) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("categoryFilter");
+      localStorage.removeItem("user");
+    }
+  }
+
   return (
     <div className="App">
       <Router history={history}>
