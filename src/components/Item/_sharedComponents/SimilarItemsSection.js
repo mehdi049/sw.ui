@@ -45,6 +45,7 @@ function SimilarItemsSection(props) {
         <Link
           key={x.item.id}
           to={"/item/" + x.item.id}
+          onClick={() => props.itemOnClick(x.item.id)}
           className="dash-separation added-item-link"
         >
           <Row>

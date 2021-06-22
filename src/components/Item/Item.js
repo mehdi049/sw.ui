@@ -56,17 +56,17 @@ function Item(props) {
 
   const [feedback, setFeedback] = useState({
     feedback: "",
-    itemId: props.match.params.id,
+    itemId: "",
     userId: localStorage.getItem("user") !== null ? userInfo.id : "",
   });
 
   useEffect(() => {
-    loadItem();
+    loadItem(props.match.params.id);
   }, []);
 
-  function loadItem() {
+  function loadItem(itemId) {
     api
-      .getItemById(props.match.params.id)
+      .getItemById(itemId)
       .then((res) => {
         setIsError(false);
         setItem(res.body);
@@ -118,6 +118,7 @@ function Item(props) {
   }
 
   function handleAddFeeback() {
+    feedback.itemId = props.match.params.id;
     if (feedback.feedback !== "" && feedback.userId !== "") {
       setDisableSubmitButton(true);
       api
@@ -393,6 +394,7 @@ function Item(props) {
               {item.item.exchange && (
                 <AskedExchangesSection
                   itemsForExchange={item.item.itemExchanges}
+                  itemOnClick={loadItem}
                 />
               )}
               <hr />
@@ -419,7 +421,10 @@ function Item(props) {
                   <br />
                 </>
               )}
-              <SimilarItemsSection similarItems={similarItems} />
+              <SimilarItemsSection
+                similarItems={similarItems}
+                itemOnClick={loadItem}
+              />
             </Col>
           </Row>
         </Container>

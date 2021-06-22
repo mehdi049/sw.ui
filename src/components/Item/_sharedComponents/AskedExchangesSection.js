@@ -47,7 +47,10 @@ function AskedExchangesSection(props) {
             {props.itemsForExchange.map((x, i) => (
               <React.Fragment key={i}>
                 <Col xs={4} lg={2} className="exchange-items">
-                  <Link to={"/item/" + x.itemsToExchange[0].id}>
+                  <Link
+                    to={"/item/" + x.itemsToExchange[0].id}
+                    onClick={() => props.itemOnClick(x.itemsToExchange[0].id)}
+                  >
                     {validateImage(x.itemsToExchange[0].images.split(";")[0])}
                   </Link>
                 </Col>
