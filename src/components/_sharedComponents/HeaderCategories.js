@@ -30,18 +30,19 @@ function HeaderCategories(props) {
               <FontAwesomeIcon icon={faBars} /> &nbsp; Tout
             </a>
           </Col>
-          {categories.map((x) => {
-            return (
-              <Col
-                key={x.id}
-                className="top-main-catagtory-item"
-                active={activeCat === x.id ? "true" : "false"}
-                onClick={() => setActive(x.id)}
-              >
-                <Link to={"/category/" + x.id}>{x.name}</Link>
-              </Col>
-            );
-          })}
+          {categories &&
+            categories.map((x) => {
+              return (
+                <Col
+                  key={x.id}
+                  className="top-main-catagtory-item"
+                  active={activeCat === x.id ? "true" : "false"}
+                  onClick={() => setActive(x.id)}
+                >
+                  <Link to={"/category/" + x.id}>{x.name}</Link>
+                </Col>
+              );
+            })}
         </Row>
 
         {activeMenu && (
@@ -51,19 +52,20 @@ function HeaderCategories(props) {
               id="close-menu"
               onClick={() => setActiveMenu(false)}
             />
-            {categories.map((x) => {
-              return (
-                <Link
-                  key={x.id}
-                  to={"/category/" + x.id}
-                  active={activeCat === x.id ? "true" : "false"}
-                  onClick={() => setActive(x.id)}
-                  className="left-category-menu-first"
-                >
-                  {x.name}
-                </Link>
-              );
-            })}
+            {categories &&
+              categories.map((x) => {
+                return (
+                  <Link
+                    key={x.id}
+                    to={"/category/" + x.id}
+                    active={activeCat === x.id ? "true" : "false"}
+                    onClick={() => setActive(x.id)}
+                    className="left-category-menu-first"
+                  >
+                    {x.name}
+                  </Link>
+                );
+              })}
           </div>
         )}
       </Container>

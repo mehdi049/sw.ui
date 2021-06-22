@@ -65,3 +65,16 @@ export function addRemoveLike(like) {
     cache: "no-cache",
   }).then((res) => res.json());
 }
+
+export function addItemExchangeRequest(itemId, items) {
+  return fetch(baseUrl + "/item/addExchangeRequest/" + itemId, {
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token")).token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(items),
+    method: "POST",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}

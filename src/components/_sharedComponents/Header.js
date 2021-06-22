@@ -43,6 +43,40 @@ function Header() {
     setShow(false);
   }
 
+  function validateProfileImage(profile, className) {
+    if (profile)
+      try {
+        return (
+          <Image
+            src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
+              profile.picture)}
+            alt={profile.firstName}
+            className={className}
+            width="30"
+            height="30"
+          />
+        );
+      } catch (err) {
+        return profile.gender === "m" ? (
+          <Image
+            src={"/images/default_m.png"}
+            alt={profile.firstName}
+            className={className}
+            width="30"
+            height="30"
+          />
+        ) : (
+          <Image
+            src={"/images/default_f.png"}
+            alt={profile.firstName}
+            className={className}
+            width="30"
+            height="30"
+          />
+        );
+      }
+  }
+
   return (
     <>
       <Container fluid={true} id="header-section" className="dark-blue-bg">
@@ -73,16 +107,7 @@ function Header() {
                   </Link>
                   <NavDropdown
                     className="profile-links"
-                    title={
-                      <Image
-                        src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
-                          userInfo.picture)}
-                        alt={userInfo.firstName}
-                        className="img-rounded"
-                        width="30"
-                        height="30"
-                      />
-                    }
+                    title={validateProfileImage(userInfo, "img-rounded")}
                   >
                     <div className="d-block d-md-none">
                       <Link to="/add-item">

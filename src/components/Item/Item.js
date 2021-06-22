@@ -165,13 +165,30 @@ function Item(props) {
     api
       .addRemoveLike(like)
       .then((res) => {
-        if (res.status === 200) {
-          setLikedItem(!likedItem);
-        } else toast.error(res.message);
+        if (res.status === 200) setLikedItem(!likedItem);
+        else toast.error(res.message);
       })
       .catch((e) => {
         toast.error("Une erreur s'est produite, veuillez réessayer.");
       });
+  }
+
+  function onSubmitSelectedItems(selectedItems) {
+    if (selectedItems.length === 0)
+      toast.error("Veuillez selectionner au moin un article.");
+    else {
+      api
+        .addItemExchangeRequest(props.match.params.id, selectedItems)
+        .then((res) => {
+          if (res.status === 200) {
+            toast.success("La demande d'échange a été envoyé avec succès.");
+            handleCloseExchangeModal();
+          } else toast.error(res.message);
+        })
+        .catch((e) => {
+          toast.error("Une erreur s'est produite, veuillez réessayer.");
+        });
+    }
   }
 
   return (
@@ -337,7 +354,7 @@ function Item(props) {
                     </>
                   )}
                 </Col>
-                {item.item.exchange && (
+                {item.item.exchange && isAuthenticated && (
                   <Modal
                     show={showExchangeModal}
                     onHide={handleCloseExchangeModal}
@@ -349,22 +366,12 @@ function Item(props) {
                     </Modal.Header>
                     <Modal.Body>
                       <p>Veuillez selectionner un ou plusieurs articles.</p>
-                      <MyItemsForExchange userId={userInfo.id} />
+                      <MyItemsForExchange
+                        userId={userInfo.id}
+                        onCloseModal={handleCloseExchangeModal}
+                        onSubmitSelectedItems={onSubmitSelectedItems}
+                      />
                     </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="light"
-                        onClick={handleCloseExchangeModal}
-                      >
-                        Annuler
-                      </Button>
-                      <Button
-                        variant="primary"
-                        onClick={handleCloseExchangeModal}
-                      >
-                        Demander un échange
-                      </Button>
-                    </Modal.Footer>
                   </Modal>
                 )}
               </Row>
@@ -383,7 +390,11 @@ function Item(props) {
                   </p>
                 </Col>
               </Row>
-              <AskedExchangesSection />
+              {item.item.exchange && (
+                <AskedExchangesSection
+                  itemsForExchange={item.item.itemExchanges}
+                />
+              )}
               <hr />
               <br />
               <CommentSection

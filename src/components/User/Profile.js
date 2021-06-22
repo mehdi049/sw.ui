@@ -159,6 +159,40 @@ function Profile() {
       });
   }
 
+  function validateProfileImage(profile, className) {
+    if (profile)
+      try {
+        return (
+          <Image
+            src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
+              profile.picture)}
+            alt={profile.firstName}
+            className={className}
+            width="100"
+            height="100"
+          />
+        );
+      } catch (err) {
+        return profile.gender === "m" ? (
+          <Image
+            src={"/images/default_m.png"}
+            alt={profile.firstName}
+            className={className}
+            width="100"
+            height="100"
+          />
+        ) : (
+          <Image
+            src={"/images/default_f.png"}
+            alt={profile.firstName}
+            className={className}
+            width="100"
+            height="100"
+          />
+        );
+      }
+  }
+
   if (userInfo === null) return <Redirect to="/" />;
 
   return (
@@ -176,14 +210,7 @@ function Profile() {
               <Form.Group>
                 <Form.Label>
                   {!isImgLoading ? (
-                    <img
-                      src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
-                        userInfo.picture)}
-                      alt={userInfo.firstName}
-                      className="img-rounded"
-                      width="100"
-                      height="100"
-                    />
+                    validateProfileImage(userInfo, "img-rounded")
                   ) : (
                     <Image
                       src={imgPreview}
@@ -372,16 +399,8 @@ function Profile() {
           <Modal.Body>
             <Row>
               <Col>
-                {imgPreview == null && (
-                  <img
-                    src={require(process.env.REACT_APP_PROFILE_UPLOAD_PATH +
-                      userInfo.picture)}
-                    alt={userInfo.firstName}
-                    className="img-rounded"
-                    width="180"
-                    height="180"
-                  />
-                )}
+                {imgPreview == null &&
+                  validateProfileImage(userInfo, "img-rounded")}
                 {imgPreview != null && (
                   <Image
                     src={imgPreview}

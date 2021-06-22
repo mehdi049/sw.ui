@@ -34,7 +34,7 @@ function CommentSection(props) {
         />
       ) : (
         <Image
-          src={"/images/not-default_f.png"}
+          src={"/images/default_f.png"}
           alt={profile.firstName}
           className={className}
           roundedCircle
@@ -69,7 +69,7 @@ function CommentSection(props) {
               {format(new Date(x.addedTime), "dd MMMM yyyy hh:mm", {
                 locale: fr,
               })}
-              {x.user.id === userInfo.id && (
+              {isAuthenticated && x.user.id === userInfo.id && (
                 <>
                   &nbsp; | &nbsp;
                   <FontAwesomeIcon
