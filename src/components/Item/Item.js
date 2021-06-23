@@ -130,7 +130,7 @@ function Item(props) {
               itemId: props.match.params.id,
               userId: localStorage.getItem("user") !== null ? userInfo.id : "",
             });
-            loadItem();
+            loadItem(props.match.params.id);
             toast.success("Commentaire ajouté avec succès.");
           } else toast.error(res.message);
           setDisableSubmitButton(false);
@@ -148,7 +148,7 @@ function Item(props) {
         .deleteFeedback(feedbackId)
         .then((res) => {
           if (res.status === 200) {
-            loadItem();
+            loadItem(props.match.params.id);
             toast.success("Commentaire supprimé avec succès.");
           } else toast.error(res.message);
         })

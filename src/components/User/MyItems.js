@@ -276,19 +276,46 @@ function MyItems() {
                       </p>
                     </Col>
                     <Col xs={6} sm={4} md={4} lg={4}>
-                      {[...Array(2)].map((x, j) => (
-                        <div key={j} className="dash-separation">
-                          <Badge className="bg-3 badge">Eléctronique</Badge>
-                          &nbsp;
-                          <span className="small">
-                            Par Ahmed | <FontAwesomeIcon icon={faClock} /> 22
-                            Aout 2020
-                          </span>
-                          <Link to="/item" className="blue bold d-block">
-                            Iphone 10
-                          </Link>
-                        </div>
-                      ))}
+                      {x.item.itemExchanges !== null ? (
+                        x.item.itemExchanges.map((itemExchange) => (
+                          <React.Fragment key={itemExchange.id}>
+                            {itemExchange.itemsToExchange.map(
+                              (itemsToExchange) => (
+                                <React.Fragment key={itemsToExchange.id}>
+                                  <Badge className="bg-3 badge">
+                                    {itemsToExchange.subCategory.category.name}
+                                  </Badge>
+                                  &nbsp;
+                                  <span className="small">
+                                    {/* Par {itemsToExchange.user.firstname} |{" "}  */}
+                                    <FontAwesomeIcon icon={faClock} />{" "}
+                                    {format(
+                                      new Date(
+                                        itemExchange.exchangeRequestTime
+                                      ),
+                                      "dd MMMM yyyy",
+                                      {
+                                        locale: fr,
+                                      }
+                                    )}{" "}
+                                  </span>
+                                  <Link
+                                    to={"/item/" + itemsToExchange.id}
+                                    className="blue bold d-block"
+                                  >
+                                    {itemsToExchange.title}
+                                  </Link>
+                                </React.Fragment>
+                              )
+                            )}
+                            <hr />
+                          </React.Fragment>
+                        ))
+                      ) : (
+                        <Alert variant="info">
+                          Aucune demande d'échange pour cet article.
+                        </Alert>
+                      )}
                     </Col>
                     <Col
                       className="d-none d-sm-block"

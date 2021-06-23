@@ -61,6 +61,7 @@ function AskedExchangesSection(props) {
                   &nbsp;
                   <span className="small">
                     {/* Par {x.itemsToExchange[0].user.firstname} |{" "}  */}
+                    <FontAwesomeIcon icon={faClock} />{" "}
                     {format(new Date(x.exchangeRequestTime), "dd MMMM yyyy", {
                       locale: fr,
                     })}{" "}
