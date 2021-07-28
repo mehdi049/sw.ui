@@ -14,6 +14,7 @@ import Pagination from "react-js-pagination";
 import SortDropdown from "../_sharedComponents/DropDowns/SortDropdown";
 import * as api from "./api/ItemApi";
 import Error from "../_sharedComponents/Error";
+import PlaceholderItemContent from "../_sharedComponents/PlaceholderItemContent";
 
 function HomeItems() {
   const [isError, setIsError] = useState(false);
@@ -100,57 +101,52 @@ function HomeItems() {
           </Col>
         </Row>
       </Container>
-      {contentLoaded && (
+      {contentLoaded ? (
         <Container>
           <Row>
-            <Col>
-              <Row>
-                {paginatedItems.map((x, i) => (
-                  <Col xs={12} sm={6} md={4} lg={3} key={i}>
-                    <Link to={"/item/" + x.item.id}>
-                      {validateImage(x.item.images.split(";")[0])}
-                      <span className="item-name">{x.item.title}</span>
-                      <Badge className={"bg-" + x.item.subCategory.category.id}>
-                        {x.item.subCategory.category.name}
-                      </Badge>{" "}
-                      <span className="small">
-                        Par {x.user.firstName} |{" "}
-                        <FontAwesomeIcon icon={faClock} />{" "}
-                        {format(new Date(x.item.addedTime), "dd MMMM yyyy", {
-                          locale: fr,
-                        })}{" "}
-                        {/*   | <FontAwesomeIcon icon={faComment} />{" "}
+            {paginatedItems.map((x, i) => (
+              <Col xs={12} sm={6} md={4} lg={3} key={i}>
+                <Link to={"/item/" + x.item.id}>
+                  {validateImage(x.item.images.split(";")[0])}
+                  <span className="item-name">{x.item.title}</span>
+                  <Badge className={"bg-" + x.item.subCategory.category.id}>
+                    {x.item.subCategory.category.name}
+                  </Badge>{" "}
+                  <span className="small">
+                    Par {x.user.firstName} | <FontAwesomeIcon icon={faClock} />{" "}
+                    {format(new Date(x.item.addedTime), "dd MMMM yyyy", {
+                      locale: fr,
+                    })}{" "}
+                    {/*   | <FontAwesomeIcon icon={faComment} />{" "}
                         {x.item.itemFeedbacks.length}
                         */}
-                      </span>
-                      <span className="price-info blue">
-                        {x.item.price && x.item.price !== 0 && (
-                          <>
-                            {" "}
-                            <FontAwesomeIcon icon={faCoins} /> {x.item.price}{" "}
-                            TND &nbsp;&nbsp; &nbsp;
-                          </>
-                        )}
-                        {x.item.exchange && (
-                          <>
-                            <FontAwesomeIcon icon={faExchangeAlt} />
-                            &nbsp; Echange
-                          </>
-                        )}
-                      </span>
-                      {/* 
+                  </span>
+                  <span className="price-info blue">
+                    {x.item.price && x.item.price !== 0 && (
+                      <>
+                        {" "}
+                        <FontAwesomeIcon icon={faCoins} /> {x.item.price} TND
+                        &nbsp;&nbsp; &nbsp;
+                      </>
+                    )}
+                    {x.item.exchange && (
+                      <>
+                        <FontAwesomeIcon icon={faExchangeAlt} />
+                        &nbsp; Echange
+                      </>
+                    )}
+                  </span>
+                  {/* 
                       <p className="item-description d-none d-lg-block">
                         {x.item.description.substr(0, 100)}{" "}
                         {x.item.description.length > 100 && <>[...]</>}
                       </p>
                       */}
-                      <br />
-                      <br />
-                    </Link>
-                  </Col>
-                ))}
-              </Row>
-            </Col>
+                  <br />
+                  <br />
+                </Link>
+              </Col>
+            ))}
           </Row>
           <Row>
             <Col>
@@ -164,6 +160,16 @@ function HomeItems() {
                 linkClass="page-link"
               />
             </Col>
+          </Row>
+        </Container>
+      ) : (
+        <Container>
+          <Row>
+            {[...Array(8)].map((x, i) => (
+              <Col xs={12} sm={6} md={4} lg={3} key={i}>
+                <PlaceholderItemContent />
+              </Col>
+            ))}
           </Row>
         </Container>
       )}

@@ -392,10 +392,14 @@ function Item(props) {
                 </Col>
               </Row>
               {item.item.exchange && (
-                <AskedExchangesSection
-                  itemsForExchange={item.item.itemExchanges}
-                  itemOnClick={loadItem}
-                />
+                <>
+                  <hr />
+                  <br />
+                  <AskedExchangesSection
+                    itemsForExchange={item.item.itemExchanges}
+                    itemOnClick={loadItem}
+                  />
+                </>
               )}
               <hr />
               <br />
@@ -414,13 +418,14 @@ function Item(props) {
                 seen={item.item.seen}
                 likes={item.item.likes.length}
               />
-              {item.item.seen > 0 && item.item.likes.length > 0 && (
-                <>
-                  <br />
-                  <br />
-                  <br />
-                </>
-              )}
+              {item.item.seen > 0 ||
+                (item.item.likes.length > 0 && (
+                  <>
+                    <br />
+                    <br />
+                    <br />
+                  </>
+                ))}
               <SimilarItemsSection
                 similarItems={similarItems}
                 itemOnClick={loadItem}

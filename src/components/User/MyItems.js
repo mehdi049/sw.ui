@@ -9,6 +9,7 @@ import {
   Modal,
   Button,
   Alert,
+  Form,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -58,6 +59,7 @@ function MyItems() {
       .getItemsByUser(userInfo.id)
       .then((res) => {
         if (res.status === 200) {
+          console.log(res.body);
           setAddedItems(res.body);
           setPaginatedItems(res.body.slice(0, 5));
           setDisplayAddedItems(true);
@@ -121,6 +123,21 @@ function MyItems() {
     setPaginatedItems(addedItems.slice(pStart, pStart + 5));
   }
 
+  function handleSortItem(event) {
+    let _items = addedItems;
+    if (event.target.value === "newest")
+      _items = _items.sort((a, b) =>
+        a.item.addedTime < b.item.addedTime ? 1 : -1
+      );
+    if (event.target.value === "status")
+      _items = _items.sort((a, b) =>
+        a.item.itemStatus.id > b.item.itemStatus.id ? 1 : -1
+      );
+
+    console.log(_items);
+    setPaginatedItems(_items.slice(0, 5));
+  }
+
   function validateImage(imgPath, className) {
     try {
       return (
@@ -157,16 +174,29 @@ function MyItems() {
       ) : (
         <Container>
           <Row>
-            <Col>
+            <Col sm={6} lg={9}>
               <h3>Mes articles</h3>
             </Col>
-            <Col>
+            <Col sm={6} lg={3}>
               {addedItems.length > 0 && (
-                <>
-                  <p className="bold blue text-right">
-                    {addedItems.length} article(s)
-                  </p>
-                </>
+                <Form>
+                  <Form.Group as={Row}>
+                    <Col className="text-right">
+                      <span className="bold small blue">
+                        {addedItems.length} articles{" "}
+                      </span>
+                      <Form.Control
+                        as="select"
+                        className="select"
+                        name="item-sort"
+                        onChange={(e) => handleSortItem(e)}
+                      >
+                        <option value="newest">Trié par le plus recent</option>
+                        <option value="status">Trié par status</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                </Form>
               )}
             </Col>
           </Row>
@@ -199,6 +229,7 @@ function MyItems() {
                         x.item.images.split(";")[0],
                         "item-img-container-sm"
                       )}
+                      {/* 
                       <div className="text-center">
                         <span
                           className="underline dark-blue pointer small"
@@ -207,6 +238,7 @@ function MyItems() {
                           Modifier
                         </span>
                       </div>
+                      */}
                     </Col>
                     <Col xs={6} sm={4} md={4} lg={6}>
                       <div className="d-block d-sm-none">

@@ -17,6 +17,7 @@ import Pagination from "react-js-pagination";
 import SortDropdown from "../_sharedComponents/DropDowns/SortDropdown";
 import * as api from "./api/CategoryApi";
 import Error from "../_sharedComponents/Error";
+import PlaceholderItemContent from "../_sharedComponents/PlaceholderItemContent";
 
 function CategoryItems(props) {
   const [isError, setIsError] = useState(false);
@@ -248,7 +249,7 @@ function CategoryItems(props) {
             )}
           </Col>
           <Col md={9}>
-            {category && contentLoaded && (
+            {category && contentLoaded ? (
               <>
                 <Row>
                   <Col xs={12} md={7} xl={8}>
@@ -359,6 +360,16 @@ function CategoryItems(props) {
                   </>
                 )}
               </>
+            ) : (
+              <Container>
+                <Row>
+                  {[...Array(6)].map((x, i) => (
+                    <Col xs={12} sm={6} lg={4} key={i}>
+                      <PlaceholderItemContent />
+                    </Col>
+                  ))}
+                </Row>
+              </Container>
             )}
 
             {isError && <Error />}

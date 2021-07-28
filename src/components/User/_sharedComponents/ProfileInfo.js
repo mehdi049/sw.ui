@@ -17,7 +17,7 @@ function ProfileInfo() {
           <FontAwesomeIcon icon={faExchangeAlt} className="blue" />
           &nbsp;&nbsp; <span className="bold big dark-blue">2</span>{" "}
           <span className="d-none d-sm-block d-md-inline">
-            échange(s) aboutie
+            Echange(s) aboutie
           </span>
         </Col>
       </Row>

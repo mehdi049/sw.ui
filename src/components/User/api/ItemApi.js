@@ -45,6 +45,13 @@ export function getItemsByUser(userId) {
   }).then((res) => res.json());
 }
 
+export function myExchanges(userId) {
+  return fetch(baseUrl + "/item/myExchanges/" + userId, {
+    method: "GET",
+    cache: "no-cache",
+  }).then((res) => res.json());
+}
+
 export function deleteItem(itemId, userId) {
   return fetch(baseUrl + "/item/deleteItem/" + itemId + "/" + userId, {
     method: "DELETE",
