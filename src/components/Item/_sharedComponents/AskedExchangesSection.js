@@ -1,12 +1,7 @@
 import React from "react";
 import { Badge, Row, Col, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faComment,
-  faClock,
-  faCoins,
-  faExchangeAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Link } from "react-router-dom";
@@ -42,21 +37,26 @@ function AskedExchangesSection(props) {
     return (
       <Row>
         <Col>
-          <h3>{props.itemsForExchange.length} Demande(s) d'échange(s)</h3>
+          <h3>{props.itemsForExchange.length} demande(s) d'échange(s)</h3>
+          <br />
           <Row>
             {props.itemsForExchange.map((x, i) => (
               <React.Fragment key={i}>
                 <Col xs={4} lg={2} className="exchange-items">
                   <Link
-                    to={"/item/" + x.itemsToExchange[0].id}
-                    onClick={() => props.itemOnClick(x.itemsToExchange[0].id)}
+                    to={"/item/" + x.itemsToExchange[0].item.id}
+                    onClick={() =>
+                      props.itemOnClick(x.itemsToExchange[0].item.id)
+                    }
                   >
-                    {validateImage(x.itemsToExchange[0].images.split(";")[0])}
+                    {validateImage(
+                      x.itemsToExchange[0].item.images.split(";")[0]
+                    )}
                   </Link>
                 </Col>
                 <Col xs={8} lg={4} className="exchange-items">
                   <Badge className="bg-3">
-                    {x.itemsToExchange[0].subCategory.category.name}
+                    {x.itemsToExchange[0].item.subCategory.category.name}
                   </Badge>
                   &nbsp;
                   <span className="small">
@@ -68,23 +68,7 @@ function AskedExchangesSection(props) {
                   </span>
                   <p>
                     <span className="bold blue">
-                      {x.itemsToExchange[0].title}
-                    </span>
-                    <span className="price-info blue">
-                      {x.itemsToExchange[0].price &&
-                        x.itemsToExchange[0].price !== 0 && (
-                          <>
-                            {" "}
-                            <FontAwesomeIcon icon={faCoins} />{" "}
-                            {x.itemsToExchange[0].price} TND &nbsp;&nbsp; &nbsp;
-                          </>
-                        )}
-                      {x.itemsToExchange[0].exchange && (
-                        <>
-                          <FontAwesomeIcon icon={faExchangeAlt} />
-                          &nbsp; Echange
-                        </>
-                      )}
+                      {x.itemsToExchange[0].item.title}
                     </span>
                   </p>
                 </Col>
