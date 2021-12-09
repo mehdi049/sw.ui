@@ -1,3 +1,8 @@
+#Switch (UI)
+- Switch is a side project that I'm building, it allows users to exchange / sell their products.
+- This is the UI side of the rpoject and it's connected to 'sw.item.api' (API service where items are managed) and 'sw.user.api' (API service where users are managed).
+- The website is fully responsive and uses HTML / CSS / JS / ReactJs / Bootstrap.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
