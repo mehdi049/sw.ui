@@ -132,6 +132,10 @@ h5 {
   padding: 5px;
 }
 
+.badge * {
+  color: #fff;
+}
+
 .dash-separation {
   display: block;
   padding: 15px 0px;
@@ -212,6 +216,7 @@ svg.text-danger * {
   color: #2bc9ce;
 }
 .dark-blue-bg a,
+.dark-blue-bg font,
 .dark-blue-bg span,
 .dark-blue-bg p {
   color: #fff !important;
