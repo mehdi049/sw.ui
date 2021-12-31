@@ -15,6 +15,7 @@ import SortDropdown from "../_sharedComponents/DropDowns/SortDropdown";
 import * as api from "./api/ItemApi";
 import Error from "../_sharedComponents/Error";
 import PlaceholderItemContent from "../_sharedComponents/PlaceholderItemContent";
+import itemsDb from "./api/items.json";
 
 function HomeItems() {
   const [isError, setIsError] = useState(false);
@@ -73,17 +74,23 @@ function HomeItems() {
   }
 
   useEffect(() => {
-    api
+    /*api
       .getHomeItems()
       .then((res) => {
         setIsError(false);
+        console.log(res.body);
         setItems(res.body);
         setPaginatedItems(res.body.slice(0, 20));
         setContentLoaded(true);
       })
       .catch((error) => {
         setIsError(true);
-      });
+      });*/
+
+    setIsError(false);
+    setItems(itemsDb);
+    setPaginatedItems(itemsDb.slice(0, 20));
+    setContentLoaded(true);
   }, []);
 
   return (
